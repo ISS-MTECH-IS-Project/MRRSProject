@@ -1,78 +1,3 @@
-# Scenario - using Topic modelling we would have pre-trained some topics
-# These topics can be 
-# 1) medical conditions
-# 2) broad category of a family of medical conditions etc
-# 3) symptoms (note we need to exercise care here to segregate conditions vs symptoms)
-
-class Topic:
-    def __init__(self, name, tokens, test=False): 
-        self.Name = name
-        self.Tokens = tokens #[]
-        if test:
-            print(self.Name)
-            print(self.Tokens)
-
-class SymptomTopic(Topic):
-    def __init__(self, name, tokens, conditions, questions=[], test=False): 
-        super().__init__(self, name, tokens, test=False)
-        self.Conditions = conditions #an array of condition objects
-        self.Questions = questions #questions are an array of strings that are useful to verify this symptom
-        if test:
-            print(self.Conditions)
-            print(self.Questions)
-
-class ConditionTopic(Topic):
-    def __init__(self, name, tokens, symptoms, factsheet, questions=[], test=False): 
-        super().__init__(self, name, tokens, test=False)
-        self.Symptoms = symptoms #an array of symptom name strings
-        self.Questions = questions #questions are an array of strings that are useful to verify this condition
-        self.MedicalFactSheet = factsheet # imagine this like a "page of medical facts for the user to read on the details of this condition"
-        if test:
-            print(self.Symptoms)
-            print(self.Questions)
-            print(self.MedicalFactSheet)
-
-class CategoryTopic(Topic):
-    def __init__(self, name, tokens, symptoms, conditions, questions=[], test=False): 
-        super().__init__(self, name, tokens, test=False)
-        self.Symptoms = symptoms #an array of symptom objects
-        self.Conditions = conditions #an array of condition name strings
-        self.Questions = questions #questions are an array of strings that are useful to verify this symptom
-        if test:
-            print(self.Symptoms)
-            print(self.Conditions)
-            print(self.Questions)
-
-
-# Scenario - Chatbot needs to ask question, user will also ask question
-# Question class -  this will store
-# 1) Questions by ChatBot
-# 2) UserInputs - these are inputs by user (be it probes / followup) 
-# 3) eg { orig : ['token of original question']}
-#       { d-treeID : ['above + tokens added after probe'] }
-#       { d-treeID2 : ['above + tokens added after probe'] }
-
-class Question:
-     def __init__(self, questionID, question, tokens=[], test=False): 
-        self.QuestionID = questionID # this is the ID used for indexing
-        self.Question = question # the question string
-        self.Tokens = tokens # we put the tokens here since this will be the object for iteration
-        if test:
-            print(self.Question)
-
-# UserChat object is unique as it will consist of the original user question as well as storing a list of Question Objects
-class UserChat (Question):
-    def __init__(self, question, test): 
-        super().__init__(self, question, test)        
-        self.UserInput = {}
-
-    def addQuestionObject(self, QuestionObj):
-        if QuestionObj not in self.UserInput.keys():
-            self.UserInput[QuestionObj.QuestionID] = QuestionObj
-        else:
-            # this question is asked before (should not happen)
-            pass
-    
 # Scenario - User answered question, we need to match
 # Matching class -  this will person the calling of backend logic for tokenizing and matching
 # 1) Should take in the UserQuestion object (so that at anytime have full context access)
@@ -150,8 +75,13 @@ class ProbeObject:
     def __init__(self, name, userQuestionObj, test=False): 
         self.Name = name # for session implementation if there's time
         self.UserQuestion = userQuestionObj
+        self.CollectedSymptoms =[]
         self.ProbeQuestions = []
     
+    def CollectSymptoms (self, symptom):
+        # Symptoms from user chat to insert here
+        self.CollectedSymptoms.append(symptom)
+
     def BakeQuestions (self, pre_sorted_question_array):
         self.ProbeQuestions.append(pre_sorted_question_array)
 
@@ -168,7 +98,7 @@ class FollowUpObject (ProbeObject):
         self.isProbe = False
         self.Conditions = suspected_conditions
     
-    def BakeConditions (self, pre_sorted_condition_array):
+    def SuspectConditions (self, pre_sorted_condition_array):
         self.ProbeQuestions.append(pre_sorted_condition_array)
 
 
