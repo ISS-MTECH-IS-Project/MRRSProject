@@ -23,11 +23,11 @@ class DBservice(metaclass=SingletonMeta):
         # 
         return Disease()
 
-    def getDiseases (self, symptom:Symptom) -> list[Disease]:
+    def getDiseases (self, symptom:Symptom) -> dict:
         # put the logic to find all diseases for a given symptom in neo4j here
         return []
 
-    def getSymptoms (self, disease:Disease) -> list[Symptom]:
+    def getSymptoms (self, disease:Disease) -> dict:
         # put the logic to find all symptoms for a given disease in neo4j here
         return []
 
@@ -38,6 +38,13 @@ class DBservice(metaclass=SingletonMeta):
     def saveCase(self, case:Case) -> Case:
         return Case()
 
-    
+    def getDiseasesFromCase(self, case:Case) -> dict:
+        pass
+
+    def updateDiseasesToCase(self, case:Case, disease:Disease):
+        pass
+
+    def confirmSymptomToCase(self, case:Case, symptom:Symptom):
+        pass
 
 

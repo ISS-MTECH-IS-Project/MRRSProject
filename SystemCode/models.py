@@ -1,8 +1,19 @@
+from unicodedata import name
+
+
 class Symptom():
+    name:str
+    weight:float
+    penalty:float
+    confirmed:bool
     def __init__(self, name):
         return
 
 class Disease():
+    name:str
+    totalWeight:float
+    weight:float
+    confidence:float
     def __init__(self, name):
         return
 
@@ -15,6 +26,9 @@ class Question():
         return
 
 class Case():
+    id:int
+    satisfied:int
+    concluded:bool
     def __init__(self, id):
         return
 
