@@ -2,7 +2,7 @@ class Symptom():
     def __init__(self, name):
         return
 
-class Condition():
+class Disease():
     def __init__(self, name):
         return
 

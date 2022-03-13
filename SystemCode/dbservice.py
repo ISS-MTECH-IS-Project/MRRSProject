@@ -19,16 +19,16 @@ class DBservice(metaclass=SingletonMeta):
         # put the search symtom by name in neo4j logic here
         return Symptom()
     
-    def getCondition (self, name:str) -> Condition:
+    def getDisease (self, name:str) -> Disease:
         # 
-        return Condition()
+        return Disease()
 
-    def getConditions (self, symptom:Symptom) -> list[Condition]:
-        # put the logic to find all conditions for a given symptom in neo4j here
+    def getDiseases (self, symptom:Symptom) -> list[Disease]:
+        # put the logic to find all diseases for a given symptom in neo4j here
         return []
 
-    def getSymptoms (self, condition:Condition) -> list[Symptom]:
-        # put the logic to find all symptoms for a given condition in neo4j here
+    def getSymptoms (self, disease:Disease) -> list[Symptom]:
+        # put the logic to find all symptoms for a given disease in neo4j here
         return []
 
     def getCase(self, id:int) -> Case:

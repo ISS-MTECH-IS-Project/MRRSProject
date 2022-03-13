@@ -12,8 +12,8 @@ class KbDecisionMaker(metaclass=SingletonMeta):
         """
         return a dict
         {"symptom": next Symtom if any
-        "conditions": [{"condition": condition, "confidence":0.8}]
-        list of dictionary of conditions and confidence level sorted by confidence level
+        "diseases": [{"disease": disease, "confidence":0.8}]
+        list of dictionary of diseases and confidence level sorted by confidence level
         """
         pass
 
