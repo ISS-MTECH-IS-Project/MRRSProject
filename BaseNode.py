@@ -11,7 +11,7 @@ class BaseNode:
         self.ID = ID # by neo4j
         self.Name = name
         self.Edge = [] # [ALL Type of Nodes]
-        self.Tokens = [] # [Tokens are the result of Topic modelling training]
+        #self.Tokens = [] # [Tokens are the result of Topic modelling training] - not using this at the moment due to the use of cosine matching function
         if test:
             print(self.ID)
             print(self.Name)
@@ -28,7 +28,7 @@ class BaseNode:
 # 3) List of conditions - this is for quick search purpose when a user input matches the symptom tokens and we want to pick out more conditions for probe 
 class SymptomNode(BaseNode):
     def __init__(self, ID, name): 
-        super.__init__(self, ID, name)
+        super().__init__(ID, name)
         self.Condition = [] #[Holds all the Condition Nodes]
         self.Weightage = 1
         self.CriticalQuestion = None
@@ -51,7 +51,7 @@ class SymptomNode(BaseNode):
 # 5) Treatment - the chunk of text that describe the treatment
 class ConditionNode(BaseNode):
     def __init__(self, ID, name): 
-        super.__init__(self, ID, name)
+        super().__init__(ID, name)
         self.Symptom = [] #[Holds all the Condition Nodes]
         self.AKA = [] #[Holds all the Also Known As Nodes]
         self.MinSymptomMatch = 1 # (we set this because each condition/disease can have different num of symptoms, this can be the high level decider for probing)
@@ -79,24 +79,31 @@ class ConditionNode(BaseNode):
 # Therefore the condition in this node should be the common ConditionNode
 class AKANode(BaseNode):
     def __init__(self, ID, name, Condition): 
-        super.__init__(self, ID, name)
+        super().__init__(ID, name)
         self.isCaseVariant = False # Refer to CaseNode
         self.Condition = Condition # This node should by right just give us the referenced condition
 
 # 1 cause to 1 condition matching at the moment
 class CausesNode(BaseNode):
     def __init__(self, ID, name, Condition): 
-        super.__init__(self, ID, name)
+        super().__init__(ID, name)
         self.Condition = Condition
         self.CausesTextChunk= None  # (for now we only want to concentrate on the symptoms, and not root finding causes)
 
 
 # 1 treatment to 1 condition matching at the moment
-class TreaatmentNode(BaseNode):
-    def __init__(self, ID, name, Condition): 
-        super.__init__(self, ID, name)
+class TreatmentNode(BaseNode):
+    def __init__(self, ID, name, Condition, Medication): 
+        super().__init__(ID, name)
         self.Condition = Condition
         self.TreatmentTextChunk= None  # (for now we only want to concentrate on the symptoms, and not suggesting best treatment)
+        self.Medication = Medication # [Medication]
+
+# 1 treatment to 1 condition matching at the moment
+class MedicationNode(TreatmentNode):
+    def __init__(self, ID, name, Condition): 
+        super().__init__(ID, name)
+        self.Condition = Condition # {Condition : MedicationTextChunk} because one type of medication can be mentioned for various 
 
 
 # Assume we start off by using the CBR model
@@ -111,7 +118,7 @@ class TreaatmentNode(BaseNode):
 #    MatchedConfidence (value) - temporary cal can be CollectSymptoms.length / SuspectedConditionNode.Symptoms.length
 class CaseNode(AKANode):
     def __init__(self, ID, name, ChatHistory): 
-        super.__init__(self, ID, name, Condition=None)  # The condition is the final "verdict"
+        super().__init__(ID, name, Condition=None)  # The condition is the final "verdict"
         self.isCaseVariant = True
         self.ChatHistory = ChatHistory
         self.CollectedSymptom = []
