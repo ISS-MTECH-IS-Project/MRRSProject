@@ -193,7 +193,6 @@ class DataSetUpPackage():
                 break
     
     def PopulateNeo4j(self, neo4jSessionInstance, verbose=False):
-        SessionInstance = neo4jSessionInstance
         self.SessionInstance = neo4jSessionInstance
         self.Verbose = verbose
         disease_df = self.Disease_DF
@@ -233,5 +232,5 @@ class DataSetUpPackage():
 # at this moment you can
 # 1) get all nodes of a type - eg  run the follow by uncommenting:
 
-# result = dbcon.GetAllFromTable("AKA")
+# result = dbcon. GetAllNodeListOfType('Disease')
 # print(result)

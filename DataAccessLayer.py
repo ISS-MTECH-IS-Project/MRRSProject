@@ -1,6 +1,10 @@
-## import library
-from neo4j import GraphDatabase
+#pip install neomodel
+
+from neo4j import GraphDatabase, Record
 from neo4j.exceptions import ServiceUnavailable
+from neomodel import config
+from NeomodelNodeObject import (Symptom, Disease, AKA, Medication)
+
 
 class DataAccessLayer():
     def __init__(self, neo4jURL =None,dbName=None,username=None, password=None):
@@ -11,7 +15,7 @@ class DataAccessLayer():
         self.DBPassword = password or "ENTER YOUR NEO4J PASSWORD HERE"
         self.Graph = None
         self.Session = None
-
+        config.DATABASE_URL = 'bolt://'+self.DBUserName+':'+self.DBPassword+'@localhost:7687'
 
     # Always connect to the correct DB first before us
     @property
@@ -42,12 +46,12 @@ class DataAccessLayer():
         with self.Session as session:
             result = session.run(query)    
     
-    def GetAllFromTable(self,nodeLabel):
+    def GetAllNodeRecordsOfType(self,nodeLabel):
         """
         Get ALL rows from current Table \n
         Valid NodeLabels \n
         Symptom , Disease, AKA, Medication\n
-        returns a disctionary of Nodes
+        returns a dictionary of Nodes records
         """
         query = (
                 "MATCH (n:" + nodeLabel +")"
@@ -60,4 +64,33 @@ class DataAccessLayer():
                 Nodes[result['n']['name']]=result['n']
             return Nodes
     
+    def GetOneNodeRecordUsingID(self,neeo4jID):
+        """
+        Get node using ID
+        """
+        query = (
+                "MATCH (s) where ID(s) =" + neeo4jID +
+                "RETURN s"
+            )
+        with self.Session as session:
+            result = session.run(query)
+            return result['s']
+    
+    def GetAllNodeListOfType(self,nodeLabel):
+        """
+        Get ALL rows from current Table \n
+        Valid NodeLabels \n
+        Symptom , Disease, AKA, Medication\n
+        returns a disctionary of Nodes in flat list
+        """
+        if nodeLabel == 'Disease':
+            return Disease.nodes.all()
+        elif nodeLabel == 'Symptom':
+            return Symptom.nodes.all()
+        elif nodeLabel == 'AKA':
+            return Symptom.nodes.all()
+        elif nodeLabel == 'Medication':
+            return Symptom.nodes.all()
+        else:
+            return None
     
