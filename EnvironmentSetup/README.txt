@@ -18,7 +18,7 @@
 
 1) Download the two tar.gz files and the "unpack-env.sh" file into a directory of your choice. 
     Please ensure you have at least 3 GB of available space for the compressed and uncompressed files. 
-2) Run the script "unpack-env.sh"
+2) Run the script "unpack-env.sh" to unpack both compressed files.
 
 
 [ Flask ]
