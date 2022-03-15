@@ -1,11 +1,14 @@
-#pip install neomodel
+#pip install py2neo
 
-from neo4j import GraphDatabase, Record
+from neo4j import GraphDatabase
 from neo4j.exceptions import ServiceUnavailable
-from neomodel import config
-from NeomodelNodeObject import (Symptom, Disease, AKA, Medication)
+from py2neo.ogm import Repository
+from py2neo import Graph,Path,Subgraph
+from py2neo import NodeMatcher,RelationshipMatcher
+from Py2NeoGraphObject import (Symptom, Disease, AKA, Medication)
 
 
+# noinspection PyMethodMayBeStatic
 class DataAccessLayer():
     def __init__(self, neo4jURL =None,dbName=None,username=None, password=None):
         # Neo4j Settings 
@@ -15,7 +18,8 @@ class DataAccessLayer():
         self.DBPassword = password or "ENTER YOUR NEO4J PASSWORD HERE"
         self.Graph = None
         self.Session = None
-        config.DATABASE_URL = 'bolt://'+self.DBUserName+':'+self.DBPassword+'@localhost:7687'
+        self.Py2NeoGraph = Graph(self.Neo4jDBURL, auth=(self.DBUserName, self.DBPassword))
+        self.Py2NeoRepo = repo = Repository("bolt://neo4j@localhost:7687", password=self.DBPassword)
 
     # Always connect to the correct DB first before us
     @property
@@ -64,33 +68,40 @@ class DataAccessLayer():
                 Nodes[result['n']['name']]=result['n']
             return Nodes
     
-    def GetOneNodeRecordUsingID(self,neeo4jID):
+    def GetOneNodeRecordUsingID(self,neo4jID):
         """
         Get node using ID
         """
         query = (
-                "MATCH (s) where ID(s) =" + neeo4jID +
+                "MATCH (s) where ID(s) =" + neo4jID +
                 "RETURN s"
             )
         with self.Session as session:
             result = session.run(query)
             return result['s']
     
+    def GetCurrentDBNodeLabels(self):
+        return self.Py2NeoGraph.schema.node_labels
+
+    def GetCurrentDBRelationshipLabels(self):
+            return self.Py2NeoGraph.schema.relationship_types
+
     def GetAllNodeListOfType(self,nodeLabel):
         """
         Get ALL rows from current Table \n
         Valid NodeLabels \n
         Symptom , Disease, AKA, Medication\n
-        returns a disctionary of Nodes in flat list
+        returns a dictionary of Nodes in flat list
         """
+
         if nodeLabel == 'Disease':
-            return Disease.nodes.all()
+            return Disease.match(self.Py2NeoRepo)
         elif nodeLabel == 'Symptom':
-            return Symptom.nodes.all()
+            return Symptom.match(self.Py2NeoRepo)
         elif nodeLabel == 'AKA':
-            return Symptom.nodes.all()
+            return AKA.match(self.Py2NeoRepo)
         elif nodeLabel == 'Medication':
-            return Symptom.nodes.all()
+            return Medication.match(self.Py2NeoRepo)
         else:
             return None
     

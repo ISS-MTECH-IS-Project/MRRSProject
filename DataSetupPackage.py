@@ -24,11 +24,11 @@ class DataSetUpPackage():
     @property    
     def GetDefaultCSVPath(self):
         folderpath = os.getcwd()
-        if(os.name == 'posix'):
+        if os.name == 'posix':
             folderpath += "/RawCSV/"
         else:
-            folderpath +=  "\\RawCSV\\"        
-        return folderpath  
+            folderpath +=  "\\RawCSV\\"
+        return folderpath
     
     def CreateDiseaseNode(self, diseaseName=None):
         i = self.Disease_DF_RowIndex
@@ -198,7 +198,7 @@ class DataSetUpPackage():
         disease_df = self.Disease_DF
         
         for i in range(disease_df.shape[0]):            
-            ## traverse row-by-row
+            # traverse row-by-row
             # set row index
             self.Disease_DF_RowIndex = i
             
@@ -206,7 +206,7 @@ class DataSetUpPackage():
             self.CreateDiseaseNode()
 
             # Set some props to Disease
-            # straight forward labelling are environemtn and affected fish at the moment
+            # straight forward labelling are environment and affected fish at the moment
             # By right we should add Causes & Also treatment as Nodes
             # However, these are merely a chunk of text suitable only for props at this moment
             self.SetDiseaseProps()
@@ -223,8 +223,8 @@ class DataSetUpPackage():
 # To set up the neo4jDB
 # Call the data access layer to first establish the data connection, then run the follow by uncommenting:
 
-# dbcon = DataAccessLayer().CreateDBConnection
-# dbcon.ClearCurrentDB # This will clean up the neo4jDB
+# dbcon = DataAccessLayer(username='neo4j',password='neo123456').CreateDBConnection
+# dbcon.ClearCurrentDB  # This will clean up the neo4jDB
 # DataSetUpPackage().ReadCSVAndPopulateDB.PopulateNeo4j(dbcon.Session, verbose=True)
 
 
@@ -232,5 +232,15 @@ class DataSetUpPackage():
 # at this moment you can
 # 1) get all nodes of a type - eg  run the follow by uncommenting:
 
-# result = dbcon. GetAllNodeListOfType('Disease')
+# dbcon = DataAccessLayer(username='neo4j',password='neo123456').CreateDBConnection
+# result = dbcon.GetCurrentDBNodeLabels()
+# result1 = dbcon.GetCurrentDBRelationshipLabels()
 # print(result)
+# print(result1)
+# result2 = dbcon.GetAllNodeListOfType('Disease')
+# for resulti in result2:
+#     print(resulti.name)
+#     print(resulti.environment)
+#     for r in resulti.symptoms:
+#         print(r.name)
+

@@ -55,6 +55,10 @@ coverage.xml
 *.mo
 *.pot
 
+# Archive
+Archive/
+TestScript.py
+
 # Django stuff:
 *.log
 local_settings.py
@@ -109,6 +113,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+.idea/
 
 # Spyder project settings
 .spyderproject
