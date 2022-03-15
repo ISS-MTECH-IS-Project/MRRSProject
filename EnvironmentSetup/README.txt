@@ -13,6 +13,7 @@
 7) To deactivate the virtual environment, type "deactivate" at the shell prompt.
 8) To deactivate the conda environment, type "conda deactivate". Deactivate virtual environment first then conda environment.
 
+
 [ To unpack the environment ]
 
 1) Download the two tar.gz files and the "unpack-env.sh" file into a directory of your choice. 
