@@ -3,17 +3,17 @@ from unicodedata import name
 
 class Symptom():
     name:str
-    weight:float
-    penalty:float
-    confirmed:bool
+    weight:float # relationshi value for disease
+    penalty:float # relationship value for disease
+    suspectLevel:float # relationship value for case
     def __init__(self, name):
         return
 
 class Disease():
     name:str
     totalWeight:float
-    weight:float
-    confidence:float
+    weight:float # relationship value for symptom
+    confidence:float # relationship value for case
     def __init__(self, name):
         return
 

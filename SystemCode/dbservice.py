@@ -17,7 +17,13 @@ class DBservice(metaclass=SingletonMeta):
 
     def getSymptom (self, name:str) -> Symptom:
         # put the search symtom by name in neo4j logic here
-        return Symptom()
+        # query="select * from Symptom where name"
+        # run the query
+        # queryResult =""
+        symptom = Symptom()
+        symptom.name="queryResult.name"
+        symptom.weight=1
+        return symptom
     
     def getDisease (self, name:str) -> Disease:
         # 
@@ -42,9 +48,11 @@ class DBservice(metaclass=SingletonMeta):
         pass
 
     def updateDiseasesToCase(self, case:Case, disease:Disease):
+        # update r where case.id=1 and disease.name="" set confidency=disease.confidence
         pass
 
     def confirmSymptomToCase(self, case:Case, symptom:Symptom):
+        # update r where case.id=1 and symptom.name="" set confirm=symptom.confirmed
         pass
 
 

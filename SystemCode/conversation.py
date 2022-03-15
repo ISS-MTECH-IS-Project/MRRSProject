@@ -24,3 +24,12 @@ class Conversation(metaclass=SingletonMeta):
         pass
 
 
+    def handleConversation(userInput:str) :
+        # tm.getSymptom(userInput)
+        # res = self.kb.getNext(case, sym)
+        #  d = res.diseases[0]
+        #  d1 = res.diseases[1]
+        #     if d.confidency>0.9:
+        #         return ConfirmDiseaseMessage(d)
+        # return getMessage(res.symtom)
+        pass
