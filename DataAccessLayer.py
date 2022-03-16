@@ -5,7 +5,9 @@ from neo4j.exceptions import ServiceUnavailable
 from py2neo.ogm import Repository
 from py2neo import Graph,Path,Subgraph
 from py2neo import NodeMatcher,RelationshipMatcher
-from Py2NeoGraphObject import (Symptom, Disease, AKA, Medication)
+# from Py2NeoGraphObject import (Symptom, Disease, AKA, Medication)
+from neomodel import config
+from NeomodelGraphObject import (Symptom, Disease, AKA, Medication, Case)
 
 
 # noinspection PyMethodMayBeStatic
@@ -18,8 +20,10 @@ class DataAccessLayer():
         self.DBPassword = password or "ENTER YOUR NEO4J PASSWORD HERE"
         self.Graph = None
         self.Session = None
-        self.Py2NeoGraph = Graph(self.Neo4jDBURL, auth=(self.DBUserName, self.DBPassword))
-        self.Py2NeoRepo = repo = Repository("bolt://neo4j@localhost:7687", password=self.DBPassword)
+
+        config.DATABASE_URL = "bolt://"+self.DBUserName+":"+self.DBPassword+"@localhost:7687"
+        # self.Py2NeoGraph = Graph(self.Neo4jDBURL, auth=(self.DBUserName, self.DBPassword))
+        # self.Py2NeoRepo = Repository("bolt://neo4j@localhost:7687", password=self.DBPassword)
 
     # Always connect to the correct DB first before us
     @property
@@ -49,42 +53,42 @@ class DataAccessLayer():
             )
         with self.Session as session:
             result = session.run(query)    
-    
-    def GetAllNodeRecordsOfType(self,nodeLabel):
-        """
-        Get ALL rows from current Table \n
-        Valid NodeLabels \n
-        Symptom , Disease, AKA, Medication\n
-        returns a dictionary of Nodes records
-        """
-        query = (
-                "MATCH (n:" + nodeLabel +")"
-                "RETURN n"
-            )
-        with self.Session as session:
-            results = session.run(query)
-            Nodes = {}
-            for result in results:
-                Nodes[result['n']['name']]=result['n']
-            return Nodes
-    
-    def GetOneNodeRecordUsingID(self,neo4jID):
-        """
-        Get node using ID
-        """
-        query = (
-                "MATCH (s) where ID(s) =" + neo4jID +
-                "RETURN s"
-            )
-        with self.Session as session:
-            result = session.run(query)
-            return result['s']
-    
-    def GetCurrentDBNodeLabels(self):
-        return self.Py2NeoGraph.schema.node_labels
 
-    def GetCurrentDBRelationshipLabels(self):
-            return self.Py2NeoGraph.schema.relationship_types
+    def GetOneDiseaseNode(self,name)->Disease:
+        """
+        Get one disease node using name
+        """
+        return Disease.nodes.get(name=name)
+
+    def GetOneSymptomNode(self,name)->Symptom:
+        """
+        Get one symptom node using name
+        """
+        return Symptom.nodes.get(name=name)
+
+    def GetOneAKANode(self,name)->AKA:
+        """
+        Get one AKA node using name
+        """
+        return AKA.nodes.get(name=name)
+
+    def GetOneMedicationNode(self,name)->Medication:
+        """
+        Get one medication node using name
+        """
+        return Medication.nodes.get(name=name)
+
+    def GetOneCaseNode(self,name)->Case:
+        """
+        Get one case node using name
+        """
+        return Case.nodes.get(name=name)
+
+    def SaveCaseNode(self,case_instance:Case)->Case:
+        """
+        Save case to DB
+        """
+        case_instance.save()
 
     def GetAllNodeListOfType(self,nodeLabel):
         """
@@ -95,13 +99,13 @@ class DataAccessLayer():
         """
 
         if nodeLabel == 'Disease':
-            return Disease.match(self.Py2NeoRepo)
+            return Disease.nodes.all()
         elif nodeLabel == 'Symptom':
-            return Symptom.match(self.Py2NeoRepo)
+            return Symptom.nodes.all()
         elif nodeLabel == 'AKA':
-            return AKA.match(self.Py2NeoRepo)
+            return AKA.nodes.all()
         elif nodeLabel == 'Medication':
-            return Medication.match(self.Py2NeoRepo)
+            return Medication.nodes.all()
         else:
             return None
     

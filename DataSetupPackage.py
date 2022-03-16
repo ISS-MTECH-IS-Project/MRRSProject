@@ -222,7 +222,6 @@ class DataSetUpPackage():
             
 # To set up the neo4jDB
 # Call the data access layer to first establish the data connection, then run the follow by uncommenting:
-
 # dbcon = DataAccessLayer(username='neo4j',password='neo123456').CreateDBConnection
 # dbcon.ClearCurrentDB  # This will clean up the neo4jDB
 # DataSetUpPackage().ReadCSVAndPopulateDB.PopulateNeo4j(dbcon.Session, verbose=True)
@@ -233,10 +232,6 @@ class DataSetUpPackage():
 # 1) get all nodes of a type - eg  run the follow by uncommenting:
 
 # dbcon = DataAccessLayer(username='neo4j',password='neo123456').CreateDBConnection
-# result = dbcon.GetCurrentDBNodeLabels()
-# result1 = dbcon.GetCurrentDBRelationshipLabels()
-# print(result)
-# print(result1)
 # result2 = dbcon.GetAllNodeListOfType('Disease')
 # for resulti in result2:
 #     print(resulti.name)
