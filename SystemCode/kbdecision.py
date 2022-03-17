@@ -21,6 +21,7 @@ class KbDecisionMaker(metaclass=SingletonMeta):
         for d in suspectDiseases:
             if currentDiseases[d]:
                 disease = currentDiseases[d]
+                # logic here
 
         pass
 
