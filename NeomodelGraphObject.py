@@ -6,6 +6,7 @@ from neomodel import (StructuredNode, UniqueIdProperty, StringProperty, FloatPro
 
 
 class HasSymptomRel(StructuredRel):
+    name = StringProperty()
     weight = FloatProperty(
         default=1.0
     )
@@ -15,21 +16,28 @@ class HasSymptomRel(StructuredRel):
 
 
 class DetectedInRel(StructuredRel):
+    name = StringProperty()
     weight = FloatProperty(
         default=1.0
     )
 
 
 class SuspectedSymptomRel(StructuredRel):
+    name = StringProperty()
     suspectedLevel = FloatProperty(
         default=1.0
     )
 
 
 class SuspectedDiseaseRel(StructuredRel):
+    name = StringProperty()
     confidence = FloatProperty(
         default=1.0
     )
+
+
+class IsSuspectedInCase(StructuredRel):
+    name = StringProperty()
 
 
 class Disease(StructuredNode):
@@ -50,7 +58,7 @@ class Symptom(StructuredNode):
     imageURL = StringProperty()
     question = None
     diseases = RelationshipTo('Disease', 'isDetectedIn', model=DetectedInRel)
-    cases = RelationshipFrom('Case','isSuspected')
+    cases = RelationshipFrom('Case','isSuspected', model=IsSuspectedInCase)
 
 
 class AKA(StructuredNode):

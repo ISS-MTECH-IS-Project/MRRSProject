@@ -120,16 +120,67 @@ class DataAccessLayer():
                     return s
             return None
 
-    # not ready
-    def GetAllSymptomFromDiseaseOrCaseByName(self, nodename:str = None, ID:int = None) -> [Symptom]:
-        TryDiseaseNode = self.__GetOneNodeOfSpecificTypeUsingName(nodename,'Disease')
-        TryCaseNode = self.__GetOneNodeOfSpecificTypeUsingName(nodename,'Case')
+    def CreateOrGetSymptomNode(self, symptomName:str = None, onlyGet:bool=False) -> Symptom:
+        checkforsymptom = Symptom.nodes.first_or_none(name=symptomName)
+        if checkforsymptom is None and not onlyGet:
+            symptom_instance = Symptom(name=symptomName)
+            symptom_instance.save()
+            return symptom_instance
+        else:
+            return checkforsymptom
+
+    def GetAllSymptomFromDiseaseOrCaseByNameOrID(self, nodename:str = None, ID:int = None) -> [Symptom]:
+        TryDiseaseNode = self.GetOneDiseaseNode(nodename, ID)
+        TryCaseNode = self.CreateOrGetCaseNode(nodename, ID, True)
 
         if TryDiseaseNode:
-            return TryDiseaseNode.symptoms
+            # return TryDiseaseNode.symptoms.all()
+            # Hackish -> by changing the hackish line in match.py in neomodel cypher
+            # in view that we are not likely to write crazy shell script, using cypher instead.
+            query = """
+            MATCH (d:Disease) WHERE d.name=$name with d 
+            OPTIONAL MATCH ((d)-[r1:`hasSymptom`]->(symptoms:Symptom)) 
+            RETURN symptoms
+            """
+            param_dictionary = {'name': TryDiseaseNode.name}
+            results, meta = db.cypher_query(query, param_dictionary, resolve_objects=True)
+            return results
         if TryCaseNode:
-            s=TryCaseNode
-            return TryCaseNode.suspected_symptoms
+            # return TryCaseNode.suspected_symptoms.all() - see above
+            query = """
+            MATCH (c:Case) WHERE c.name=$name with c 
+            OPTIONAL MATCH ((c)-[r1:`suspectedSymptom`]->(symptoms:Symptom)) 
+            RETURN symptoms
+            """
+            param_dictionary = {'name': TryCaseNode.name}
+            results, meta = db.cypher_query(query, param_dictionary, resolve_objects=True)
+            return results
+        return None
+
+    def GetAllDiseaseFromSymptomOrCaseByNameOrID(self, nodename:str = None, ID:int = None) -> [Symptom]:
+        TrySymptomNode = self.GetOneSymptomNode(nodename, ID)
+        TryCaseNode = self.CreateOrGetCaseNode(nodename, ID, True)
+
+        if TrySymptomNode:
+            # return TrySymptomNode.diseases.all() - see above
+            query = """
+            MATCH (s:Symptom) WHERE s.name=$name with s 
+            OPTIONAL MATCH ((s)-[r1:`isDetectedIn`]->(diseases:Disease)) 
+            RETURN diseases
+            """
+            param_dictionary = {'name': TrySymptomNode.name}
+            results, meta = db.cypher_query(query, param_dictionary, resolve_objects=True)
+            return results
+        if TryCaseNode:
+            # return TryCaseNode.suspected_diseases.all() - see above
+            query = """
+            MATCH (c:Case) WHERE c.name=$name with c 
+            OPTIONAL MATCH ((c)-[r1:`suspectedDisease`]->(diseases:Disease)) 
+            RETURN diseases
+            """
+            param_dictionary = {'name': TryCaseNode.name}
+            results, meta = db.cypher_query(query, param_dictionary, resolve_objects=True)
+            return results
         return None
 
     def GetOneAKANode(self,name:str = None, ID:int = None) -> AKA:
@@ -160,9 +211,9 @@ class DataAccessLayer():
                     return m
             return None
 
-    def __CreateOrGetCaseNode(self, casename:str = None):
+    def __CreateOrGetCaseNode(self, casename:str = None, onlyGet:bool = False):
         checkforcase = Case.nodes.first_or_none(name=casename)
-        if checkforcase is None:
+        if checkforcase is None and not onlyGet:
             case_instance = Case(name=casename)
             case_instance.save()
             return case_instance
@@ -174,7 +225,7 @@ class DataAccessLayer():
         case_instance.save()
         return case_instance
 
-    def CreateOrGetCaseNode(self, casename:str = None, ID:int = None) -> Case:
+    def CreateOrGetCaseNode(self, casename:str = None, ID:int = None, onlyGet:bool = False) -> Case:
         """
         ID will take precedent if present.
         Will attempt to use ID(precedent) or name to search for node
@@ -182,9 +233,12 @@ class DataAccessLayer():
         """
         if ID is None:
             if casename:
-                return self.__CreateOrGetCaseNode(casename)
+                return self.__CreateOrGetCaseNode(casename, onlyGet)
             else:
-                return self.__CreateAnonymousCaseNode()
+                if not onlyGet:
+                    return self.__CreateAnonymousCaseNode()
+                else:
+                    return None
         else:
             cases = Case.nodes.all()
             for c in cases:
@@ -192,9 +246,12 @@ class DataAccessLayer():
                     return c
             # ID not found eh?
             if casename:
-                self.__CreateOrGetCaseNode(casename)
+                self.__CreateOrGetCaseNode(casename, onlyGet)
             else:
-                return self.__CreateAnonymousCaseNode()
+                if not onlyGet:
+                    return self.__CreateAnonymousCaseNode()
+                else:
+                    return None
 
     def SaveCaseNode(self,case_instance:Case) -> Case:
         """
