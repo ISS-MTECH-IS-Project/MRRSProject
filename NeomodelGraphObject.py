@@ -32,7 +32,7 @@ class SuspectedSymptomRel(StructuredRel):
 class SuspectedDiseaseRel(StructuredRel):
     name = StringProperty()
     confidence = FloatProperty(
-        default=1.0
+        default=0.0
     )
 
 
@@ -58,7 +58,6 @@ class Symptom(StructuredNode):
     imageURL = StringProperty()
     question = None
     diseases = RelationshipTo('Disease', 'isDetectedIn', model=DetectedInRel)
-    cases = RelationshipFrom('Case','isSuspected', model=IsSuspectedInCase)
 
 
 class AKA(StructuredNode):
@@ -71,7 +70,7 @@ class Medication(StructuredNode):
     diseases = RelationshipTo('Disease', 'knownTreatment')
 
 
-class Case(StructuredNode):
+class CaseInc(StructuredNode):
     name = StringProperty(required=True)
     suspected_symptoms = RelationshipTo('Symptom', 'suspectedSymptom', model=SuspectedSymptomRel)
     suspected_diseases = RelationshipTo('Disease', 'suspectedDisease', model=SuspectedDiseaseRel)
