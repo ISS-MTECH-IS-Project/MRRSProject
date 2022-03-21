@@ -2,10 +2,6 @@
 
 from neo4j import GraphDatabase
 from neo4j.exceptions import ServiceUnavailable
-from py2neo.ogm import Repository
-from py2neo import Graph,Path,Subgraph
-from py2neo import NodeMatcher,RelationshipMatcher
-# from Py2NeoGraphObject import (Symptom, Disease, AKA, Medication)
 from neomodel import db, StructuredNode, config, match, relationship
 from NeomodelGraphObject import (Symptom, Disease, AKA, Medication, Case, SuspectedSymptomRel)
 import uuid
@@ -128,6 +124,19 @@ class DataAccessLayer():
             return symptom_instance
         else:
             return checkforsymptom
+
+    def DeleteSymptomNode(self,symptom_name:str = None, symptom_instance:Symptom = None):
+        """
+        Delete a Symptom node
+        If Symptom is pass it, it will be used and symptom_name will be ignored
+        """
+        if symptom_instance is None:
+            if symptom_name:
+                symptom_to_delete = Symptom.nodes.get_or_none(name=symptom_name)
+                if symptom_to_delete is not None:
+                    symptom_to_delete.delete()
+        else:
+            symptom_instance.delete()
 
     def GetAllSymptomFromDiseaseOrCaseByNameOrID(self, nodename:str = None, ID:int = None) -> [Symptom]:
         TryDiseaseNode = self.GetOneDiseaseNode(nodename, ID)
@@ -261,7 +270,7 @@ class DataAccessLayer():
         case_instance.save()
         return case_instance
 
-    def DeleteCaseNode(self,casename:str = None,case_instance:Case = None):
+    def DeleteCaseNode(self,casename:str = None, case_instance:Case = None):
         """
         Delete a Case node
         If Case is pass it, it will be used and name will be ignored
@@ -338,15 +347,15 @@ class DataAccessLayer():
         returns a dictionary of Nodes in flat list
         """
         templateQuery = "MATCH (n:MYTEMPLATEWORD) optional match (n)-[r]->() delete n,r"
-        if nodeLabel == 'Disease':
-            templateQuery = templateQuery.replace("MYTEMPLATEWORD","Disease")
-        elif nodeLabel == 'Symptom':
+        if nodeLabel == 'disease':
+            templateQuery = templateQuery.replace("MYTEMPLATEWORD", "Disease")
+        elif nodeLabel == 'symptom':
             templateQuery = templateQuery.replace("MYTEMPLATEWORD","Symptom")
-        elif nodeLabel == 'AKA':
+        elif nodeLabel == 'akaA':
             templateQuery = templateQuery.replace("MYTEMPLATEWORD","AKA")
-        elif nodeLabel == 'Medication':
+        elif nodeLabel == 'medication':
             templateQuery = templateQuery.replace("MYTEMPLATEWORD","Medication")
-        elif nodeLabel == 'Case':
+        elif nodeLabel == 'case':
             templateQuery = templateQuery.replace("MYTEMPLATEWORD","Case")
         else:
             return None

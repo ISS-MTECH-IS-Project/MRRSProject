@@ -1,0 +1,79 @@
+ID,SymptomID,Symptom,SymptomType,SymptomCategory1,SymptomCategory2,SymptomCategory3,Question,ImageURL,Weight,Penalty
+1,BLOAT,Bloated abdomen or belly,Physical,Body,,,,,1,-0.2
+2,BLOODEYE,Bloodstained eye,Physical,Eye,,,,,1,-0.2
+3,RAPIDBREATH,Breathing rapidly,Behaviourial,Breathing,,,,,1,-0.2
+4,REDFIN,Bright red streaks on fins,Physical,Fin,,,,,1,-0.2
+5,CLAMPFIN,Clamped fins,Physical,Fin,,,,,1,-0.2
+6,CLOUDSKIN,Cloudy Skin,Physical,Skin,,,,,1,-0.2
+7,GREYEYE,Cloudy white or greyish eyes,Physical,Eye,,,,,1,-0.2
+8,COTTONSCALE,Cotton like patchs on scale,Physical,Skin,,,,,1,-0.2
+9,COTTONGROWTH,Cotton wool like growth,Physical,Skin,,,,,1,-0.2
+10,CSPINE,Curved spine,Physical,Body,,,,,1,-0.2
+11,ANGLESPOTS,Spots that are grey gold in certain angle and light conditions,Physical,Skin,Body,,,,1,-0.2
+12,DOTBODY,Dots on fish body,Physical,Skin,,,,,1,-0.2
+13,DOTFIN,Dots condensed at fin attachments,Physical,Fin,,,,,1,-0.2
+14,ERSWIM,Erratic swimming,Behaviourial,Movement,,,,,1,-0.2
+15,EYEPROD,Eyes protruding,Physical,Eye,,,,,1,-0.2
+16,FINSCALELOSS,Fin and scale loss,Physical,Fin,,,,,1,-0.2
+17,BROWNRUST,Fine yellow or light brown rust or film on skin,Physical,Skin,,,,,1,-0.2
+18,WHITEEDGE,Fins or tail edges appear white,Physical,Fin,,,,,1,-0.2
+19,FLASHING,Flashing or Rub against bottom or objects in the tank,Behaviourial,Movement,,,,,1,-0.2
+20,FRAYFIN,Frayed and ragged fins,Physical,Fin,,,,,1,-0.2
+21,FRAYTAIL,Frayed Tail,Physical,Fin,,,,,1,-0.2
+22,GASPING,Gasping at the surface,Behaviourial,Breathing,Movement,,,,1,-0.2
+23,GILLOPEN,Gills not fully close,Physical,Gill,,,,,1,-0.2
+24,GREYDOT,Grey or green dots on skin,Physical,Skin,,,,,1,-0.2
+25,GREYMUCUS,Grey or white blue mucus,Physical,Skin,,,,,1,-0.2
+26,GREYSKINFIN,Greyish or cream patches on skin and fins,Physical,Skin,Fin,,,,1,-0.2
+27,GREYGILL,Greyish or white or cloudy patches on the gill,Physical,Gill,,,,,1,-0.2
+28,GREYMOUTH,Greyish or white or cloudy patches on the mouth,Physical,Mouth,,,,,1,-0.2
+29,HIDING,Hiding behavior,Behaviourial,Movement,,,,,1,-0.2
+30,HOLLOWBELLY,Hollowed belly,Physical,Body,,,,,1,-0.2
+31,INFANUS,Inflamed anus,Physical,Body,,,,,1,-0.2
+32,ICHLIKE,Initial stage like ich - tiny white spots mostly on fins and spreads fast to whole fish,Physical,Fin,Skin,,,,1,-0.2
+33,SWOLLENSKIN,Late stage skin swollen,Physical,Skin,,,,,1,-0.2
+34,LETHARGIC,Lethargic behavior,Behaviourial,Movement,,,,,1,-0.2
+35,BROWNGILLS,Light or dark brown gills,Physical,Gill,,,,,1,-0.2
+36,BLUEMUCUS,Light blue mucus layer on skin between head and dorsal fin,Physical,Skin,,,,,1,-0.2
+37,LOSSAPPETITE,Loss of appetite,Behaviourial,Eating,,,,,1,-0.2
+38,LOSSVISION,Loss of vision,Behaviourial,Vision,,,,,1,-0.2
+39,MUCUSHEAD,"Mucus on the gills, head, and dorsal regions",Physical,Body,,,,,1,-0.2
+40,PALEGILL,Pale gill,Physical,Gill,,,,,1,-0.2
+41,PALESKIN,Pale skin color,Physical,Skin,,,,,1,-0.2
+42,PATCHBODY,Patchy or darker body,Physical,Skin,,,,,1,-0.2
+43,RAPIDGILL,Rapid gill movement,Behaviourial,Movement,,,,,1,-0.2
+44,INFGILL,Red or inflamed gill,Physical,Gill,,,,,1,-0.2
+45,INFSCALE,Red or inflamed scales,Physical,Skin,,,,,1,-0.2
+46,REDSPOT,Red spots,Physical,Skin,,,,,1,-0.2
+47,RUPTUREEYE,Ruptured eye,Physical,Eye,,,,,1,-0.2
+48,LOSSSCALE,Scale loss,Physical,Skin,,,,,1,-0.2
+49,SCALEOUT,Scales stick out,Physical,Skin,,,,,1,-0.2
+50,SETTLEBOTTOM,Settle bottom of tank,Behaviourial,Movement,,,,,1,-0.2
+51,DISTRESS,Show signs of distress,Behaviourial,Movement,,,,,1,-0.2
+52,LOSSWEIGHT,Significant weight loss,Physical,Body,,,,,1,-0.2
+53,BLEEDING,Signs of bleeding,Physical,Body,,,,,1,-0.2
+54,SKINPEEL,Skin Peeling,Physical,Skin,,,,,1,-0.2
+55,SKINULCER,Skin Ulcer,Physical,Skin,,,,,1,-0.2
+56,SURFACEDWELL,Spend time on surface,Behaviourial,Movement,,,,,1,-0.2
+57,CAULIFLOWER,Spots clumps together like cauliflower,Physical,Skin,,,,,1,-0.2
+58,SUDDENDEATH,Sudden death,Behaviourial,Death,,,,,1,-0.2
+59,SUNKENEYE,Sunken eyes,Physical,Eye,,,,,1,-0.2
+60,SWIMDIFF,Swimming difficulty,Behaviourial,Movement,,,,,1,-0.2
+61,SWIMTOPUMP,Swimming into powerhead (air pump),Behaviourial,Movement,,,,,1,-0.2
+62,SWIMDOWNWARD,Swimming with heavy head,Behaviourial,Movement,,,,,1,-0.2
+63,THICKMUCUS,Thick skin mucus,Physical,Skin,,,,,1,-0.2
+64,THICKFIN,Thicken fins,Physical,Fin,,,,,1,-0.2
+65,HEADULCER,Ulcer on head,Physical,Body,,,,,1,-0.2
+66,LINEULCER,Ulcer on lateral line,Physical,Body,,,,,1,-0.2
+67,UPSIDEDOWN,Upside down,Behaviourial,Movement,,,,,1,-0.2
+68,NOSIGN,Usually no signs in early stage,BOTH,Nothing,,,,,1,-0.2
+69,WAXYSPOT,Waxy like spots on fin and body and head,Physical,Fin,Skin,,,,1,-0.2
+70,WHITEFILM,White film on skin,Physical,Skin,,,,,1,-0.2
+71,WHITETHREAD,White greenish thread on body,Physical,Skin,,,,,1,-0.2
+72,WHITEPATCH,White or greyish patch on skin,Physical,Skin,,,,,1,-0.2
+73,WHITESPOT,White spots on the body and gills,Physical,Skin,Gill,,,,1,-0.2
+74,WHITEFAECES,White stringy faeces,Physical,Body,,,,,1,-0.2
+75,WHITEBUMP,Whte or pinkish bumps on skin or fins,Physical,Skin,Fin,,,,1,-0.2
+76,WORMBODY,Worm on body,Physical,Body,,,,,1,-0.2
+77,WORMANUS,Worm seen at anus,Physical,Body,,,,,1,-0.2
+78,YELLOWNODULE,Yellowish or darker nodules on eyes or body,Physical,Eye,Skin,,,,1,-0.2

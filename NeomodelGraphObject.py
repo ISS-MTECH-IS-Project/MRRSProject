@@ -42,7 +42,7 @@ class IsSuspectedInCase(StructuredRel):
 
 class Disease(StructuredNode):
     name = StringProperty(unique_index=True, required=True)
-    environment = StringProperty(required=True)
+    environment = StringProperty()
     affectfish = StringProperty()
     cause = StringProperty()
     treatment = StringProperty()
@@ -55,10 +55,14 @@ class Disease(StructuredNode):
 
 class Symptom(StructuredNode):
     name = StringProperty(unique_index=True, required=True)
-    imageURL = StringProperty()
+    description = StringProperty()
+    type = StringProperty()
+    category1 = StringProperty()
+    category2 = StringProperty()
+    category3 = StringProperty()
+    imageurl = StringProperty()
     question = None
     diseases = RelationshipTo('Disease', 'isDetectedIn', model=DetectedInRel)
-    cases = RelationshipFrom('Case','isSuspected', model=IsSuspectedInCase)
 
 
 class AKA(StructuredNode):
@@ -68,6 +72,13 @@ class AKA(StructuredNode):
 
 class Medication(StructuredNode):
     name = StringProperty(unique_index=True, required=True)
+    vet_or_OTC = StringProperty()
+    description = StringProperty(required=True)
+    treatment_desc = StringProperty()
+    complicate_fish = StringProperty()
+    danger_human = StringProperty()
+    danger_plant = StringProperty()
+    danger_invertebrates = StringProperty()
     diseases = RelationshipTo('Disease', 'knownTreatment')
 
 
