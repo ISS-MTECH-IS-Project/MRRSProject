@@ -2,12 +2,8 @@
 
 from neo4j import GraphDatabase
 from neo4j.exceptions import ServiceUnavailable
-from py2neo.ogm import Repository
-from py2neo import Graph,Path,Subgraph
-from py2neo import NodeMatcher,RelationshipMatcher
-# from Py2NeoGraphObject import (Symptom, Disease, AKA, Medication)
 from neomodel import db, StructuredNode, config, match, relationship
-from NeomodelGraphObject import (Symptom, Disease, AKA, Medication, CaseInc, SuspectedSymptomRel)
+from NeomodelGraphObject import (Symptom, Disease, AKA, Medication, Case, SuspectedSymptomRel)
 import uuid
 
 
@@ -129,6 +125,19 @@ class DataAccessLayer():
         else:
             return checkforsymptom
 
+    def DeleteSymptomNode(self,symptom_name:str = None, symptom_instance:Symptom = None):
+        """
+        Delete a Symptom node
+        If Symptom is pass it, it will be used and symptom_name will be ignored
+        """
+        if symptom_instance is None:
+            if symptom_name:
+                symptom_to_delete = Symptom.nodes.get_or_none(name=symptom_name)
+                if symptom_to_delete is not None:
+                    symptom_to_delete.delete()
+        else:
+            symptom_instance.delete()
+
     def GetAllSymptomFromDiseaseOrCaseByNameOrID(self, nodename:str = None, ID:int = None) -> [Symptom]:
         TryDiseaseNode = self.GetOneDiseaseNode(nodename, ID)
         TryCaseNode = self.CreateOrGetCaseNode(nodename, ID, True)
@@ -148,7 +157,7 @@ class DataAccessLayer():
         if TryCaseNode:
             # return TryCaseNode.suspected_symptoms.all() - see above
             query = """
-            MATCH (c:CaseInc) WHERE c.name=$name with c 
+            MATCH (c:Case) WHERE c.name=$name with c 
             OPTIONAL MATCH ((c)-[r1:`suspectedSymptom`]->(symptoms:Symptom)) 
             RETURN symptoms
             """
@@ -174,7 +183,7 @@ class DataAccessLayer():
         if TryCaseNode:
             # return TryCaseNode.suspected_diseases.all() - see above
             query = """
-            MATCH (c:CaseInc) WHERE c.name=$name with c 
+            MATCH (c:Case) WHERE c.name=$name with c 
             OPTIONAL MATCH ((c)-[r1:`suspectedDisease`]->(diseases:Disease)) 
             RETURN diseases
             """
@@ -212,20 +221,20 @@ class DataAccessLayer():
             return None
 
     def __CreateOrGetCaseNode(self, casename:str = None, onlyGet:bool = False):
-        checkforcase = CaseInc.nodes.first_or_none(name=casename)
+        checkforcase = Case.nodes.first_or_none(name=casename)
         if checkforcase is None and not onlyGet:
-            case_instance = CaseInc(name=casename)
+            case_instance = Case(name=casename)
             case_instance.save()
             return case_instance
         else:
             return checkforcase
 
     def __CreateAnonymousCaseNode(self):
-        case_instance = CaseInc(name="Case-" + str(uuid.uuid4())[:8])
+        case_instance = Case(name="Case-" + str(uuid.uuid4())[:8])
         case_instance.save()
         return case_instance
 
-    def CreateOrGetCaseNode(self, casename:str = None, ID:int = None, onlyGet:bool = False) -> CaseInc:
+    def CreateOrGetCaseNode(self, casename:str = None, ID:int = None, onlyGet:bool = False) -> Case:
         """
         ID will take precedent if present.
         Will attempt to use ID(precedent) or name to search for node
@@ -240,7 +249,7 @@ class DataAccessLayer():
                 else:
                     return None
         else:
-            cases = CaseInc.nodes.all()
+            cases = Case.nodes.all()
             for c in cases:
                 if c.id == ID:
                     return c
@@ -253,7 +262,7 @@ class DataAccessLayer():
                 else:
                     return None
 
-    def SaveCaseNode(self,case_instance:CaseInc) -> CaseInc:
+    def SaveCaseNode(self,case_instance:Case) -> Case:
         """
         Save Case node to DB
         In future, this should be the over-arch
@@ -261,54 +270,44 @@ class DataAccessLayer():
         case_instance.save()
         return case_instance
 
-    def DeleteCaseNode(self,casename:str = None,case_instance:CaseInc = None):
+    def DeleteCaseNode(self,casename:str = None, case_instance:Case = None):
         """
         Delete a Case node
         If Case is pass it, it will be used and name will be ignored
         """
         if case_instance is None:
             if not casename:
-                caseToDelete = CaseInc.nodes.get_or_none(name=casename)
+                caseToDelete = Case.nodes.get_or_none(name=casename)
                 if caseToDelete is not None:
                     caseToDelete.delete()
         else:
             case_instance.delete()
 
-    def UpdateDiseaseToCase(self,case_instance:CaseInc, suspectedDisease:Disease, confidence:float=0) -> CaseInc:
-        rel = case_instance.suspected_diseases.relationship(suspectedDisease)
-        if rel:
-            rel.confidence = confidence
-            rel.save()
-        else:
-            rel = case_instance.suspected_diseases.connect(suspectedDisease, {'confidence':confidence})
-            case_instance.save()
+    def UpdateDiseaseToCase(self,case_instance:Case, suspectedDisease:Disease) -> Case:
+        case_instance.suspected_diseases.connect(suspectedDisease)
+        case_instance.save()
         return case_instance
 
-    def UpdateSymptomToCase(self,case_instance:CaseInc, suspectedSymptom:Symptom, suspectedLevel:float=1.0) -> CaseInc:
-        rel = case_instance.suspected_symptoms.relationship(suspectedSymptom)
-        if rel:
-            rel.suspectedLevel = suspectedLevel
-            rel.save()
-        else:
-            case_instance.suspected_symptoms.connect(suspectedSymptom, {'suspectedLevel':suspectedLevel})
-            case_instance.save()
+    def UpdateSymptomToCase(self,case_instance:Case, suspectedSymptom:Symptom) -> Case:
+        case_instance.suspected_symptoms.connect(suspectedSymptom)
+        case_instance.save()
         return case_instance
 
-    def PushAllSymptomOfAnotherDiseaseToCase(self,case_instance:CaseInc, saidDisease:Disease) -> CaseInc:
+    def PushAllSymptomOfAnotherDiseaseToCase(self,case_instance:Case, saidDisease:Disease) -> Case:
         if saidDisease:
             for symptom in saidDisease.symptoms:
                 case_instance.suspected_symptoms.connect(symptom)
         case_instance.save()
         return case_instance
 
-    def RemoveAllMatchingDiseaseFromCase(self,case_instance:CaseInc, removeDisease:[Disease]) -> CaseInc:
+    def RemoveAllMatchingDiseaseFromCase(self,case_instance:Case, removeDisease:[Disease]) -> Case:
         if removeDisease:
             for disease in removeDisease:
                 case_instance.suspected_diseases.disconnect(disease)
         case_instance.save()
         return case_instance
 
-    def RemoveAllMatchingSymptomFromCase(self,case_instance:CaseInc, removeSymptom:[Symptom]) -> CaseInc:
+    def RemoveAllMatchingSymptomFromCase(self,case_instance:Case, removeSymptom:[Symptom]) -> Case:
         if removeSymptom:
             for symptom in removeSymptom:
                 case_instance.suspected_symptoms.disconnect(symptom)
@@ -336,7 +335,7 @@ class DataAccessLayer():
         elif nodeLabel == 'Medication':
             return Medication.nodes.all()
         elif nodeLabel == 'Case':
-            return CaseInc.nodes.all()
+            return Medication.nodes.all()
         else:
             return None
 
@@ -348,16 +347,16 @@ class DataAccessLayer():
         returns a dictionary of Nodes in flat list
         """
         templateQuery = "MATCH (n:MYTEMPLATEWORD) optional match (n)-[r]->() delete n,r"
-        if nodeLabel == 'Disease':
-            templateQuery = templateQuery.replace("MYTEMPLATEWORD","Disease")
-        elif nodeLabel == 'Symptom':
+        if nodeLabel == 'disease':
+            templateQuery = templateQuery.replace("MYTEMPLATEWORD", "Disease")
+        elif nodeLabel == 'symptom':
             templateQuery = templateQuery.replace("MYTEMPLATEWORD","Symptom")
-        elif nodeLabel == 'AKA':
+        elif nodeLabel == 'akaA':
             templateQuery = templateQuery.replace("MYTEMPLATEWORD","AKA")
-        elif nodeLabel == 'Medication':
+        elif nodeLabel == 'medication':
             templateQuery = templateQuery.replace("MYTEMPLATEWORD","Medication")
-        elif nodeLabel == 'Case':
-            templateQuery = templateQuery.replace("MYTEMPLATEWORD","CaseInc")
+        elif nodeLabel == 'case':
+            templateQuery = templateQuery.replace("MYTEMPLATEWORD","Case")
         else:
             return None
 

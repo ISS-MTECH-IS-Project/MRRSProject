@@ -7,18 +7,30 @@ class DataSetUpPackage():
     """
     Assuming you have your CSV and neo4j DB all setup.
     """
-    def __init__(self, filePath=None, filename=None):
-        self.Filename = filename or 'FishDB.csv'                # if you are using your own csv dataset
-        self.FilePath = filePath or self.GetDefaultCSVPath      # if you directly clone from git hub < this will use ./RawCSV folder
+    def __init__(self, filePath=None, disease_file=None, symptom_file=None, med_file=None):
+        self.DiseaseFilename = disease_file or 'FishDB_Disease.csv'     # pass in if using your own csv dataset
+        self.SymptomFilename = symptom_file or 'FishDB_Symptom.csv'     # pass in if using your own csv dataset
+        self.MedicationFilename = med_file or 'FishDB_Medication.csv'   # pass in if using your own csv dataset
+
+        # if you directly clone from git hub < this will use ./RawCSV folder
+        self.FilePath = filePath or self.GetDefaultCSVPath
+
         self.SessionInstance = None
         self.Disease_DF = None
+        self.Symptom_DF = None
+        self.Medication_DF = None
         self.Verbose = False
         self.Disease_DF_RowIndex = 0
         
     @property
     def ReadCSVAndPopulateDB(self, indexCol=None):
         IndexCol = indexCol or 'ID'       
-        self.Disease_DF = pd.read_csv(self.FilePath + self.Filename, encoding = "ISO-8859-1", index_col=IndexCol)
+        self.Disease_DF = pd.read_csv(self.FilePath + self.DiseaseFilename,
+                                      encoding ="ISO-8859-1", index_col=IndexCol)
+        self.Symptom_DF = pd.read_csv(self.FilePath + self.SymptomFilename,
+                                      encoding="ISO-8859-1", index_col=IndexCol)
+        self.Medication_DF = pd.read_csv(self.FilePath + self.MedicationFilename,
+                                         encoding="ISO-8859-1", index_col=IndexCol)
         return self
     
     @property    
@@ -42,7 +54,8 @@ class DataSetUpPackage():
         if self.Verbose:
             print("create {0} node with name as {1}".format("Disease", DiseaseName))
             
-    def SetDiseaseProps(self,diseaseName=None, environment=None,affected_fish=None,cause=None,treatment=None,vetadvice=None): 
+    def SetDiseaseProps(self,diseaseName=None, environment=None,affected_fish=None,
+                        cause=None,treatment=None,vetadvice=None):
         i = self.Disease_DF_RowIndex
         DiseaseName = diseaseName or self.Disease_DF.iloc[i,0] 
         Environment = environment or self.Disease_DF.iloc[i,2]
@@ -51,9 +64,12 @@ class DataSetUpPackage():
         Treatment = treatment or self.Disease_DF.iloc[i,17]
         Vet_advised = vetadvice or self.Disease_DF.iloc[i,18]
         query = (
-            "MATCH (node: "+"Disease"+" {name: $name})"
-            "SET node.environment = "+ "$env" + ", node.affectfish = "+ "$afish, node.cause = "+ "$cause, node.treatment = "+ "$treatment, node.vet_advised = "+ "$vetadvise "
-            "RETURN node"
+            """
+            MATCH (n:Disease {name: $name})
+            SET n.environment = $env, n.affectfish = $afish, n.cause = $cause,
+            n.treatment = $treatment, n.vet_advised = $vetadvise
+            RETURN n
+            """
         )
 
         with self.SessionInstance as session:
@@ -75,9 +91,11 @@ class DataSetUpPackage():
         AKA = aka or self.Disease_DF.iloc[i,1]
         if pd.isnull(AKA) == False:
             query = (
-                        "MERGE (node: "+"AKA"+" {name: $name})"
-                        "RETURN node"
-                    )
+                """
+                MERGE (node: AKA {name: $name})
+                RETURN node
+                """
+            )
 
             with self.SessionInstance as session:
                 result = session.run(query, name=AKA)
@@ -86,10 +104,12 @@ class DataSetUpPackage():
 
             # add AKA relationship
             query = (
-                "MATCH (n1 {name: $name1})"
-                "MATCH (n2 {name: $name2})"
-                "MERGE (n1) - [r:"+"AKA"+"] -> (n2)"   
-                "RETURN n1, n2, r"
+                """
+                MATCH (n1 {name: $name1})
+                MATCH (n2 {name: $name2})
+                MERGE (n1) - [r:AKA] -> (n2)
+                RETURN n1, n2, r
+                """
             )
 
             with self.SessionInstance as session:
@@ -106,39 +126,64 @@ class DataSetUpPackage():
         for j in range(ColStart, ColEnd):
             # iterate across the associated symptoms  
             if pd.isnull(disease_df.iloc[i,j]) == False:
+                # We found a symptom, call the Symptom DataFrame and get the props
+                symptomrow = self.Symptom_DF.loc[self.Symptom_DF['SymptomID'] == disease_df.iloc[i,j]]
+                symptom_desc = symptomrow['Symptom'].values[0]
+                symptom_type = symptomrow['SymptomType'].values[0]
+                symptom_cat1 = symptomrow['SymptomCategory1'].values[0]
+                symptom_cat2 = symptomrow['SymptomCategory2'].values[0]
+                symptom_cat3 = symptomrow['SymptomCategory3'].values[0]
+                symptom_question = symptomrow['Question'].values[0]
+                symptom_url = symptomrow['ImageURL'].values[0]
+                symptom_weight = str(symptomrow['Weight'].values[0])
+                symptom_penalty = str(symptomrow['Penalty'].values[0])
                 # add symptom node
                 query = (
-                    "MERGE (node: "+"Symptom"+" {name: $name})"
-                    "RETURN node"
+                    """
+                    MERGE (n:Symptom {name: $name})
+                    SET n.description =$desc, n.type = $stype, n.category1 = $cat1,
+                    n.category2 = $cat2, n.category3 = $cat3, n.question = $qn, n.imageurl = $img
+                    RETURN n
+                    """
                 )
                 with self.SessionInstance as session:
-                    result = session.run(query, name=disease_df.iloc[i,j])
+                    result = session.run(query, name=disease_df.iloc[i,j],
+                                         desc=symptom_desc, stype=symptom_type,
+                                         cat1=symptom_cat1, cat2=symptom_cat2,
+                                         cat3=symptom_cat3, qn=symptom_question, img=symptom_url)
                 if self.Verbose:
                     print("create {0} node with name as {1}".format("Symptom", disease_df.iloc[i,j]))
 
                 # add Disease hasSymptom Symptom relationship
                 query = (
-                    "MATCH (n1 {name: $name1})"
-                    "MATCH (n2 {name: $name2})"
-                    "MERGE (n1) - [r:"+"hasSymptom"+"] -> (n2)"   
-                    "RETURN n1, n2, r"
+                    """
+                    MATCH (n1 {name: $name1})
+                    MATCH (n2 {name: $name2})
+                    MERGE (n1) - [r:hasSymptom] -> (n2)
+                    SET r.weight =$weight, r.penalty=$penalty                                
+                    RETURN n1, n2, r
+                    """
                 )
                                 
                 with self.SessionInstance as session:
-                    result = session.run(query, name1=DiseaseName, name2=disease_df.iloc[i,j])
+                    result = session.run(query, name1=DiseaseName, name2=disease_df.iloc[i,j]
+                                         , weight=symptom_weight,penalty=symptom_penalty)
                 if self.Verbose:
                     print("create {0} -hasSymptom-> {1}".format(DiseaseName, disease_df.iloc[i,j]))
                     
                 # add Symptom isDetectedIn Disease relationship
                 query = (
-                    "MATCH (n1 {name: $name1})"
-                    "MATCH (n2 {name: $name2})"
-                    "MERGE (n1) - [r:"+"isDetectedIn"+"] -> (n2)"   
-                    "RETURN n1, n2, r"
+                    """
+                    MATCH (n1 {name: $name1})
+                    MATCH (n2 {name: $name2})
+                    MERGE (n1) - [r:isDetectedIn] -> (n2) 
+                    SET r.weight =$weight
+                    RETURN n1, n2, r
+                    """
                 )
 
                 with self.SessionInstance as session:
-                    result = session.run(query, name1=disease_df.iloc[i,j], name2=DiseaseName)
+                    result = session.run(query, name1=disease_df.iloc[i,j], name2=DiseaseName, weight=symptom_weight)
                 if self.Verbose:
                     print("create {0} -isDetectedIn-> {1}".format(disease_df.iloc[i,j], DiseaseName))
                     
@@ -154,13 +199,29 @@ class DataSetUpPackage():
         for j in range(ColStart, ColEnd):
             # iterate across the associated symptoms  
             if pd.isnull(disease_df.iloc[i,j]) == False:
+                # We found meds, call the Med DataFrame and get the props
+                medrow = self.Medication_DF.loc[self.Medication_DF['MedicineID'] == disease_df.iloc[i, j]]
+                med_desc = medrow['Medicine'].values[0]
+                medVOTC= medrow['Vet_Or_OTC'].values[0]
+                med_TD = medrow['Treatment_Description'].values[0]
+                med_Comfish = medrow['Complicate_Fish'].values[0]
+                med_DangerHuman = medrow['IsDangerousHuman'].values[0]
+                med_DangerPlant = medrow['IsDangerousPlants'].values[0]
+                med_DangerInvert = medrow['IsDangerousInvertebrates'].values[0]
                 # add Medication node
                 query = (
-                    "MERGE (node: "+"Medication"+" {name: $name})"
-                    "RETURN node"
+                    """
+                    MERGE (n:Medication {name: $name})
+                    SET n.description =$desc, n.vet_or_OTC = $VOTC, n.treatment_desc = $medtd,
+                    n.complicate_fish = $comfish, n.danger_human = $dangerhuman, 
+                    n.danger_plant = $dangerplant, n.danger_invertebrates = $dangerinvert
+                    RETURN n
+                    """
                 )
                 with self.SessionInstance as session:
-                    result = session.run(query, name=disease_df.iloc[i,j])
+                    result = session.run(query, name=disease_df.iloc[i,j], desc=med_desc, VOTC=medVOTC,
+                                         medtd=med_TD, comfish=med_Comfish, dangerhuman=med_DangerHuman,
+                                         dangerplant=med_DangerPlant,dangerinvert=med_DangerInvert)
                 if self.Verbose:
                     print("create {0} node with name as {1}".format("Medication", disease_df.iloc[i,j]))
 
@@ -222,9 +283,9 @@ class DataSetUpPackage():
             
 # To set up the neo4jDB
 # Call the data access layer to first establish the data connection, then run the follow by uncommenting:
-# dbcon = DataAccessLayer(username='neo4j',password='neo123456').CreateDBConnection
-# dbcon.ClearCurrentDB  # This will clean up the neo4jDB
-# DataSetUpPackage().ReadCSVAndPopulateDB.PopulateNeo4j(dbcon.Session, verbose=True)
+dbcon = DataAccessLayer(username='neo4j',password='neo123456').CreateDBConnection
+dbcon.ClearCurrentDB  # This will clean up the neo4jDB
+DataSetUpPackage().ReadCSVAndPopulateDB.PopulateNeo4j(dbcon.Session, verbose=True)
 
 
 # Once neo4jDB is setup
