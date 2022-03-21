@@ -3,7 +3,7 @@
 from neo4j import GraphDatabase
 from neo4j.exceptions import ServiceUnavailable
 from neomodel import db, StructuredNode, config, match, relationship
-from NeomodelGraphObject import (Symptom, Disease, AKA, Medication, Case, SuspectedSymptomRel)
+from NeomodelGraphObject import (Symptom, Disease, AKA, Medication, CaseInc, SuspectedSymptomRel)
 import uuid
 
 
@@ -157,7 +157,7 @@ class DataAccessLayer():
         if TryCaseNode:
             # return TryCaseNode.suspected_symptoms.all() - see above
             query = """
-            MATCH (c:Case) WHERE c.name=$name with c 
+            MATCH (c:CaseInc) WHERE c.name=$name with c 
             OPTIONAL MATCH ((c)-[r1:`suspectedSymptom`]->(symptoms:Symptom)) 
             RETURN symptoms
             """
@@ -183,7 +183,7 @@ class DataAccessLayer():
         if TryCaseNode:
             # return TryCaseNode.suspected_diseases.all() - see above
             query = """
-            MATCH (c:Case) WHERE c.name=$name with c 
+            MATCH (c:CaseInc) WHERE c.name=$name with c 
             OPTIONAL MATCH ((c)-[r1:`suspectedDisease`]->(diseases:Disease)) 
             RETURN diseases
             """
@@ -221,20 +221,20 @@ class DataAccessLayer():
             return None
 
     def __CreateOrGetCaseNode(self, casename:str = None, onlyGet:bool = False):
-        checkforcase = Case.nodes.first_or_none(name=casename)
+        checkforcase = CaseInc.nodes.first_or_none(name=casename)
         if checkforcase is None and not onlyGet:
-            case_instance = Case(name=casename)
+            case_instance = CaseInc(name=casename)
             case_instance.save()
             return case_instance
         else:
             return checkforcase
 
     def __CreateAnonymousCaseNode(self):
-        case_instance = Case(name="Case-" + str(uuid.uuid4())[:8])
+        case_instance = CaseInc(name="Case-" + str(uuid.uuid4())[:8])
         case_instance.save()
         return case_instance
 
-    def CreateOrGetCaseNode(self, casename:str = None, ID:int = None, onlyGet:bool = False) -> Case:
+    def CreateOrGetCaseNode(self, casename:str = None, ID:int = None, onlyGet:bool = False) -> CaseInc:
         """
         ID will take precedent if present.
         Will attempt to use ID(precedent) or name to search for node
@@ -249,7 +249,7 @@ class DataAccessLayer():
                 else:
                     return None
         else:
-            cases = Case.nodes.all()
+            cases = CaseInc.nodes.all()
             for c in cases:
                 if c.id == ID:
                     return c
@@ -262,7 +262,7 @@ class DataAccessLayer():
                 else:
                     return None
 
-    def SaveCaseNode(self,case_instance:Case) -> Case:
+    def SaveCaseNode(self,case_instance:CaseInc) -> CaseInc:
         """
         Save Case node to DB
         In future, this should be the over-arch
@@ -270,44 +270,44 @@ class DataAccessLayer():
         case_instance.save()
         return case_instance
 
-    def DeleteCaseNode(self,casename:str = None, case_instance:Case = None):
+    def DeleteCaseNode(self,casename:str = None, case_instance:CaseInc = None):
         """
         Delete a Case node
         If Case is pass it, it will be used and name will be ignored
         """
         if case_instance is None:
             if not casename:
-                caseToDelete = Case.nodes.get_or_none(name=casename)
+                caseToDelete = CaseInc.nodes.get_or_none(name=casename)
                 if caseToDelete is not None:
                     caseToDelete.delete()
         else:
             case_instance.delete()
 
-    def UpdateDiseaseToCase(self,case_instance:Case, suspectedDisease:Disease) -> Case:
+    def UpdateDiseaseToCase(self,case_instance:CaseInc, suspectedDisease:Disease) -> CaseInc:
         case_instance.suspected_diseases.connect(suspectedDisease)
         case_instance.save()
         return case_instance
 
-    def UpdateSymptomToCase(self,case_instance:Case, suspectedSymptom:Symptom) -> Case:
+    def UpdateSymptomToCase(self,case_instance:CaseInc, suspectedSymptom:Symptom) -> CaseInc:
         case_instance.suspected_symptoms.connect(suspectedSymptom)
         case_instance.save()
         return case_instance
 
-    def PushAllSymptomOfAnotherDiseaseToCase(self,case_instance:Case, saidDisease:Disease) -> Case:
+    def PushAllSymptomOfAnotherDiseaseToCase(self,case_instance:CaseInc, saidDisease:Disease) -> CaseInc:
         if saidDisease:
             for symptom in saidDisease.symptoms:
                 case_instance.suspected_symptoms.connect(symptom)
         case_instance.save()
         return case_instance
 
-    def RemoveAllMatchingDiseaseFromCase(self,case_instance:Case, removeDisease:[Disease]) -> Case:
+    def RemoveAllMatchingDiseaseFromCase(self,case_instance:CaseInc, removeDisease:[Disease]) -> CaseInc:
         if removeDisease:
             for disease in removeDisease:
                 case_instance.suspected_diseases.disconnect(disease)
         case_instance.save()
         return case_instance
 
-    def RemoveAllMatchingSymptomFromCase(self,case_instance:Case, removeSymptom:[Symptom]) -> Case:
+    def RemoveAllMatchingSymptomFromCase(self,case_instance:CaseInc, removeSymptom:[Symptom]) -> CaseInc:
         if removeSymptom:
             for symptom in removeSymptom:
                 case_instance.suspected_symptoms.disconnect(symptom)
@@ -335,7 +335,7 @@ class DataAccessLayer():
         elif nodeLabel == 'Medication':
             return Medication.nodes.all()
         elif nodeLabel == 'Case':
-            return Medication.nodes.all()
+            return CaseInc.nodes.all()
         else:
             return None
 
