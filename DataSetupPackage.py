@@ -283,9 +283,9 @@ class DataSetUpPackage():
             
 # To set up the neo4jDB
 # Call the data access layer to first establish the data connection, then run the follow by uncommenting:
-dbcon = DataAccessLayer(username='neo4j',password='neo123456').CreateDBConnection
-dbcon.ClearCurrentDB  # This will clean up the neo4jDB
-DataSetUpPackage().ReadCSVAndPopulateDB.PopulateNeo4j(dbcon.Session, verbose=True)
+# dbcon = DataAccessLayer(username='neo4j',password='neo123456').CreateDBConnection
+# dbcon.ClearCurrentDB  # This will clean up the neo4jDB
+# DataSetUpPackage().ReadCSVAndPopulateDB.PopulateNeo4j(dbcon.Session, verbose=True)
 
 
 # Once neo4jDB is setup
