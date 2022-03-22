@@ -1,5 +1,5 @@
 ID,Disease1,Disease2,Native_Water,Fish,Symptom1,Symptom2,Symptom3,Symptom4,Symptom5,Symptom6,Symptom7,Symptom8,Symptom9,Symptom10,Symptom11,Symptom12,Causes,Treatments,Vet_Advised,Medicine1,Medicine2,Medicine3,Medicine4,Medicine5,Medicine6,Medicine7,Medicine8
-0,Fin or tail rot,Aeromonas salmonicida,ALL,,Fins or tail edges appear white,Frayed and ragged fins,Frayed Tail,Swimming difficulty,Loss of appetite,Settle Bottom of Tank,,,,,,,"The most common causes of fin rot are poor water quality and improperly-low water temperature. 
+0,Fin or tail rot,Aeromonas salmonicida,ALL,,WHITEEDGE,FRAYFIN,FRAYTAIL,SWIMDIFF,LOSSAPPETITE,SETTLEBOTTOM,,,,,,,"The most common causes of fin rot are poor water quality and improperly-low water temperature. 
 Overcrowding the tank, feeding outdated food, overfeeding the fish, and moving or handling, bullying from other fish can also cause stress that leads to fin rot.","Several antibiotics are effective in treating fin rot, but the root cause must be addressed to ensure the disease doesn’t return.
 Treatment should include a water change and careful examination of the aquarium conditions. 
 If there is food debris, vacuum the gravel and take care to avoid overfeeding in the future.
@@ -9,13 +9,13 @@ Check the pH and temperature of the water, and make sure it is appropriate for y
  Be sure there is no chlorine, ammonia, or nitrite in the water and the nitrate is under 40 ppm (mg/L).
 Once the root cause is corrected, antibiotics will usually cure the disease itself. 
 Treatment with a drug that is effective against gram-negative organisms is recommended. 
-Consult with a veterinarian who treats fish (there are many Certified Aquatic Veterinarians now) to get the appropriate antibiotics for your fish.",TRUE,Antibiotics for Gram-Negative Organisms,,,,,,,
-1,Cloudy Eye,,ALL,,Cloudy white or greyish eyes,Loss of vision,Show signs of distress,,,,,,,,,,"A number of factors can cause eye cloud in fish. 
+Consult with a veterinarian who treats fish (there are many Certified Aquatic Veterinarians now) to get the appropriate antibiotics for your fish.",TRUE,ANTIBIOTICSgnveORG,,,,,,,
+1,Cloudy Eye,,ALL,,GREYEYE,LOSSVISION,DISTRESS,,,,,,,,,,"A number of factors can cause eye cloud in fish. 
 These lesions may result from poor water quality, including gas imbalances (causing exophthalmos), toxicants (cataract, hyperemia, keratitis and retinitis), nutritional deficiencies (cataract), parasite such as catarrhiniosis which can cause injury to the eye.","Change the filter (or clean it) and get rid of any debris on top or near where they swim around most often.
 Check for medications that may have caused some bacteria build up at one end so as not to interfere with whatever is causing their eyesight problem next time these symptoms arise again.
 Finally, if that doesn’t help, you will need to cure your fish of bacterial infection using a strong antibiotic. 
-You can ask your vet for a prescription or recommended brand, and then administer it according to the guidelines listed on the medication",TRUE,Strong Antibiotics,,,,,,,
-2,Columnaris,Cotton Mouth,Freshwater,,Frayed and ragged fins,Skin Ulcer,Skin Peeling,Greyish or White or cloudy patches on the gill,"Mucus on the gills, head, and dorsal regions",Light or dark brown gills,Breathing rapidly,Loss of appetite,Greyish or White or cloudy patches on the mouth,Cotton wool like growth,,,"Columnaris bacteria are commensal bacteria and occur naturally on healthy fish. 
+You can ask your vet for a prescription or recommended brand, and then administer it according to the guidelines listed on the medication",TRUE,SANTIBIOTIC,,,,,,,
+2,Columnaris,Cotton Mouth,Freshwater,,FRAYFIN,SKINULCER,SKINPEEL,GREYGILL,MUCUSHEAD,BROWNGILLS,RAPIDBREATH,LOSSAPPETITE,GREYMOUTH,COTTONGROWTH,,,"Columnaris bacteria are commensal bacteria and occur naturally on healthy fish. 
 Only when given a stressed out host or particularly nasty strain of bacteria, do the fish begin to show clinical signs. 
 It commonly enters a healthy system when infected fish are added without proper quarantine. 
 Columnaris can enter the fish through the gills, mouth, or via small wounds on the skin. 
@@ -27,8 +27,8 @@ Copper sulfate, Acriflavine, Furan, and Terramycin may all be used in the water 
 Terramycin has proven to be quite effective both as a bath, and when used to treat foods for internal infections. 
 Salt may be added to the water (1 to 3 teaspoons per gallon of water) to reduce osmotic stress on fish from the damage to the fish's epithelium caused by the bacteria. 
 Livebearers, in particular, will benefit from the addition of salt; however, use caution when treating catfish, as many are highly sensitive to salt. 
-When in doubt, err on the side of caution when using salt.",FALSE,Copper Sulfate,Acriflavine,Furan,Terramycin,Salt,,,
-3,Dropsy,,ALL,,Bloated abdomen or belly,Scales stick out,Eyes protruding,Lethargic behavior,Loss of appetite,Rapid gill movement,,,,,,,"Dropsy in fish is actually a cluster of symptoms caused by an infection from bacteria commonly present in all aquariums. 
+When in doubt, err on the side of caution when using salt.",FALSE,COPPERSULFATE,ACRIFLAVINE,FURAN,TERRAMYCIN,SALT,,,
+3,Dropsy,,ALL,,BLOAT,SCALEOUT,EYEPROD,LETHARGIC,LOSSAPPETITE,RAPIDGILL,,,,,,,"Dropsy in fish is actually a cluster of symptoms caused by an infection from bacteria commonly present in all aquariums. 
 Consequently, any fish may be exposed to the dropsy-causing bacteria, but healthy fish rarely fall prey to the disease. 
 Fish are only susceptible when their immune system has been compromised by some other stress factor, such as:
 Poor water quality
@@ -49,8 +49,8 @@ Low levels of salt in the water aid in the osmotic balance of the fish by making
 That helps the fish get rid of excess water accumulating in the body, causing dropsy. 
 Provide the ill fish with a variety of fresh, high-quality food.
 Antibiotics should be used if the fish does not immediately respond. 
-A broad-spectrum antibiotic specifically formulated for gram-negative bacteria is recommended, such as Maracyn-Two following the manufacturer's directions for duration and dosage.",FALSE,Salt,Antibiotics for Gram-Negative Bacteria,,,,,,
-4,Fish Tuberculosis ,Mycobacterium spp,ALL,,Lethargic behavior,Hollowed belly,Turn pale,Skin Ulcer,Frayed and ragged fins,Fin and scale loss,Yellowish or darker nodules on eyes or body,Loss of appetite,Hiding behavior,,,,"Addition of non-symptomatic (carrier) fish
+A broad-spectrum antibiotic specifically formulated for gram-negative bacteria is recommended, such as Maracyn-Two following the manufacturer's directions for duration and dosage.",FALSE,SALT,ANTIBIOTICSgnveBAC,,,,,,
+4,Fish Tuberculosis,Mycobacterium spp,ALL,,LETHARGIC,HOLLOWBELLY,PALESKIN,SKINULCER,FRAYFIN,FINSCALELOSS,YELLOWNODULE,LOSSAPPETITE,HIDING,,,,"Addition of non-symptomatic (carrier) fish
 Addition of infected plants or other biological materials
 Transferred on owners hands without proper sanitation
 Since many Mycobaterium spp. are common in the environment, not taking the time to properly wash your hands before handling aquarium or fish may transfer bacteria.","There is no effective treatment of fish tuberculosis other than supportive care. 
@@ -59,7 +59,7 @@ You may see a long-term pattern of random deaths with no links to other diseases
 If any fish test positive for fish tuberculosis in your system, it is assumed all fish are infected. 
 Once a fish in your system has tested positive, you may keep the tank as a closed system, no new fish in or out, and be sure to take proper biosecurity precautions, such as gloves, or elect to depopulate and disinfect your system. 
 Depopulation is recommended in immune-compromised environments.",FALSE,,,,,,,,
-5,Viral Hemorrhagic Septicemia ,Egtved virus,ALL,,Bright red streaks on fins,Patchy or darker body,Eyes protruding,Bloated abdomen or belly,Signs of bleeding,Breathing rapidly,Gasping at the surface,Erratic swimming,Pale gill,,,,"Viral hemorrhagic septicemia (VHS) is a deadly infectious fish disease caused by Viral hemorrhagic septicemia virus. 
+5,Viral Hemorrhagic Septicemia�,Egtved virus,ALL,,REDFIN,PATCHBODY,EYEPROD,BLOAT,BLEEDING,RAPIDBREATH,GASPING,ERSWIM,PALEGILL,,,,"Viral hemorrhagic septicemia (VHS) is a deadly infectious fish disease caused by Viral hemorrhagic septicemia virus. 
 It afflicts over 50 species of freshwater and marine fish.
 Different strains of the virus occur in different regions, and affect different species.
 VHSV can be spread from fish to fish through water transfer, as well as through contaminated eggs, and fish from infected waters.
@@ -67,8 +67,8 @@ Survivors of the disease can become lifelong carriers of the virus, contaminatin
 The bacteria variant, bacterial hemorrhagic septicemia, can be treated with levamisole, metronidazole or praziquantel. 
 Metronidazole and praziquantel are especially effective when used as food soaks. 
 Antibiotics such as nitrofurazone or erythromycin may also help prevent secondary bacterial infections.
-A visit to the vet is advised for proper diagnosis.",TRUE,Levamisole,Metronidazole,Praziquantel,Nitrofurazone (Antibiotics),Erythromycin (Antibiotics),,,
-6,Freshwater Ich,White Spot,Freshwater,,White spots on the body and gills,Clamped fins,Lethargic behavior,Breathing rapidly,Loss of appetite,Flashing or Rub against bottom or objects in the tank,Rapid gill movement,Settle Bottom of Tank,,,,,"The most common cause of Ich is failure to quarantine a new fish addition to the aquarium.
+A visit to the vet is advised for proper diagnosis.",TRUE,LEVAMISOLE,METRONIDAZOLE,PRAZIQUANTEL,NITROFURAZONE,ERYTHROMYCIN,,,
+6,Freshwater Ich,White Spot,Freshwater,,WHITESPOT,CLAMPFIN,LETHARGIC,RAPIDBREATH,LOSSAPPETITE,FLASHING,RAPIDGILL,SETTLEBOTTOM,,,,,"The most common cause of Ich is failure to quarantine a new fish addition to the aquarium.
 Additional causes may include:
 Using infected equipment between tanks without proper sanitation
 Transferring infected filter media or décor between tanks
@@ -79,7 +79,7 @@ Monitoring and maintaining your water temperature is critical to ensure the para
 Many over-the-counter ""treatments"" do not take this into account and if not properly used can severely hurt your fish in addition to not completely treating the Ich.
 Many online forums will recommend manipulating your tank temperature to speed up or immobilize Ich. 
 Unfortunately, in doing so, you will stress out your fish and make them more susceptible to death from secondary causes.",TRUE,,,,,,,,
-7,Popeye,Exophthalmia,ALL,,Eyes protruding,Cloudy white or greyish eyes,Bloodstained eye,Ruptured eye,Loss of vision,Lethargic behavior,,,,,,,"Most commonly, fish popeye is caused by an injury, an infection, or poor water conditions in the aquarium.
+7,Popeye,Exophthalmia,ALL,,EYEPROD,GREYEYE,BLOODEYE,RUPTUREEYE,LOSSVISION,LETHARGIC,,,,,,,"Most commonly, fish popeye is caused by an injury, an infection, or poor water conditions in the aquarium.
 If only one eye is affected (unilateral), it is likely that the condition is caused by an injury rather than a problem with the water chemistry. 
 This is particularly true if only one fish in a community tank is exhibiting popeye. 
 A swollen eye can be the outcome of a fight with another fish, or your fish could have scraped its eye against an abrasive object in the tank. 
@@ -106,8 +106,8 @@ If water tests indicate a problem—a drifting pH or elevated ammonia or nitrite
 Any fish clearly suffering from a bacterial infection should be moved to a quarantine tank to avoid infecting other fish. 
 Treat this fish with a broad-spectrum antibiotic recommended by your pet supplier or veterinarian to resolve the infection. 
 If more than one fish is infected, it may be necessary to treat the main tank with antibiotics, as well. 
-And all fish should be fed high-quality food to support healthy immune systems.",TRUE,Salt,Antibiotics,,,,,,
-8,Swim Bladder Disease,Swim Bladder Disorder,ALL,,Bloated abdomen or belly,Curved spine,Swimming difficulty,Upside down,Erratic swimming,Swimming with heavy head,Gasping at the surface,Spend time on surface,,,,,"This disorder can be caused by many issues, spanning from environment to feeding problems, including the following:
+And all fish should be fed high-quality food to support healthy immune systems.",TRUE,SALT,ANTIBIOTIC,,,,,,
+8,Swim Bladder Disease,Swim Bladder Disorder,ALL,,BLOAT,CSPINE,SWIMDIFF,UPSIDEDOWN,ERSWIM,SWIMDOWNWARD,GASPING,SURFACEDWELL,,,,,"This disorder can be caused by many issues, spanning from environment to feeding problems, including the following:
 Rapidly eating, overeating, constipation, or gulping air may occur with floating foods to cause an extended belly and displace the swim bladder. 
 Eating freeze-dried or dry flake food that expands when it becomes wet can also lead to an enlarged stomach or intestinal tract.
 Other abdominal organs may become enlarged and affect the swim bladder. 
@@ -126,8 +126,8 @@ Keep the water especially clean and temperatures between 78 and 80 degrees Fahre
 Add a small amount of aquarium salt to the tank.
 Reduce the water level to make it easier for the fish to move around within the tank.
 Reduce water flow in tanks with a strong current.
-If the affected fish floats with part of its body constantly exposed to the air, applying a bit of Stress Coat water conditioner (which helps improve the fish's slime coat) can help avoid the development of sores and reddened spots.",FALSE,Pea,Salt,Stress Coat Water Conditioner,,,,,
-9,Freshwater velvet disease,Gold Dust Disease,Freshwater,,Fine yellow or light brown rust or film on skin,Skin Peeling,Clamped fins,Flashing or Rub against bottom or objects in the tank,Lethargic behavior,Breathing rapidly,Loss of appetite,Rapid gill movement,Sudden Death,,,,"In freshwater fish, Velvet is caused by either Oödinium pillularis or Oödinium limneticum. 
+If the affected fish floats with part of its body constantly exposed to the air, applying a bit of Stress Coat water conditioner (which helps improve the fish's slime coat) can help avoid the development of sores and reddened spots.",FALSE,PEA,SALT,COATWATER,,,,,
+9,Freshwater velvet disease,Gold Dust Disease,Freshwater,,BROWNRUST,SKINPEEL,CLAMPFIN,FLASHING,LETHARGIC,RAPIDBREATH,LOSSAPPETITE,RAPIDGILL,SUDDENDEATH,,,,"In freshwater fish, Velvet is caused by either Oödinium pillularis or Oödinium limneticum. 
 In marine fish, Amyloödinium ocellatum causes the dreaded Coral Fish Disease. 
 All three species have symptoms and life cycles similar to the well-known ciliated protozoan parasite, Ich.
 Like Ich, Oödinium may be present in most commercial aquariums, but only becomes a problem when the fish are stressed by poor quality water, changes in the water temperature, or being transported.","Raise water temperature
@@ -141,8 +141,8 @@ Copper sulfate is the treatment of choice.
 It should be used according to the manufacturer’s instructions for a full ten days to ensure that the parasite is completely eradicated. 
 Atabrine (quinacrine hydrochloride) is another medication that can be used to treat Velvet.
 Because Oödinium is also photosynthetic, dimming the aquarium lights aids in eliminating the infestation. Increasing the water temperature to 82 degrees F will speed the life cycle of the parasite, making it faster to treat and infestation. 
-Adding salt to the water (1 to 3 level teaspoons per gallon of water) will increase the mucus production of the fish to help deter the parasite and will reduce the osmotic stress in the water. Whenever adding any treatment to the aquarium water, activated carbon should be removed from the filter, as it will remove the medications from the water.",FALSE,Salt,Copper Sulfate,Atabrine (Quinacrine Hydrochloride),,,,,
-10,Ammonia Poisoning,Nitrite poisoning,ALL,,Gasping at the surface,Red or inflamed gill,,,,,,,,,,,"Ammonia can enter the tank through a number of different ways. 
+Adding salt to the water (1 to 3 level teaspoons per gallon of water) will increase the mucus production of the fish to help deter the parasite and will reduce the osmotic stress in the water. Whenever adding any treatment to the aquarium water, activated carbon should be removed from the filter, as it will remove the medications from the water.",FALSE,SALT,COPPERSULFATE,ATABRINEQUYDROC,,,,,
+10,Ammonia Poisoning,Nitrite poisoning,ALL,,GASPING,INFGILL,,,,,,,,,,,"Ammonia can enter the tank through a number of different ways. 
 The first way is through chemically treated tap water. 
 Overfeeding and lack of cleaning add to a buildup of the bacteria that feed on this superfluous matter, resulting in an ammonia byproduct. 
 Fish, themselves, also contribute to rising ammonia levels in tanks. 
@@ -153,8 +153,8 @@ Several water changes within a short period of time may be required to drop the 
 If the fish appear to be severely distressed, use a chemical pH control product to neutralize the ammonia. 
 At this point, restrict feedings so that additional waste is reduced. 
 In cases of very high ammonia levels, feedings need to be discontinued for several days. 
-And obviously, no new fish should be added to​ the tank until both the ammonia and nitrite levels have fallen to zero.",FALSE,Chemical pH Control Product,,,,,,,
-11,Anchor Worms,Learnea spp,Freshwater,,Flashing or Rub against bottom or objects in the tank,Red or inflamed scales,Worm on body,White greenish thread on body,,,,,,,,,"Anchor worms are macroscopic parasites, and can be seen by the naked eye. 
+And obviously, no new fish should be added to​ the tank until both the ammonia and nitrite levels have fallen to zero.",FALSE,PHCONTROL,,,,,,,
+11,Anchor Worms,Learnea spp,Freshwater,,FLASHING,INFSCALE,WORMBODY,WHITETHREAD,,,,,,,,,"Anchor worms are macroscopic parasites, and can be seen by the naked eye. 
 They are commonly found on koi and goldfish, but can be found on many freshwater fish species. 
 The ""worm"" part extending out into the water is actually the female reproductive structures.
 Anchor worms occur when a new fish is added to an aquarium carrying juvenile anchor worms or a reproductively-active female in their skin. 
@@ -169,9 +169,9 @@ Over-the-counter ""anchor worm"" treatments are usually fairly effective against
 Another way of killing the free-swimming juvenile stage in the aquarium can be accomplished by removing your substrate and decor and running your water through a UV light.
 Treating anchor worms with organophosphates or diflubenzuron (dimilin) is effective, but needs to be undertaken with severe caution. 
 Only use veterinary-approved products, keep them away from your other pets and children, and make sure to wear proper protection (i.e., gloves) when handling medications.
-The sites of adult attachment may also develop secondary bacterial infections.",TRUE,Organophospates,Diflubenzuron (Dimilin),,,,,,
-12,CO2 Poisoning,,ALL,,Breathing rapidly,Gasping at the surface,Spend time on surface,,,,,,,,,,"CO2 poisoning in fish can be caused by your CO2 reactor not working, or your plants not absorb CO2 due to the lights not working properly.",The best way for you to treat CO2 poisoning in your fish is to use an air stone to agitate the surface. This causes the carbon dioxide to dissipate from the water. You can also adjust the rate of CO2 injection in your tank,FALSE,,,,,,,,
-13,Constipation,,ALL,,Bloated abdomen or belly,Swimming difficulty,Erratic swimming,,,,,,,,,,"Fish in poor water quality have reduced appetites, refusing to eat when ammonia or nitrite rises. 
+The sites of adult attachment may also develop secondary bacterial infections.",TRUE,ORGANOPHOSPHATES,DIMILIN,,,,,,
+12,CO2 Poisoning,,ALL,,RAPIDBREATH,GASPING,SURFACEDWELL,,,,,,,,,,"CO2 poisoning in fish can be caused by your CO2 reactor not working, or your plants not absorb CO2 due to the lights not working properly.",The best way for you to treat CO2 poisoning in your fish is to use an air stone to agitate the surface. This causes the carbon dioxide to dissipate from the water. You can also adjust the rate of CO2 injection in your tank,FALSE,,,,,,,,
+13,Constipation,,ALL,,BLOAT,SWIMDIFF,ERSWIM,,,,,,,,,,"Fish in poor water quality have reduced appetites, refusing to eat when ammonia or nitrite rises. 
 They then start to defecate their mucosal gut lining, leading to a milky, transparent poop and a constipation misdiagnosis.
 Temperature changes can cause bloating or blockages. 
 The metabolisms of temperate fish are temperature driven, and as things cool their gut flora becomes less efficient, causing slow digestion.
@@ -187,8 +187,8 @@ Stale or spoiled dry food is also a common issue.
 Lack of fibre is something that can cause constipation, but not with any particular regularity, and almost always only in tandem with offering improper diet or stale foods.","One of the easiest ways to treat a constipated fish is to increase the amount of fiber in their diet and if necessary, deworm your fish. 
 Another way to treat constipation is to dose your tank with Epson salt. 
 Adding 1 to 3 teaspoons of salt per every 5 gallons of water will help. 
-Epson salt will act as a muscle relaxant and help them be able to poop easier.",FALSE,Epson Salt,,,,,,,
-14,Fish Lice,Argulus spp,ALL,,Dots on fish body or condensed at fin attachments,Pale gill,Skin Ulcer,Flashing or Rub against bottom or objects in the tank,Pale skin color,Lethargic behavior,grey or green dots on skin,,,,,,"Lice will enter your aquarium system undetected on an infested fish. 
+Epson salt will act as a muscle relaxant and help them be able to poop easier.",FALSE,EPSONSALT,,,,,,,
+14,Fish Lice,Argulus spp,ALL,,DOTBODY,PALEGILL,SKINULCER,FLASHING,PALESKIN,LETHARGIC,GREYDOT,DOTFIN,,,,,"Lice will enter your aquarium system undetected on an infested fish. 
 If not properly quarantined, your fish and its low lice load will quickly spread throughout your system. 
 Juvenile lice are microscopic and may not be noticed until they grow into adults. 
 By holding new fish in quarantine, you will catch the adults before they spread and treatment will be significantly simpler.","The most effective treatment against argulusosis is organophosphates, which usually are given as 2 or 3 doses at 1-wk intervals to kill emerging larvae and juveniles.
@@ -199,8 +199,8 @@ Other treatments of Argulus infestations include the use of common chemicals suc
 Two applications of trichlorfon (0.25 ppm; Masoten, Dylox) 1 wk apart can be used as well.
 To eradicate Argulus, treatments such as trichlorfon (0.25 ppm for several hours) and emamectin benzoate have been used.
 It can take about 2 mo for Argulus to complete their life cycle; therefore, it is useful to rid tanks of egg contamination by using a disinfectant or by allowing the tanks to dry thoroughly for several days.
-Manual removal by vets can be help infected fish.",TRUE,Organophosphates,Lufenuron,Oral Enamectin,Salt,Formaldehyde,Potassium Permanganate,Trichlorfon,Emamectin Benzoate
-15,Flukes,Flatworms,ALL,,Scale loss,Pale skin color,Lethargic behavior,Loss of appetite,Sudden Death,,,,,,,,"Flukes are commonly found on many pet and cultured fish in very low levels. 
+Manual removal by vets can be help infected fish.",TRUE,ORGANOPHOSPHATES,LUFENURON,ORALENAMECTIN,SALT,FORMALDEHYDE,POTAMAGANATE,TRICHLORFON,EMAMECTIN
+15,Flukes,Flatworms,ALL,,LOSSSCALE,PALESKIN,LETHARGIC,LOSSAPPETITE,SUDDENDEATH,,,,,,,,"Flukes are commonly found on many pet and cultured fish in very low levels. 
 At such low, subclinical levels, healthy fish are able to keep the parasites from replicating at high speed and therefore do not require treatment.
 If a fish is stressed, such as from poor water quality, other disease, capture, handling, or transport, the fish's immune system becomes suppressed and is not able to keep most parasites at bay. 
 The flukes are then able to reproduce more favorably which also depends on the water temperature; flukes will replicate very quickly in warmer water.","Treatment for flukes will vary based on the water type (freshwater vs. saltwater), number of fish affected and aquarium size.
@@ -210,13 +210,13 @@ Depending on your situation, your veterinarian may recommend a medicated bath, o
 Severe infestations will respond fastest to injectable medication. 
 Oral medication will depend on if your fish are eating or not. 
 Bath treatments can destroy your carefully cultivated biological filtration if not administered properly.",TRUE,,,,,,,,
-16,Gill Mite,Water Mites,ALL,,Gills not fully close,Gasping at the surface,Spend time on surface,Breathing rapidly,Clamped fins,Flashing or Rub against bottom or objects in the tank,,,,,,,"Gill mites that thrives on the blood of its victims, along with their skin particles.
+16,Gill Mite,Water Mites,ALL,,GILLOPEN,GASPING,SURFACEDWELL,RAPIDBREATH,CLAMPFIN,FLASHING,,,,,,,"Gill mites that thrives on the blood of its victims, along with their skin particles.
 Gill mites are usually introduced via an infected fish.
 Fish are most susceptible to Gill Mites when they are under stress, or when a change has occurred in the temperature of the water or its chemical equilibrium. 
 The stress and or water changes will adversely impact the immune system of the fish","Gill mites can be treated using octozin and sterazin. 
 These products must be applied for a total of five days so that new hatchlings can be killed off which weren’t identified with the first treatment. 
-Antibiotics also help since they can deal with secondary infections resulting from lesions that the parasite has created.",FALSE,Octozin,Sterazin,Antibiotics,,,,,
-17,Hole in the head,Hexamita,Saltwater,Flowerhorn Cichlid,Ulcer on head,Ulcer on lateral line,Loss of appetite,Lethargic behavior,Pale gill,Patchy or darker body,White stringy faeces,,,,,,"There is no singular cause for hole-in-the-head disease, and there are some species of fish that seem predisposed to it, such as Tangs and Surgeonfish.
+Antibiotics also help since they can deal with secondary infections resulting from lesions that the parasite has created.",FALSE,OCTOZIN,STERAZIN,ANTIBIOTIC,,,,,
+17,Hole in the head,Hexamita,Saltwater,Flowerhorn Cichlid,HEADULCER,LINEULCER,LOSSAPPETITE,LETHARGIC,PALEGILL,PATCHBODY,WHITEFAECES,,,,,,"There is no singular cause for hole-in-the-head disease, and there are some species of fish that seem predisposed to it, such as Tangs and Surgeonfish.
 Although occasionally caused by a parasite (Hexamitid spp.), it is not commonly found with most infections. 
 Many stressors, such as poor water quality or diet, can start the chain of events that lead to hole-in-the-head disease.
 Other possible causes or influences on the progression of hole-in-the-head disease include:
@@ -228,14 +228,14 @@ They may recommend an anti-parasitic medication in addition to better maintenanc
 If aggressive fish play a role in your tank, such as fighting over territory or some fish stealing food out of the gills of other fish, you may need a long term solution including rehoming some fish. Remove all carbon from your system and make sure all of your filters are properly hooked up and not discharging extra voltage.
 Depending on the severity of the lesions, your fish may or may not regain their original appearance. 
 Although complete resolution is possible, your fish will likely have some mild color variation in healed patches of skin. 
-Severe lesions may never fully heal.",TRUE,Anti-Parasitic Medication,,,,,,,
-18,Slime disease,,Freshwater,,Thick skin mucus,grey or white blue mucus,Breathing rapidly,Flashing or Rub against bottom or objects in the tank,Lethargic behavior,Loss of appetite,,,,,,,"Slime disease in marine fish is usually caused by a different parasite, Brooklynella hostilis, sometimes called clownfish disease after the fishes it most commonly affects.
+Severe lesions may never fully heal.",TRUE,ANTIPARASITE,,,,,,,
+18,Slime disease,,Freshwater,,THICKMUCUS,GREYMUCUS,RAPIDBREATH,FLASHING,LETHARGIC,LOSSAPPETITE,,,,,,,"Slime disease in marine fish is usually caused by a different parasite, Brooklynella hostilis, sometimes called clownfish disease after the fishes it most commonly affects.
 Like most fish diseases, this occurs when fish become stressed. 
 Stress can be exacerbated by poor water conditions, over-crowding, malnutrition or sudden changes in temperature. 
 If the mucus coat covers the fish’s gills they can suffocate to death.","Effective treatments include levamisole, metronidazole or praziquantel. 
 Metronidazole and praziquantel are especially effective when used as food soaks. 
-Antibiotics such as nitrofurazone or erythromycin may also help prevent secondary bacterial infections",FALSE,Levamisole,Metronidazole,Praziquantel,Nitrofurazone (Antibiotics),Erythromycin (Antibiotics),,,
-19,Ichthyobodo,Costia,ALL,,Thick skin mucus,Skin Ulcer,Scale loss,Clamped fins,Flashing or Rub against bottom or objects in the tank,,,,,,,,"Costia is a parasite that is single celled and thrives in cold water. 
+Antibiotics such as nitrofurazone or erythromycin may also help prevent secondary bacterial infections",FALSE,LEVAMISOLE,METRONIDAZOLE,PRAZIQUANTEL,NITROFURAZONE,ERYTHROMYCIN,,,
+19,Ichthyobodo,Costia,ALL,,THICKMUCUS,SKINULCER,LOSSSCALE,CLAMPFIN,FLASHING,,,,,,,,"Costia is a parasite that is single celled and thrives in cold water. 
 It will multiply quickly in this environment and can cause considerable harm to any fish it comes into contact with.","One of the most effective and affordable is with salt. 
 This method is most gentle for the fish, especially goldfish which can handle higher salt levels in the water. 
 When using this method it is best to start with between three and four grams of salt per liter. 
@@ -247,11 +247,11 @@ You will want to use fifty parts per million for about 2 hours and then change f
 This sequence should be repeated two more times. 
 Hydrogen peroxide is another substance that can be used to eliminate Costia. 
 It is most ideal for bigger fish with patches. 
-You can soak a cotton bud in the solution and then dab the areas that need to be treated",FALSE,Salt,Formalin,Hydrogen Peroxide,,,,,
-20,Polycystic Kidney Disease,,ALL,,Bloated abdomen or belly,Scales stick out,Eyes protruding,Lethargic behavior,Loss of appetite,Rapid gill movement,Sudden Death,,,,,,"There are a handful of parasites that are known to cause kidney disease in fishes.
+You can soak a cotton bud in the solution and then dab the areas that need to be treated",FALSE,SALT,FORMALIN,HYDROPEROXIDE,,,,,
+20,Polycystic Kidney Disease,,ALL,,BLOAT,SCALEOUT,EYEPROD,LETHARGIC,LOSSAPPETITE,RAPIDGILL,SUDDENDEATH,,,,,,"There are a handful of parasites that are known to cause kidney disease in fishes.
 This is especially true for fishes living in seemingly reasonably environments and has sudden kidney failure. 
 Otherwise, adverse living conidtions can cause bacteria induced kidney diseases due to weaken immunity.",No known treatment for this disease,FALSE,,,,,,,,
-21,Vibrosis,,ALL,,Skin Ulcer,Signs of bleeding,Scale loss,Sudden Death,Bloated abdomen or belly,Inflamed anus,Frayed Tail,,,,,,"Vibriosis is caused by an infection of Vibrio bacteria species. 
+21,Vibrosis,,ALL,,SKINULCER,BLEEDING,LOSSSCALE,SUDDENDEATH,BLOAT,INFANUS,FRAYTAIL,,,,,,"Vibriosis is caused by an infection of Vibrio bacteria species. 
 There are many bacteria present at all times within the aquatic environment. 
 More severe Vibrio strains may enter a fish system that ignores strict quarantine practices.
 Immunocompromised fish, such as those stressed by poor water quality, bullying or lack of sufficient nutrition, are more susceptible to bacterial infection. 
@@ -262,8 +262,8 @@ Secondary stress goes a long way in making Vibrio infections worse.
 Over-the-counter antibiotics are not effective against Vibriosis. 
 There are many known resistant strains of Vibrio that require the correct treatment. 
 Once a diagnostic culture and sensitivity test has been performed, your veterinarian will determine the best course of action. 
-Antibiotics can be given directly to the fish as an injection, formulated into a feed, or may require a water-based treatment.",TRUE,Antibiotics,,,,,,,
-22,Lymphocystis,Cauliflower Disease,ALL,,Greyish or cream patches on skin and fins,Whte or pinkish bumps on skin or fins,White film on skin,spots clumps together like cauliflower,,,,,,,,,"As with many other aquatic viruses, lymphocystis can spread horizontally throughout a system through infected water.
+Antibiotics can be given directly to the fish as an injection, formulated into a feed, or may require a water-based treatment.",TRUE,ANTIBIOTIC,,,,,,,
+22,Lymphocystis,Cauliflower Disease,ALL,,GREYSKINFIN,WHITEBUMP,WHITEFILM,CAULIFLOWER,,,,,,,,,"As with many other aquatic viruses, lymphocystis can spread horizontally throughout a system through infected water.
 Lymphocystis has a latent stage, where a fish may be carrying the virus, but not show any clinical signs.
 Usually, a secondary stress trigger, such as poor husbandry or water quality issues, trigger the virus to replicate and the fish to start showing clinical signs. 
 Once a fish is carrying lymphocystis, it can potentially spread it to any other fishes in the same system","There is no treatment for lymphocystis in any species or system other than supportive care. 
@@ -273,20 +273,20 @@ Asymptomatic carriers may be present in your system and never show any clinical 
 The virus is often self-limiting, but may take weeks to resolve with supportive care. 
 Try to be patient and provide good water quality and a proper diet as your fish recovers. 
 You can move them to a quarantine system, but the virus will already have spread around your tank once a fish shows clinical signs",FALSE,,,,,,,,
-23,Ichthyosporidium,Internal Fungal Infection,ALL,,Swimming difficulty,Hollowed belly,Swimming difficulty,Skin Ulcer,Signs of bleeding,,,,,,,,"Cause of this disease is fungus Ichthyophonus hoferi.
+23,Ichthyosporidium,Internal Fungal Infection,ALL,,SWIMDIFF,HOLLOWBELLY,SWIMDIFF,SKINULCER,BLEEDING,,,,,,,,"Cause of this disease is fungus Ichthyophonus hoferi.
 The most common cause is due to introduction of this fungi through fish feed / new fish.
 Like most of such fungus, Ichthyophonus hoferi thrive in bad water conditions.
 Immunosuppressed or stressed or injured fishes are more likely to be infected.","This is incurable disease. 
 Quick quarantine must be performed.
 The sick fish might need euthanasia if conditions worsen. 
 The rest of the tank should be disinfected.",FALSE,,,,,,,,
-24,Gill lice,Ergasilus,ALL,,Scale Loss,Red spots,Skin Ulcer,Lethargic behavior,,,,,,,,,"Gill maggots find their way into ponds from newly acquired fish that haven’t been properly quarantined prior to introduction into the pond.
+24,Gill lice,Ergasilus,ALL,,LOSSSCALE,REDSPOT,SKINULCER,LETHARGIC,,,,,,,,,"Gill maggots find their way into ponds from newly acquired fish that haven’t been properly quarantined prior to introduction into the pond.
 If they were bred in an overstocked aquarium or fish farm, the likelihood of fish having parasites is fairly high due to poor water quality. 
 Always quarantine new fish for several days prior to putting them in your pond, and observe them for any signs or symptoms of gill maggots or other parasites.
 Additionally, larval gill maggots can be transported from live food. 
 If you purchase live food, such as bloodworms, tiny shrimps, etcetera, for your fish, be sure to only purchase them from a reputable and trustworthy source, and check them very thoroughly for any parasites.","Current treatments for Ergasilus include trichlorfon, or mixture of copper sulfate and ferric sulfate.
-Fish feed might need to be checked for possible introduction of parasites and quarantine is recommended",FALSE,Trichlorfon,Copper Sulfate,Ferric Sulfate,,,,,
-25,Nematoda,Roundworms,ALL,,Hollowed belly,Worm seen at anus,significant  weight loss,Swimming difficulty,Lethargic behavior,,,,,,,,"The nematode is a subacute pathogen that becomes virulent only when triggered by environmental conditions, such as warm water and low oxygen levels. 
+Fish feed might need to be checked for possible introduction of parasites and quarantine is recommended",FALSE,TRICHLORFON,COPPERSULFATE,FERRICSULFATE,,,,,
+25,Nematoda,Roundworms,ALL,,HOLLOWBELLY,WORMANUS,LOSSWEIGHT,SWIMDIFF,LETHARGIC,,,,,,,,"The nematode is a subacute pathogen that becomes virulent only when triggered by environmental conditions, such as warm water and low oxygen levels. 
 The nematode thrives in mostly dull and cloudy water. 
 They are rarely found in clean water in an aquarium with proper filtration systems.
 Some nematodes can be transmitted directly from fish to fish.","Prior to administration of deworming medications (anthelminthic), the problem should be properly diagnosed by a vet. 
@@ -297,14 +297,14 @@ Fenbendazole can only be used as a feed additive at the rate of 1.14 grams per p
 Levamisole can be used both in the feed and as a bath treatment. One effective oral dose is 1.8 grams of levamisole per pound of food fed once a week for three weeks. 
 Control of nematodes that infect areas of the fish other than the gastrointestinal tract is more problematic. 
 In fact, surgical removal is the only way to rid fish of internal worms that are not found in the intestine. 
-Fish that contain nematode larvae in their muscles or external areas may be treated by surgical removal of the larvae.",TRUE,Anthelminthic,Fenbendazole,Levamisole,,,,,
-26,Chilodonella,,Freshwater,Goldfish,Breathing rapidly,Thick skin mucus,Cloudy Skin,Clamped fins,Loss of appetite,Lethargic behavior,Flashing or Rub against bottom or objects in the tank,Light blue mucus layer on skin between head and dorsal fin,Late stage skin swollen,,,,"Like many aquatic parasites, Chilodonella usually gets into your tank on new fish introduction or with live foods. 
+Fish that contain nematode larvae in their muscles or external areas may be treated by surgical removal of the larvae.",TRUE,ANTHELMINTHIC,FENBENDAZOLE,LEVAMISOLE,,,,,
+26,Chilodonella,,Freshwater,Goldfish,RAPIDBREATH,THICKMUCUS,CLOUDSKIN,CLAMPFIN,LOSSAPPETITE,LETHARGIC,FLASHING,BLUEMUCUS,SWOLLENSKIN,,,,"Like many aquatic parasites, Chilodonella usually gets into your tank on new fish introduction or with live foods. 
 It will thrive in poor water quality and stressed fishes are more likely to get infected.","Most common chemicals used to treat fish infected with Chilodonella spp. include formalin (formaldehyde solution) and potassium permanganate. 
 Formalin has bactericidal properties, but its efficacy has never been studied specifically against chilodonellosis. 
 Limited information exists about formalin bioaccumulation in fish and the potential implications for human health are unknown. 
 Potassium permanganate (KMnO4) is another chemical also used to combat Chilodonella spp. infections. 
-KMnO4 can cause serious corrosion to fish when in contact with gills and skin and need to be used with great care.",FALSE,Formalin,Potassium Permanganate,,,,,,
-27,Carp Pox,Koi Pox,Freshwater,Goldfish,Waxy like spots on fin and body and head,Thicken fins,Skin Ulcer,,,,,,,,,,"Carp pox is caused by the herpes virus. 
+KMnO4 can cause serious corrosion to fish when in contact with gills and skin and need to be used with great care.",FALSE,FORMALIN,POTAMAGANATE,,,,,,
+27,Carp Pox,Koi Pox,Freshwater,Goldfish,WAXYSPOT,THICKFIN,SKINULCER,,,,,,,,,,"Carp pox is caused by the herpes virus. 
 Like other herpes viruses, the virus has a latent or carrier state that persists within an individual without showing any external clinical signs. 
 Fish can be infected very young in life and may not show clinical signs until years later. 
 Secondary stress can activate latent infections and cause skin lesions and infect other fish through direct contact or water-borne transmission.
@@ -320,7 +320,7 @@ Surgical removal of the plaques is not recommended since they will only grow bac
 You may alleviate the symptoms of carp pox by raising your water temperature. 
 This will allow your koi to better combat the disease and may resolve symptoms entirely. 
 This does not mean the virus is gone from your fish, as the lesions will return when the water cools again.",FALSE,,,,,,,,
-28,Water Mold,Saprolegnia,ALL,,White or greyish patch on skin,Cotton like patchs on scale,Sunken eyes,,,,,,,,,,"Of the water mold class Oomycetes, Saprolengniaceae is a family that contains many species commonly called ""saprolegnia."" 
+28,Water Mold,Saprolegnia,ALL,,WHITEPATCH,COTTONSCALE,SUNKENEYE,,,,,,,,,,"Of the water mold class Oomycetes, Saprolengniaceae is a family that contains many species commonly called ""saprolegnia."" 
 There are so many different species that every freshwater fish is susceptible to some Saprolegnia species. 
 Typically, water molds feed on dead organic materials and replicate by forming spores. 
 These spores seed a substrate and float about, waiting for a bit of dead tissue to inhabit and grow into. 
@@ -332,15 +332,15 @@ Since it is a water mold, it is not responsive to antibiotics.
 However, there may be a bacterial infection that caused the fish to be weak initially, allowing the Saprolegnia to grow on it. 
 You may need to treat for both bacterial infections and the Saprolegnia fungus, using different medications.
 Severe infectious may require treatment specific to the water mold, using and antifungal medication in the water.",TRUE,,,,,,,,
-29,Saltwater Ich,White Spot,Saltwater,,Usually no signs in early stage,White spots on the body and gills,Loss of appetite,Flashing or Rub against bottom or objects in the tank,Settle Bottom of Tank,Lethargic behavior,Erratic swimming,Cloudy eyes,,,,,Saltwater Ich is almost always present in the water of wild caught fish and are easily transmitted on anything wet.  This causes Saltwater Ich to exist in the holding tanks of fish wholesalers and distributors.  The parasites will then make their way to your local pet store and from there they will enter your home aquarium.,"Quarantine all fish, coral and invertebrates for at least 45 to 90 days or preventive medicine treatment could mitigate the risk of Saltwater Ich outbreaks. 
+29,Saltwater Ich,White Spot,Saltwater,,NOSIGN,WHITESPOT,LOSSAPPETITE,FLASHING,SETTLEBOTTOM,LETHARGIC,ERSWIM,GREYEYE,,,,,Saltwater Ich is almost always present in the water of wild caught fish and are easily transmitted on anything wet.  This causes Saltwater Ich to exist in the holding tanks of fish wholesalers and distributors.  The parasites will then make their way to your local pet store and from there they will enter your home aquarium.,"Quarantine all fish, coral and invertebrates for at least 45 to 90 days or preventive medicine treatment could mitigate the risk of Saltwater Ich outbreaks. 
 The two most proven and effective treatments for Marine Ich are Chloroquine Phosphate and Copper Sulfate based medications. CP or pharmaceutical grade Chloroquine Phosphate requires a prescription from a veterinarian, so this leads most hobbyists to use copper treatments. The CP that is available online from eBay and other websites is rarely medical grade and not worth the risk to your fish.
 Copper is a poison and has been compared to chemotherapy for fish. It is often deadly to fish at unregulated levels or if a fish is too weak when the treatment begins. Purchasing a reliable copper test kit is absolutely required if you intend to use any copper medications on your fish.
 Cupramine from Seachem is a very popular choice that contains ionic copper. Cupramine has the advantage of mixing much easier into the water than some other products. The Cupramine therapeutic level is 0.50 ppm and should only be read with the Seachem or Salifert copper test kit.
 Prime, Amguard or other ammonia binding products should be avoided while using Cupramine because they have been reported to increase the mortality rate of fish during treatment.
 Coppersafe is a much older liquid option that contains chelated copper with a therapeutic level between 1.5 – 2.0 ppm. The API test kit is recommended for this treatment and you are able to use ammonia binding products. However, there are reports that it less effective than some other options.
 Cuprion from Brightwell Aquatics is another ionic copper liquid-based treatment. The therapeutic level is 0.20 ppm. Seachem or Salifert copper test kit is recommended again for this product and ammonia binders should be avoided.
-Copper Power Blue is advertised as the safest treatment for Saltwater Ich. The therapeutic level between 1.5 – 2.0 ppm for Copper Power, but they claim 2.5ppm is also safe. The API test kit is recommended for monitoring this product.",TRUE,Chloroquine Phosphate,Copper Sulfate,Cupramine (Copper),Coppersafe (Copper),Cuprion (Copper),,,
-30,Marine Velvet Disease,Coral Fish Disease,Saltwater,,Initial stage like ich - tiny white spots mostly on fins and spreads fast to whole fish,"Depending on fish color, spots will appear grey gold in certain angle and light conditions",Swimming into powerhead (air pump),Hiding behavior,Lethargic behavior,Breathing rapidly,Loss of appetite,Erratic swimming,Flashing or Rub against bottom or objects in the tank,,,,"In freshwater fish, Velvet is caused by either Oödinium pillularis or Oödinium limneticum. 
+Copper Power Blue is advertised as the safest treatment for Saltwater Ich. The therapeutic level between 1.5 – 2.0 ppm for Copper Power, but they claim 2.5ppm is also safe. The API test kit is recommended for monitoring this product.",TRUE,CHLOROQUINE,COPPERSULFATE,CUPRAMINE,COPPERSAFE,CUPRION,,,
+30,Marine Velvet Disease,Coral Fish Disease,Saltwater,,ICHLIKE,ANGLESPOTS,SWIMTOPUMP,HIDING,LETHARGIC,RAPIDBREATH,LOSSAPPETITE,ERSWIM,FLASHING,,,,"In freshwater fish, Velvet is caused by either Oödinium pillularis or Oödinium limneticum. 
 In marine fish, Amyloödinium ocellatum causes the dreaded Coral Fish Disease. 
 All three species have symptoms and life cycles similar to the well-known ciliated protozoan parasite, Ich.
 Like Ich, Oödinium may be present in most commercial aquariums, but only becomes a problem when the fish are stressed by poor quality water, changes in the water temperature, or being transported.","Chloroquine phosphate is the treatment of choice for velvet, but copper also works if symptoms are caught early on. 
@@ -349,4 +349,4 @@ A freshwater dip and/or chemical bath (discussed in more detail below) is recomm
 Acriflavine –  It has a broad range of effect, being effective against both protozoans and bacterial infections. The latter gives it an advantage over using formalin, because all those tiny bite marks inflicted by velvet have the potential to get infected. You can also leave a fish in acriflavine longer than formalin, because it is not as harsh on the fish. Dosage varies by the product you are using, but for straight acriflavine (Acriflavine-MS) use 1 teaspoon per 5 gallons of water for a bath solution.
 Methylene Blue – May be added to the formalin bath only. It is a healing agent, useful for treating the tiny bite marks inflicted by velvet.
 Chloroquine phosphate/copper – While all of the above will remove the vast majority of velvet on a fish, some will inevitably survive. Within 4 days the remaining trophonts will drop off the fish, then encyst, and usually 48-96 hours later (although it can take up to 20+ days depending upon the strain) release dinospores (free swimmers) seeking to reinfect fish. The presence of CP or copper at therapeutic levels kills the dinospores, effectively shielding your fish from reinfection. It is important to note that CP/copper does not eradicate any other stage of velvet, just dinospores. It has zero impact on the parasites on the fish; they must “weather the storm” until the trophonts fall off. This is why it is so important to do a freshwater dip and chemical bath beforehand, to reduce the number of parasites feeding on your fish’s body & gills.
-Wide spectrum antibiotic – Velvet does A LOT of damage to a fish’s skin & gills. The trophont sits on the skin’s surface and puts out small rhyzoids (root-like structures) into the skin of the host where it absorbs nutrients directly from the fish’s skin. With all those tiny wounds, the likelihood of infection is high. This is something I missed in my earlier experiments where the fish died. Therefore, I consider it prudent to preemptively treat withKanaplex and/or Furan-2 to ward off any potential bacterial infections which might arise.",,Chloroquine Phosphate,Formalin,Acriflavine,Methylene Blue,Copper,Antibiotics,,
+Wide spectrum antibiotic – Velvet does A LOT of damage to a fish’s skin & gills. The trophont sits on the skin’s surface and puts out small rhyzoids (root-like structures) into the skin of the host where it absorbs nutrients directly from the fish’s skin. With all those tiny wounds, the likelihood of infection is high. This is something I missed in my earlier experiments where the fish died. Therefore, I consider it prudent to preemptively treat withKanaplex and/or Furan-2 to ward off any potential bacterial infections which might arise.",,CHLOROQUINE,FORMALIN,ACRIFLAVINE,METHYLENE BLUE,COPPER,ANTIBIOTIC,,
