@@ -283,14 +283,24 @@ class DataAccessLayer():
         else:
             case_instance.delete()
 
-    def UpdateDiseaseToCase(self,case_instance:CaseInc, suspectedDisease:Disease) -> CaseInc:
-        case_instance.suspected_diseases.connect(suspectedDisease)
-        case_instance.save()
+    def UpdateDiseaseToCase(self,case_instance:CaseInc, suspectedDisease:Disease, confidence:float = 0) -> CaseInc:
+        rel = case_instance.suspected_diseases.relationship(suspectedDisease)
+        if rel:
+            rel.confidence = confidence
+            rel.save()
+        else:
+            rel = case_instance.suspected_diseases.connect(suspectedDisease, {'confidence':confidence})
+            case_instance.save()
         return case_instance
 
-    def UpdateSymptomToCase(self,case_instance:CaseInc, suspectedSymptom:Symptom) -> CaseInc:
-        case_instance.suspected_symptoms.connect(suspectedSymptom)
-        case_instance.save()
+    def UpdateSymptomToCase(self,case_instance:CaseInc, suspectedSymptom:Symptom, suspectedLevel:float=1.0) -> CaseInc:
+        rel = case_instance.suspected_symptoms.relationship(suspectedSymptom)
+        if rel:
+            rel.suspectedLevel = suspectedLevel
+            rel.save()
+        else:
+            case_instance.suspected_symptoms.connect(suspectedSymptom, {'suspectedLevel':suspectedLevel})
+            case_instance.save()
         return case_instance
 
     def PushAllSymptomOfAnotherDiseaseToCase(self,case_instance:CaseInc, saidDisease:Disease) -> CaseInc:
