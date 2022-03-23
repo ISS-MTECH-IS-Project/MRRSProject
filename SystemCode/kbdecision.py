@@ -1,23 +1,24 @@
-from models import *
-from dbservice import *
+from xmlrpc.client import boolean
+from models import SingletonMeta
+from DataAccessLayer import DataAccessLayer
+from NeomodelGraphObject import *
 class KbDecisionMaker(metaclass=SingletonMeta):
-    __db:DBservice = None
 
 
     def __init__(self) -> None:
-        self.__db = DBservice()
+        pass
 
 
-    def getNext(self, case:Case, symptom:Symptom) -> dict :
+    def getNext(self, case:CaseInc, symptom:Symptom, isConfirmed:boolean, suspectLevel:float, isGuided:boolean) -> dict :
         """
         return a dict
         {"symptom": next Symtom if any
         "diseases": [{"disease": disease, "confidence":0.8}]
         list of dictionary of diseases and confidence level sorted by confidence level
         """
-        self.__db.confirmSymptomToCase(case,symptom)
-        currentDiseases = self.__db.getDiseasesFromCase(case)
-        suspectDiseases = self.__db.getDiseases(symptom)
+        dbcon = DataAccessLayer().CreateDBConnection
+        currentDiseases = dbcon.GetAllDiseaseFromSymptomOrCaseByNameOrID(case.name)
+        suspectDiseases = dbcon.GetAllDiseaseFromSymptomOrCaseByNameOrID(symptom.name)
         for d in suspectDiseases:
             if currentDiseases[d]:
                 disease = currentDiseases[d]
