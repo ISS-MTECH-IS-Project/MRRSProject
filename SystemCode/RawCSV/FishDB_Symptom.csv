@@ -1,79 +1,79 @@
 ID,SymptomID,Symptom,SymptomType,SymptomCategory1,SymptomCategory2,SymptomCategory3,Question,ImageURL,Weight,Penalty
-1,BLOAT,Bloated abdomen or belly,Physical,Body,,,Does your fish's belly look bloated?,bloat,1,-0.2
-2,BLOODEYE,Bloodstained eye,Physical,Eye,,,Is there blood in your fish's eye(s)?,bloodeye,1,-0.2
-3,RAPIDBREATH,Breathing rapidly,Behaviourial,Breathing,,,Is your fish breathing more rapidly than usual?,,1,-0.2
-4,REDFIN,Bright red streaks on fins,Physical,Fin,,,Are there bright red streaks on the fins?,redfin,1,-0.2
-5,CLAMPFIN,Clamped fins,Physical,Fin,,,Are the fins on your fish clamped together?,clampfin,1,-0.2
-6,CLOUDSKIN,Cloudy Skin,Physical,Skin,,,Does the skin look cloudy?,cloudskin,1,-0.2
-7,GREYEYE,Cloudy white or greyish eyes,Physical,Eye,,,Does your fish's eyes look white or greyish?,greyeye,1,-0.2
-8,COTTONSCALE,Cotton like patchs on scale,Physical,Skin,,,Are there cotton-like patchs on the scales?,cottonscale,1,-0.2
-9,COTTONGROWTH,Cotton wool like growth,Physical,Skin,,,Is there cotton wool-like growth on your fish?,cottongrowth,1,-0.2
-10,CSPINE,Curved spine,Physical,Body,,,Is your fish's spine curved?,cspine,1,-0.2
-11,ANGLESPOTS,Spots that are grey gold in certain angle and light conditions,Physical,Skin,Body,,Are there spots on your fish that are grey-gold in color?,anglespots,1,-0.2
-12,DOTBODY,Dots on fish body,Physical,Skin,,,Are there dots on the body?,dotbody,1,-0.2
-13,DOTFIN,Dots condensed at fin attachments,Physical,Fin,,,Are there dots condensed at the fins?,dotfin,1,-0.2
-14,ERSWIM,Erratic swimming,Behaviourial,Movement,,,Is your fish swimming erratically?,,1,-0.2
-15,EYEPROD,Eyes protruding,Physical,Eye,,,Are the eyes protruding out?,eyeprod,1,-0.2
-16,FINSCALELOSS,Fin and scale loss,Physical,Fin,,,Is there any loss of scale or fins?,finscaleloss,1,-0.2
-17,BROWNRUST,Fine yellow or light brown rust or film on skin,Physical,Skin,,,Is there fine yellow or light brown rust on the fish body?,brownrust,1,-0.2
-18,WHITEEDGE,Fins or tail edges appear white,Physical,Fin,,,Does the fins or tail edges appear white?,whiteedge,1,-0.2
-19,FLASHING,Flashing or Rub against bottom or objects in the tank,Behaviourial,Movement,,,Is your fish rubbing against the tank's bottom and/or objects in the tanks?,,1,-0.2
-20,FRAYFIN,Frayed and ragged fins,Physical,Fin,,,Are the fins frayed and ragged?,frayfin,1,-0.2
-21,FRAYTAIL,Frayed Tail,Physical,Fin,,,Is the tail frayed?,fraytail,1,-0.2
-22,GASPING,Gasping at the surface,Behaviourial,Breathing,Movement,,Is your fish gasping for air at the water surface?,,1,-0.2
-23,GILLOPEN,Gills not fully close,Physical,Gill,,,Are the gills not fully closed?,gillopen,1,-0.2
-24,GREYDOT,Grey or green dots on skin,Physical,Skin,,,Are there grey or green dots on the body?,greydot,1,-0.2
-25,GREYMUCUS,Grey or white blue mucus,Physical,Skin,,,Are there grey or white-blue mucus on the body?,greymucus,1,-0.2
-26,GREYSKINFIN,Greyish or cream patches on skin and fins,Physical,Skin,Fin,,Are there greyish or cream patches on the body or fins?,greyskinfin,1,-0.2
-27,GREYGILL,Greyish or white or cloudy patches on the gill,Physical,Gill,,,Are there greyish or white cloudy patches on the gill?,greygill,1,-0.2
-28,GREYMOUTH,Greyish or white or cloudy patches on the mouth,Physical,Mouth,,,Are there greyish or white cloudy patches on the mouth?,greymouth,1,-0.2
-29,HIDING,Hiding behavior,Behaviourial,Movement,,,Does your fish exhibit hiding behaviour?,,1,-0.2
-30,HOLLOWBELLY,Hollowed belly,Physical,Body,,,Does your fish's belly look hollowed?,hollowbelly,1,-0.2
-31,INFANUS,Inflamed anus,Physical,Body,,,Is the anus region inflamed?,infanus,1,-0.2
-32,ICHLIKE,Initial stage like ich - tiny white spots mostly on fins and spreads fast to whole fish,Physical,Fin,Skin,,Are there tiny white spots (mostly on fins) and did it spread quickly to the rest of the body?,ichlike,1,-0.2
-33,SWOLLENSKIN,Late stage skin swollen,Physical,Skin,,,Does the fish skin look swollen?,swollenskin,1,-0.2
-34,LETHARGIC,Lethargic behavior,Behaviourial,Movement,,,Is your fish swimming letharically?,,1,-0.2
-35,BROWNGILLS,Light or dark brown gills,Physical,Gill,,,Are the gills light or dark brown in color?,browngills,1,-0.2
-36,BLUEMUCUS,Light blue mucus layer on skin between head and dorsal fin,Physical,Skin,,,Is there a light blue mucus layer on the region between the head and dorsal fin?,bluemucus,1,-0.2
-37,LOSSAPPETITE,Loss of appetite,Behaviourial,Eating,,,Does your fish exhibit a loss of appetite?,,1,-0.2
-38,LOSSVISION,Loss of vision,Behaviourial,Vision,,,Is your fish not reacting to visual stimulus?,,1,-0.2
-39,MUCUSHEAD,"Mucus on the gills, head, and dorsal regions",Physical,Body,,,"Is there mucus on the gills, head, and dorsal regions?",mucushead,1,-0.2
-40,PALEGILL,Pale gill,Physical,Gill,,,Does the gills look pale?,palegill,1,-0.2
-41,PALESKIN,Pale skin color,Physical,Skin,,,Does the skin look pale?,paleskin,1,-0.2
-42,PATCHBODY,Patchy or darker body,Physical,Skin,,,Are there dark patches on the body?,,1,-0.2
-43,RAPIDGILL,Rapid gill movement,Behaviourial,Movement,,,Is your fish exhibiting rapid gill movement?,,1,-0.2
-44,INFGILL,Red or inflamed gill,Physical,Gill,,,Is the gill inflamed or red in color?,infgill,1,-0.2
-45,INFSCALE,Red or inflamed scales,Physical,Skin,,,Are the scales red or inflamed?,infscale,1,-0.2
-46,REDSPOT,Red spots,Physical,Skin,,,Are there red spots on the body?,redspot,1,-0.2
-47,RUPTUREEYE,Ruptured eye,Physical,Eye,,,Is the eye(s) ruptured?,ruptureeye,1,-0.2
-48,LOSSSCALE,Scale loss,Physical,Skin,,,Is there any loss in scales?,lossscale,1,-0.2
-49,SCALEOUT,Scales stick out,Physical,Skin,,,Do the scales stick out?,,1,-0.2
-50,SETTLEBOTTOM,Settle bottom of tank,Behaviourial,Movement,,,Does your fish settle at the bottom of the tank?,,1,-0.2
-51,DISTRESS,Show signs of distress,Behaviourial,Movement,,,Does your fish shows signs of distress?,,1,-0.2
-52,LOSSWEIGHT,Significant weight loss,Behaviourial,Body,,,Did your fish recently lose significant amount of weight?,,1,-0.2
-53,BLEEDING,Signs of bleeding,Physical,Body,,,Are there signs of bleeding?,bleeding,1,-0.2
-54,SKINPEEL,Skin Peeling,Physical,Skin,,,Are there signs of skin peeling?,skinpeel,1,-0.2
-55,SKINULCER,Skin Ulcer,Physical,Skin,,,Are there any visible skin ulcer?,skinulcer,1,-0.2
-56,SURFACEDWELL,Spend time on surface,Behaviourial,Movement,,,Does your fish spend time on the surface?,,1,-0.2
-57,CAULIFLOWER,Spots clumps together like cauliflower,Physical,Skin,,,Are there spots that clump together like a cauliflower?,cauliflower,1,-0.2
-58,SUDDENDEATH,Sudden death,Behaviourial,Death,,,Did your fish suddenly die?,,1,-0.2
-59,SUNKENEYE,Sunken eyes,Physical,Eye,,,Are the eyes sunken?,,1,-0.2
-60,SWIMDIFF,Swimming difficulty,Behaviourial,Movement,,,Is your fish having difficulty swimming?,,1,-0.2
-61,SWIMTOPUMP,Swimming into powerhead (air pump),Behaviourial,Movement,,,Is your fish swimming into the air pump?,,1,-0.2
-62,SWIMDOWNWARD,Swimming with heavy head,Behaviourial,Movement,,,Is your fish swimming with a seemingly heavy head?,,1,-0.2
-63,THICKMUCUS,Thick skin mucus,Physical,Skin,,,Are there thick skin mucus on the body?,thickmucus,1,-0.2
-64,THICKFIN,Thicken fins,Physical,Fin,,,Does the fins look thicker than usual?,thickfin,1,-0.2
-65,HEADULCER,Ulcer on head,Physical,Body,,,Are there any visible ulcer(s) on the head?,headulcer,1,-0.2
-66,LINEULCER,Ulcer on lateral line,Physical,Body,,,Are there any visible ulcer(s) on the lateral line (line separating the top and bottom of the fish)?,,1,-0.2
-67,UPSIDEDOWN,Upside down,Behaviourial,Movement,,,Is your fish swimming upside down?,,1,-0.2
-68,NOSIGN,Usually no signs in early stage,BOTH,Nothing,,,Are there no signs?,,1,-0.2
-69,WAXYSPOT,Waxy like spots on fin and body and head,Physical,Fin,Skin,,"Are there any waxy-like spots on the fin,body and head?",waxyspot,1,-0.2
-70,WHITEFILM,White film on skin,Physical,Skin,,,Is there a white film on the skin?,whitefilm,1,-0.2
-71,WHITETHREAD,White greenish thread on body,Physical,Skin,,,Is there a white-greenish thread on the body?,whitethread,1,-0.2
-72,WHITEPATCH,White or greyish patch on skin,Physical,Skin,,,Are there white or greyish patch on the skin?,whitepatch,1,-0.2
-73,WHITESPOT,White spots on the body and gills,Physical,Skin,Gill,,Are there white spots on the body and gills?,whitespot,1,-0.2
-74,WHITEFAECES,White stringy faeces,Physical,Body,,,Is the faeces white and stringy?,whitefaeces,1,-0.2
-75,WHITEBUMP,Whte or pinkish bumps on skin or fins,Physical,Skin,Fin,,Are there any white or pinkish bumps on the skin or fins?,whitebump,1,-0.2
-76,WORMBODY,Worm on body,Physical,Body,,,Are there any worms on the body?,wormbody,1,-0.2
-77,WORMANUS,Worm seen at anus,Physical,Body,,,Are there any worms at the anus region?,,1,-0.2
-78,YELLOWNODULE,Yellowish or darker nodules on eyes or body,Physical,Eye,Skin,,Does your fish have yellowish or darker nodules on the eyes or body?,yellownodule,1,-0.2
+1,BLOAT,Bloated abdomen or belly,Physical,Body,,,,,1,-0.2
+2,BLOODEYE,Bloodstained eye,Physical,Eye,,,,,1,-0.2
+3,RAPIDBREATH,Breathing rapidly,Behaviourial,Breathing,,,,,1,-0.2
+4,REDFIN,Bright red streaks on fins,Physical,Fin,,,,,1,-0.2
+5,CLAMPFIN,Clamped fins,Physical,Fin,,,,,1,-0.2
+6,CLOUDSKIN,Cloudy Skin,Physical,Skin,,,,,1,-0.2
+7,GREYEYE,Cloudy white or greyish eyes,Physical,Eye,,,,,1,-0.2
+8,COTTONSCALE,Cotton like patchs on scale,Physical,Skin,,,,,1,-0.2
+9,COTTONGROWTH,Cotton wool like growth,Physical,Skin,,,,,1,-0.2
+10,CSPINE,Curved spine,Physical,Body,,,,,1,-0.2
+11,ANGLESPOTS,Spots that are grey gold in certain angle and light conditions,Physical,Skin,Body,,,,1,-0.2
+12,DOTBODY,Dots on fish body,Physical,Skin,,,,,1,-0.2
+13,DOTFIN,Dots condensed at fin attachments,Physical,Fin,,,,,1,-0.2
+14,ERSWIM,Erratic swimming,Behaviourial,Movement,,,,,1,-0.2
+15,EYEPROD,Eyes protruding,Physical,Eye,,,,,1,-0.2
+16,FINSCALELOSS,Fin and scale loss,Physical,Fin,,,,,1,-0.2
+17,BROWNRUST,Fine yellow or light brown rust or film on skin,Physical,Skin,,,,,1,-0.2
+18,WHITEEDGE,Fins or tail edges appear white,Physical,Fin,,,,,1,-0.2
+19,FLASHING,Flashing or Rub against bottom or objects in the tank,Behaviourial,Movement,,,,,1,-0.2
+20,FRAYFIN,Frayed and ragged fins,Physical,Fin,,,,,1,-0.2
+21,FRAYTAIL,Frayed Tail,Physical,Fin,,,,,1,-0.2
+22,GASPING,Gasping at the surface,Behaviourial,Breathing,Movement,,,,1,-0.2
+23,GILLOPEN,Gills not fully close,Physical,Gill,,,,,1,-0.2
+24,GREYDOT,Grey or green dots on skin,Physical,Skin,,,,,1,-0.2
+25,GREYMUCUS,Grey or white blue mucus,Physical,Skin,,,,,1,-0.2
+26,GREYSKINFIN,Greyish or cream patches on skin and fins,Physical,Skin,Fin,,,,1,-0.2
+27,GREYGILL,Greyish or white or cloudy patches on the gill,Physical,Gill,,,,,1,-0.2
+28,GREYMOUTH,Greyish or white or cloudy patches on the mouth,Physical,Mouth,,,,,1,-0.2
+29,HIDING,Hiding behavior,Behaviourial,Movement,,,,,1,-0.2
+30,HOLLOWBELLY,Hollowed belly,Physical,Body,,,,,1,-0.2
+31,INFANUS,Inflamed anus,Physical,Body,,,,,1,-0.2
+32,ICHLIKE,Initial stage like ich - tiny white spots mostly on fins and spreads fast to whole fish,Physical,Fin,Skin,,,,1,-0.2
+33,SWOLLENSKIN,Late stage skin swollen,Physical,Skin,,,,,1,-0.2
+34,LETHARGIC,Lethargic behavior,Behaviourial,Movement,,,,,1,-0.2
+35,BROWNGILLS,Light or dark brown gills,Physical,Gill,,,,,1,-0.2
+36,BLUEMUCUS,Light blue mucus layer on skin between head and dorsal fin,Physical,Skin,,,,,1,-0.2
+37,LOSSAPPETITE,Loss of appetite,Behaviourial,Eating,,,,,1,-0.2
+38,LOSSVISION,Loss of vision,Behaviourial,Vision,,,,,1,-0.2
+39,MUCUSHEAD,"Mucus on the gills, head, and dorsal regions",Physical,Body,,,,,1,-0.2
+40,PALEGILL,Pale gill,Physical,Gill,,,,,1,-0.2
+41,PALESKIN,Pale skin color,Physical,Skin,,,,,1,-0.2
+42,PATCHBODY,Patchy or darker body,Physical,Skin,,,,,1,-0.2
+43,RAPIDGILL,Rapid gill movement,Behaviourial,Movement,,,,,1,-0.2
+44,INFGILL,Red or inflamed gill,Physical,Gill,,,,,1,-0.2
+45,INFSCALE,Red or inflamed scales,Physical,Skin,,,,,1,-0.2
+46,REDSPOT,Red spots,Physical,Skin,,,,,1,-0.2
+47,RUPTUREEYE,Ruptured eye,Physical,Eye,,,,,1,-0.2
+48,LOSSSCALE,Scale loss,Physical,Skin,,,,,1,-0.2
+49,SCALEOUT,Scales stick out,Physical,Skin,,,,,1,-0.2
+50,SETTLEBOTTOM,Settle bottom of tank,Behaviourial,Movement,,,,,1,-0.2
+51,DISTRESS,Show signs of distress,Behaviourial,Movement,,,,,1,-0.2
+52,LOSSWEIGHT,Significant weight loss,Physical,Body,,,,,1,-0.2
+53,BLEEDING,Signs of bleeding,Physical,Body,,,,,1,-0.2
+54,SKINPEEL,Skin Peeling,Physical,Skin,,,,,1,-0.2
+55,SKINULCER,Skin Ulcer,Physical,Skin,,,,,1,-0.2
+56,SURFACEDWELL,Spend time on surface,Behaviourial,Movement,,,,,1,-0.2
+57,CAULIFLOWER,Spots clumps together like cauliflower,Physical,Skin,,,,,1,-0.2
+58,SUDDENDEATH,Sudden death,Behaviourial,Death,,,,,1,-0.2
+59,SUNKENEYE,Sunken eyes,Physical,Eye,,,,,1,-0.2
+60,SWIMDIFF,Swimming difficulty,Behaviourial,Movement,,,,,1,-0.2
+61,SWIMTOPUMP,Swimming into powerhead (air pump),Behaviourial,Movement,,,,,1,-0.2
+62,SWIMDOWNWARD,Swimming with heavy head,Behaviourial,Movement,,,,,1,-0.2
+63,THICKMUCUS,Thick skin mucus,Physical,Skin,,,,,1,-0.2
+64,THICKFIN,Thicken fins,Physical,Fin,,,,,1,-0.2
+65,HEADULCER,Ulcer on head,Physical,Body,,,,,1,-0.2
+66,LINEULCER,Ulcer on lateral line,Physical,Body,,,,,1,-0.2
+67,UPSIDEDOWN,Upside down,Behaviourial,Movement,,,,,1,-0.2
+68,NOSIGN,Usually no signs in early stage,BOTH,Nothing,,,,,1,-0.2
+69,WAXYSPOT,Waxy like spots on fin and body and head,Physical,Fin,Skin,,,,1,-0.2
+70,WHITEFILM,White film on skin,Physical,Skin,,,,,1,-0.2
+71,WHITETHREAD,White greenish thread on body,Physical,Skin,,,,,1,-0.2
+72,WHITEPATCH,White or greyish patch on skin,Physical,Skin,,,,,1,-0.2
+73,WHITESPOT,White spots on the body and gills,Physical,Skin,Gill,,,,1,-0.2
+74,WHITEFAECES,White stringy faeces,Physical,Body,,,,,1,-0.2
+75,WHITEBUMP,Whte or pinkish bumps on skin or fins,Physical,Skin,Fin,,,,1,-0.2
+76,WORMBODY,Worm on body,Physical,Body,,,,,1,-0.2
+77,WORMANUS,Worm seen at anus,Physical,Body,,,,,1,-0.2
+78,YELLOWNODULE,Yellowish or darker nodules on eyes or body,Physical,Eye,Skin,,,,1,-0.2
