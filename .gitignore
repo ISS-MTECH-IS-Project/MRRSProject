@@ -5,6 +5,7 @@ __pycache__/
 
 # C extensions
 *.so
+.gitignore
 
 # Distribution / packaging
 .Python
@@ -57,7 +58,8 @@ coverage.xml
 
 # Archive
 Archive/
-TestScript.py
+SystemCode/TestScript.py
+SystemCode/onmyfish.ipynb
 
 # Django stuff:
 *.log

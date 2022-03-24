@@ -1,4 +1,3 @@
-#pip install neomodel
 from neomodel import (StructuredNode, UniqueIdProperty, StringProperty, FloatProperty, StructuredRel, Relationship,
                       RelationshipTo, RelationshipFrom)
 

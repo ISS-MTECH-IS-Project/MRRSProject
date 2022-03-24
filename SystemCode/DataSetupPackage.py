@@ -39,9 +39,9 @@ class DataSetUpPackage():
         if os.name == 'posix':
             folderpath += "/RawCSV/"
         else:
-            folderpath +=  "\\RawCSV\\"
+            folderpath += "\\RawCSV\\"
         return folderpath
-    
+
     def CreateDiseaseNode(self, diseaseName=None):
         i = self.Disease_DF_RowIndex
         DiseaseName = diseaseName or self.Disease_DF.iloc[i,0] 
