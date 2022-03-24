@@ -10,7 +10,9 @@ from sklearn.decomposition import LatentDirichletAllocation
 from TextPreprocessing import text_preprocessing
 
 class TopicModel(metaclass=SingletonMeta):
+    symptoms_size = 10
     model = SentenceTransformer('bert-base-nli-mean-tokens')
+    
     # get list of symptoms from the question and answer
     def getSymptoms(self, question:str, answer:str, isOption:bool) -> list:
 
@@ -34,7 +36,7 @@ class TopicModel(metaclass=SingletonMeta):
         
         tempSymptoms = sorted(tempSymptoms, key=lambda x: x['similarity'], reverse=True)
 
-        for tempSymptom in tempSymptoms[0:10]:
+        for tempSymptom in tempSymptoms[0:self.symptoms_size]:
             print(tempSymptom['symptom'], tempSymptom['similarity'])
             symptom = Symptom()
             symptom.description = tempSymptom['symptom']
