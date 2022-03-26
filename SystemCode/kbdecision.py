@@ -34,6 +34,32 @@ class KbDecisionMaker(metaclass=SingletonMeta):
             case = dbcon.UpdateDiseaseToCase(case, d, newConfidence)
         case = dbcon.UpdateSymptomToCase(case, symptom, suspectLevel)
 
+        diseases = []
+        for d in case.suspected_diseases:
+            confi = case.suspected_diseases.relationship(d).confidence
+            diseases.append([d,confi])
+        diseases.sort(key=lambda i: i[1], reverse=True)
+
+        symptoms = []
+        symptomNames = set()
+        q = 3
+        t = 6
+        for d in diseases:
+            if t==0:
+                break
+            c = q
+            for s in d[0].symptoms:
+                if c == 0 or t==0:
+                    q -= 1
+                    break
+                if not case.suspected_symptoms.relationship(s) and s.name not in symptomNames:
+                    symptoms.append(s)
+                    symptomNames.add(s.name)
+                    t -= 1
+                    c -= 1
+        
+        return {"case":case, "diseases":diseases, "symptoms":symptoms}
+
         
 
 
