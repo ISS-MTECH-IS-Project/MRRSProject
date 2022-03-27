@@ -19,7 +19,7 @@ class DataAccessLayer():
         self.Graph = None
         self.Session = None
 
-        config.DATABASE_URL = "bolt://"+self.DBUserName+":"+self.DBPassword+"@localhost:7687"
+        config.DATABASE_URL = "bolt://"+self.DBUserName+":"+self.DBPassword+"@localhost:7687/"+self.DefaultDB
         # self.Py2NeoGraph = Graph(self.Neo4jDBURL, auth=(self.DBUserName, self.DBPassword))
         # self.Py2NeoRepo = Repository("bolt://neo4j@localhost:7687", password=self.DBPassword)
 
