@@ -89,8 +89,8 @@ class TopicModel(metaclass=SingletonMeta):
         return intersection_cardinality/float(union_cardinality)
 
     def convert_to_tokens(self, desc:str):
-        symptomTokens = self.build_top_model(desc)
+        tokens = self.build_top_model(desc)
 
-        return symptomTokens
+        return tokens
 
 
