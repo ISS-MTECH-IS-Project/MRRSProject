@@ -93,4 +93,3 @@ class TopicModel(metaclass=SingletonMeta):
 
         return tokens
 
-
