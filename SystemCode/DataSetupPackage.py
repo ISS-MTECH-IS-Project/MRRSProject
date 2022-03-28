@@ -129,6 +129,7 @@ class DataSetUpPackage():
                 # We found a symptom, call the Symptom DataFrame and get the props
                 symptomrow = self.Symptom_DF.loc[self.Symptom_DF['SymptomID'] == disease_df.iloc[i,j]]
                 symptom_desc = symptomrow['Symptom'].values[0]
+                symptom_token = None  # tm.ConvertToTokens(symptom_desc) :-> [string]
                 symptom_type = symptomrow['SymptomType'].values[0]
                 symptom_cat1 = symptomrow['SymptomCategory1'].values[0]
                 symptom_cat2 = symptomrow['SymptomCategory2'].values[0]

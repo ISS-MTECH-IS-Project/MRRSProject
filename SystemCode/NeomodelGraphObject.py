@@ -1,4 +1,4 @@
-from neomodel import (StructuredNode, UniqueIdProperty, StringProperty, FloatProperty, StructuredRel, Relationship,
+from neomodel import (StructuredNode, ArrayProperty, UniqueIdProperty, StringProperty, FloatProperty, StructuredRel, Relationship,
                       RelationshipTo, RelationshipFrom)
 
 # Class Template for using neomodel
@@ -55,6 +55,7 @@ class Disease(StructuredNode):
 class Symptom(StructuredNode):
     name = StringProperty(unique_index=True, required=True)
     description = StringProperty()
+    filter_token = ArrayProperty()
     type = StringProperty()
     category1 = StringProperty()
     category2 = StringProperty()
@@ -83,5 +84,7 @@ class Medication(StructuredNode):
 
 class CaseInc(StructuredNode):
     name = StringProperty(required=True)
+    chat_history = ArrayProperty()
+    collected_token = ArrayProperty()
     suspected_symptoms = RelationshipTo('Symptom', 'suspectedSymptom', model=SuspectedSymptomRel)
     suspected_diseases = RelationshipTo('Disease', 'suspectedDisease', model=SuspectedDiseaseRel)
