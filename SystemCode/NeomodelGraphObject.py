@@ -1,5 +1,5 @@
 #pip install neomodel
-from neomodel import (StructuredNode, UniqueIdProperty, StringProperty, FloatProperty, StructuredRel, Relationship,
+from neomodel import (StructuredNode, ArrayProperty, UniqueIdProperty, StringProperty, FloatProperty, StructuredRel, Relationship,
                       RelationshipTo, RelationshipFrom)
 
 # Class Template for using neomodel
@@ -57,12 +57,13 @@ class Symptom(StructuredNode):
     name = StringProperty(unique_index=True, required=True)
     description = StringProperty()
     type = StringProperty()
+    tm_token = ArrayProperty()
     category1 = StringProperty()
     category2 = StringProperty()
     category3 = StringProperty()
     imageurl = StringProperty()
     question = StringProperty()
-    confidence = FloatProperty()
+    # confidence <= removing this as topic modelling can return dict(name:confidence)and inflate from there when required
     diseases = RelationshipTo('Disease', 'isDetectedIn', model=DetectedInRel)
 
 
@@ -85,5 +86,7 @@ class Medication(StructuredNode):
 
 class CaseInc(StructuredNode):
     name = StringProperty(required=True)
+    case_chathistory = ArrayProperty()
+    case_token = ArrayProperty()
     suspected_symptoms = RelationshipTo('Symptom', 'suspectedSymptom', model=SuspectedSymptomRel)
     suspected_diseases = RelationshipTo('Disease', 'suspectedDisease', model=SuspectedDiseaseRel)
