@@ -62,6 +62,7 @@ class Symptom(StructuredNode):
     category3 = StringProperty()
     imageurl = StringProperty()
     question = StringProperty()
+    confidence = FloatProperty()
     diseases = RelationshipTo('Disease', 'isDetectedIn', model=DetectedInRel)
 
 
