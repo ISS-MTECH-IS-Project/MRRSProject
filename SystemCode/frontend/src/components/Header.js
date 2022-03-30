@@ -4,10 +4,10 @@ import Button from "./Button";
 
 const Header = ({ caseId }) => {
   return (
-    <div class="lc-header">
-      <div class="lc-headerbox">
+    <div className="lc-header">
+      <div className="lc-headerbox">
         <div>
-          <h1 aria-expanded="true" class="lc-headertitle">
+          <h1 aria-expanded="true" className="lc-headertitle">
             Welcome to OhMyFish {caseId}
           </h1>
         </div>
