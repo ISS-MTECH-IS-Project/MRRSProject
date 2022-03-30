@@ -20,9 +20,10 @@ def greeting():
 @cross_origin()
 def getGuidedNext(caseId):
     req = request.json
-    rep = {'disease':[], 'symptoms':[], 'nextOpen':True}
+    rep = {'diseases':[], 'symptoms':[], 'nextOpen':True}
     for s in req.symptoms:
         rep['symptoms'].append({'name':s.name, 'question':caseId, 'image':'/img.jpg'})
+        rep['diseases'].append({'name': "name" + str(i), 'description': 'disease is very bad' + str(i)})
         app.logger.info(s.confirmed)
     return jsonify(rep)
 
@@ -30,9 +31,10 @@ def getGuidedNext(caseId):
 @cross_origin()
 def getOpenNext(caseId):
     req = request.json
-    rep = {'disease':[], 'symptoms':[], 'nextOpen':True}
+    rep = {'diseases':[], 'symptoms':[], 'nextOpen':True}
     for i in range(6):
         rep['symptoms'].append({'name':"name"+str(i), 'question':caseId+str(i), 'image':'/img'+str(i)+'.jpg'})
+        rep['diseases'].append({'name':"name"+str(i), 'description':'disease is very bad'+str(i)})
     return jsonify(rep)
 
 @app.route('/cases/<string:caseId>')

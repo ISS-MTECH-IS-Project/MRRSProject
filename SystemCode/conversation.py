@@ -1,6 +1,6 @@
 from xmlrpc.client import boolean
 from models import *
-# from topicmodel import *
+from topicmodel import *
 from kbdecision import *
 
 class FishMessage():

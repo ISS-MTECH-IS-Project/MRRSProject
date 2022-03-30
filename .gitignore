@@ -58,6 +58,7 @@ coverage.xml
 # Archive
 Archive/
 TestScript.py
+./SystemCode/onmyfish.ipynb
 
 # Django stuff:
 *.log
