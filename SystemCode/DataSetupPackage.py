@@ -2,6 +2,7 @@
 from DataAccessLayer import DataAccessLayer
 import os
 import pandas as pd
+from topicmodel import TopicModel
 
 class DataSetUpPackage():
     """
@@ -123,12 +124,14 @@ class DataSetUpPackage():
         ColStart = symptomColIndexStart or 4
         ColEnd = symptomColIndexEnd or 15
         disease_df = self.Disease_DF
+        tm = TopicModel()
         for j in range(ColStart, ColEnd):
             # iterate across the associated symptoms  
             if pd.isnull(disease_df.iloc[i,j]) == False:
                 # We found a symptom, call the Symptom DataFrame and get the props
                 symptomrow = self.Symptom_DF.loc[self.Symptom_DF['SymptomID'] == disease_df.iloc[i,j]]
                 symptom_desc = symptomrow['Symptom'].values[0]
+                symptom_token = tm.convert_to_tokens(str(symptom_desc)).split()
                 symptom_type = symptomrow['SymptomType'].values[0]
                 symptom_cat1 = symptomrow['SymptomCategory1'].values[0]
                 symptom_cat2 = symptomrow['SymptomCategory2'].values[0]
@@ -141,14 +144,14 @@ class DataSetUpPackage():
                 query = (
                     """
                     MERGE (n:Symptom {name: $name})
-                    SET n.description =$desc, n.type = $stype, n.category1 = $cat1,
+                    SET n.description =$desc, n.tm_token =$token, n.type = $stype, n.category1 = $cat1,
                     n.category2 = $cat2, n.category3 = $cat3, n.question = $qn, n.imageurl = $img
                     RETURN n
                     """
                 )
                 with self.SessionInstance as session:
                     result = session.run(query, name=disease_df.iloc[i,j],
-                                         desc=symptom_desc, stype=symptom_type,
+                                         desc=symptom_desc,token=symptom_token, stype=symptom_type,
                                          cat1=symptom_cat1, cat2=symptom_cat2,
                                          cat3=symptom_cat3, qn=symptom_question, img=symptom_url)
                 if self.Verbose:
