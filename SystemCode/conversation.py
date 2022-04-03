@@ -1,6 +1,6 @@
 from xmlrpc.client import boolean
 from models import *
-# from topicmodel import *
+from topicmodel import *
 from kbdecision import *
 
 class FishMessage():
@@ -42,7 +42,7 @@ class Conversation(metaclass=SingletonMeta):
         return self.greeting + str(self.count)
 
     def getMessage(self, question:str, answer:str) -> FishMessage:
-        symptoms = self.tm.getSymptoms(question, answer)
+        symptoms = self.tm.getSymptoms(dbcon, answer, verbose=False) # Note this is dictionary
         pass
 
 
@@ -65,9 +65,10 @@ class Conversation(metaclass=SingletonMeta):
             nextAction = self.kb.getNext(case, userInputSymptom, isConfirmed, 0, isGuided)
         else:
             # Unguided (Expert)
-            userInputSuspectedSymptom = self.tm.getSymptoms(userInput)
-            for (sym, level) in userInputSuspectedSymptom:
-                nextAction = self.kb.getNext(case, sym, False, level, False)
+            userInputSuspectedSymptom = self.tm.getSymptoms(dbcon, userInput, verbose=False)
+            for (sym, level) in userInputSuspectedSymptom.items():
+                symNode = dbcon.GetOneSymptomNode(sym)
+                nextAction = self.kb.getNext(case, symNode, False, level, False)
 
         # 
         nextSymptom = nextAction.symptom
