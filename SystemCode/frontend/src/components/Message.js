@@ -1,4 +1,4 @@
-import { FaTimes } from "react-icons/fa";
+import { BiBot } from "react-icons/bi";
 import Symptom from "./Symptom";
 
 const Message = ({ messageIndex, message, onToggle }) => {
@@ -7,11 +7,7 @@ const Message = ({ messageIndex, message, onToggle }) => {
       <div className="lc-massage-bot">
         <div className="lc-massage-bot-left">
           <div className="lc-massage-bot-icon">
-            <img
-              alt="avatar"
-              src="https://cdn.livechat-files.com/api/file/lc/img/13750077/fa899ea283029a5eaec0cc5cbeae30c9.png"
-              className="lc-topbar-icon"
-            />
+            <BiBot />
           </div>
         </div>
         <div className="lc-massage">
@@ -35,7 +31,11 @@ const Message = ({ messageIndex, message, onToggle }) => {
                     </span>
                     {/* Empty symptoms if display of symptoms is undesired */}
                     {message.hasOwnProperty("symptoms") && (
-                      <Symptom symptoms={message.symptoms}></Symptom>
+                      <Symptom
+                        symptoms={message.symptoms}
+                        messageIndex={messageIndex}
+                        onToggle={onToggle}
+                      ></Symptom>
                     )}
                   </div>
                 </div>
