@@ -1,3 +1,4 @@
+import { BiBot } from "react-icons/bi";
 const Topbar = () => {
   return (
     <div className="lc-topbar-main">
@@ -8,11 +9,7 @@ const Topbar = () => {
             <div className="lc-topbar-l3">
               <div className="lc-topbar-left">
                 <div className="lc-topbar-col">
-                  <img
-                    alt="avatar"
-                    src="https://cdn.livechat-files.com/api/file/lc/img/13750077/fa899ea283029a5eaec0cc5cbeae30c9.png"
-                    className="lc-topbar-icon"
-                  />
+                  <BiBot />
                 </div>
                 <div className="lc-online"></div>
               </div>
