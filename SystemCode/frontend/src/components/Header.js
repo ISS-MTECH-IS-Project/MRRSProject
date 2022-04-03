@@ -1,7 +1,3 @@
-import PropTypes from "prop-types";
-import { useLocation } from "react-router-dom";
-import Button from "./Button";
-
 const Header = ({ caseId }) => {
   return (
     <div className="lc-header">

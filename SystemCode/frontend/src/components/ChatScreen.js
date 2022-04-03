@@ -84,7 +84,8 @@ const ChatScreen = () => {
   const toggleConfirm = (mIndex, sIndex) => {
     messages[mIndex].symptoms[sIndex].confirmed =
       !messages[mIndex].symptoms[sIndex].confirmed;
-    setMessages(messages);
+    setSSymptoms(messages[mIndex].symptoms.map((s) => s));
+    setMessages(messages.map((m) => m));
   };
   // https://www.chatbot.com/chatbot-templates/
   return (
@@ -92,7 +93,11 @@ const ChatScreen = () => {
       <div dir="ltr" className="lc-main row">
         <div className="lc-chatbot col-md-2">
           <h4>Suspected Symptoms</h4>
-          <Symptom symptoms={suspectedSymptoms}></Symptom>
+          <Symptom
+            symptoms={suspectedSymptoms}
+            onToggle={toggleConfirm}
+            messageIndex={messages.length - 1}
+          ></Symptom>
         </div>
         <div className="lc-chatbot offset-md-1 col-md-5">
           <Header caseId={caseId} />
