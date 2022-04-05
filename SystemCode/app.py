@@ -1,7 +1,7 @@
 from flask import Flask, jsonify, request
 from flask import render_template
 from flask_cors import CORS, cross_origin
-# from conversation import *
+from conversation import *
 from DataAccessLayer import *
 app = Flask(__name__)
 cors = CORS(app)
