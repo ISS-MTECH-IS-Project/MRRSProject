@@ -94,7 +94,7 @@ const ChatScreen = () => {
   // https://www.chatbot.com/chatbot-templates/
   return (
     <Grid container p={1} justifyContent="space-evenly">
-      <Box display="inline-flex" sx={{ width: 0.18 }}>
+      <Box display="inline-grid" sx={{ width: 0.18 }}>
         <Paper elevation={3}>
           <Grid item>
             <h4>Suspected Symptoms</h4>
@@ -117,7 +117,7 @@ const ChatScreen = () => {
           </Grid>
         </Paper>
       </Box>
-      <Box display="inline-flex" sx={{ width: 0.18 }}>
+      <Box display="inline-grid" sx={{ width: 0.18 }}>
         <Paper elevation={3}>
           <Grid item>
             <h4>Suspected Diseases</h4>
