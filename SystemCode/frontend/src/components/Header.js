@@ -1,15 +1,5 @@
 const Header = ({ caseId }) => {
-  return (
-    <div className="lc-header">
-      <div className="lc-headerbox">
-        <div>
-          <h1 aria-expanded="true" className="lc-headertitle">
-            Welcome to OhMyFish {caseId}
-          </h1>
-        </div>
-      </div>
-    </div>
-  );
+  return <h3>Welcome to OhMyFish {caseId}</h3>;
 };
 
 export default Header;

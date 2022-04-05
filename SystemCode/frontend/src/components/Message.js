@@ -1,77 +1,50 @@
-import { BiBot } from "react-icons/bi";
+import { BiBot, BiUser } from "react-icons/bi";
 import Symptom from "./Symptom";
+import { Box, Grid } from "@mui/material";
+import Paper from "@mui/material/Paper";
 
 const Message = ({ messageIndex, message, onToggle }) => {
   return (
-    <div>
-      <div className="lc-massage-bot">
-        <div className="lc-massage-bot-left">
-          <div className="lc-massage-bot-icon">
-            <BiBot />
-          </div>
-        </div>
-        <div className="lc-massage">
-          <div role="row">
-            <div className="lc-massage-left">
-              <div
-                role="gridcell"
-                className="lc-massage-grid-left"
-                tabIndex="-1"
-              >
-                <div>
-                  <div className="lc-massage-title-left">
-                    <span className="lc-massage-title">ChatBot </span>
-                    <span className="lc-massage-title">21:25</span>
-                  </div>
-                </div>
-                <div className="lc-massage-body-left">
-                  <div className="lc-massage-body">
-                    <span className="Linkify">
-                      Want to see what I can do? 🤖
-                    </span>
-                    {/* Empty symptoms if display of symptoms is undesired */}
-                    {message.hasOwnProperty("symptoms") && (
-                      <Symptom
-                        symptoms={message.symptoms}
-                        messageIndex={messageIndex}
-                        onToggle={onToggle}
-                      ></Symptom>
-                    )}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+    <>
+      <Grid container direction="column" alignItems="flex">
+        <Grid item alignItems="flex">
+          <BiBot />
+          <span> ChatBot</span>
+          <span> @ 21:25</span>
+        </Grid>
+        <Grid item display="inline-flex">
+          <Paper elevation={1}>
+            <Box m={1}>
+              <span>Want to see what I can do?</span>
+              {/* Empty symptoms if display of symptoms is undesired */}
+              {message.hasOwnProperty("symptoms") && (
+                <Symptom
+                  symptoms={message.symptoms}
+                  messageIndex={messageIndex}
+                  onToggle={onToggle}
+                ></Symptom>
+              )}
+            </Box>
+          </Paper>
+        </Grid>
+      </Grid>
+
       {/* user */}
-      <div className="lc-massage-user">
-        <div className="lc-massage">
-          <div role="row">
-            <div className="lc-massage-right">
-              <div
-                role="gridcell"
-                className="lc-massage-grid-right"
-                tabIndex="-1"
-              >
-                <div>
-                  <div className="lc-massage-title-right">
-                    <span className="lc-massage-title">Visitor </span>
-                    <span className="lc-massage-title">21:30</span>
-                  </div>
-                </div>
-                <div className="lc-massage-body-right">
-                  <div className="lc-massage-body">
-                    <span className="Linkify">hi</span>
-                  </div>
-                </div>
-                <div className="lc-massage-read">Read</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+      <Grid container mb={3} direction="column" alignContent="flex-end">
+        <Grid item>
+          <BiUser />
+          <span> Visitor</span>
+          <span> @ 21:26</span>
+        </Grid>
+        <Grid item display="inline-flex">
+          <Paper elevation={1}>
+            <Box m={1}>
+              <span>hi</span>
+            </Box>
+          </Paper>
+        </Grid>
+      </Grid>
+    </>
   );
 };
 

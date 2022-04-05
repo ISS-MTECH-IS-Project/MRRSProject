@@ -1,5 +1,6 @@
 import Message from "./Message";
 import React, { useEffect, useRef } from "react";
+import Grid from "@mui/material/Grid";
 
 const Messages = ({ messages, onToggle }) => {
   const messagesEndRef = useRef(null);
@@ -13,26 +14,17 @@ const Messages = ({ messages, onToggle }) => {
   }, [messages]);
 
   return (
-    <div className="lc-massage-box">
-      <div className="lc-massage-seperator" />
-      <div
-        className="lc-massage-grid"
-        role="grid"
-        aria-live="polite"
-        aria-relevant="additions"
-        tabIndex="-1"
-      >
-        {messages.map((m, i) => (
-          <Message
-            key={"ID" + i}
-            messageIndex={i}
-            message={m}
-            onToggle={onToggle}
-          />
-        ))}
-        <div ref={messagesEndRef} />
-      </div>
-    </div>
+    <Grid>
+      {messages.map((m, i) => (
+        <Message
+          key={"ID" + i}
+          messageIndex={i}
+          message={m}
+          onToggle={onToggle}
+        />
+      ))}
+      <div ref={messagesEndRef} />
+    </Grid>
   );
 };
 

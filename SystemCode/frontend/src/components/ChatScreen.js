@@ -6,6 +6,9 @@ import Topbar from "./Topbar";
 import Messages from "./Messages";
 import Symptom from "./Symptom";
 import Disease from "./Disease";
+import { Box, Grid } from "@mui/material";
+import Paper from "@mui/material/Paper";
+import Divider from "@mui/material/Divider";
 
 // message : {isSend, isUser, nextOpen, symptoms, diseases, time, body}
 const ChatScreen = () => {
@@ -87,30 +90,42 @@ const ChatScreen = () => {
     setSSymptoms(messages[mIndex].symptoms.map((s) => s));
     setMessages(messages.map((m) => m));
   };
+
   // https://www.chatbot.com/chatbot-templates/
   return (
-    <div id="widget-global-screen">
-      <div dir="ltr" className="lc-main row">
-        <div className="lc-chatbot col-md-2">
-          <h4>Suspected Symptoms</h4>
-          <Symptom
-            symptoms={suspectedSymptoms}
-            onToggle={toggleConfirm}
-            messageIndex={messages.length - 1}
-          ></Symptom>
-        </div>
-        <div className="lc-chatbot offset-md-1 col-md-5">
-          <Header caseId={caseId} />
-          <Topbar />
-          <Messages messages={messages} onToggle={toggleConfirm} />
-          <Footer open={isOpen} onSend={sendMessage} />
-        </div>
-        <div className="lc-chatbot offset-md-1 col-md-2">
-          <h4>Suspected Diseases</h4>
-          <Disease diseases={suspectedDiseases}></Disease>
-        </div>
-      </div>
-    </div>
+    <Grid container p={1} justifyContent="space-evenly">
+      <Box display="inline-flex" sx={{ width: 0.18 }}>
+        <Paper elevation={3}>
+          <Grid item>
+            <h4>Suspected Symptoms</h4>
+            <Symptom
+              symptoms={suspectedSymptoms}
+              onToggle={toggleConfirm}
+              messageIndex={messages.length - 1}
+            ></Symptom>
+          </Grid>
+        </Paper>
+      </Box>
+      <Box display="block" sx={{ width: 0.6 }}>
+        <Paper elevation={3}>
+          <Grid item p={2}>
+            <Header caseId={caseId} />
+            <Topbar />
+            <Messages messages={messages} onToggle={toggleConfirm} />
+            <Divider />
+            <Footer open={isOpen} onSend={sendMessage} />
+          </Grid>
+        </Paper>
+      </Box>
+      <Box display="inline-flex" sx={{ width: 0.18 }}>
+        <Paper elevation={3}>
+          <Grid item>
+            <h4>Suspected Diseases</h4>
+            <Disease diseases={suspectedDiseases}></Disease>
+          </Grid>
+        </Paper>
+      </Box>
+    </Grid>
   );
 };
 

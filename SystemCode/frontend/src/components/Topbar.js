@@ -4,13 +4,11 @@ import Grid from "@mui/material/Grid";
 
 const Topbar = () => {
   return (
-    <div id="title" className="titlebar">
-      <Grid container direction="row" alignItems="center">
-        <SmartToyIcon />
-        <Box m={2} pt={3}></Box>
-        OhMyFishBot is here to serve
-      </Grid>
-    </div>
+    <Grid container direction="row" alignItems="center">
+      <SmartToyIcon />
+      <Box m={2} pt={3}></Box>
+      OhMyFishBot is here to serve
+    </Grid>
   );
 };
 export default Topbar;
