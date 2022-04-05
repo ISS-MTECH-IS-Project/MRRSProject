@@ -1,5 +1,5 @@
 from tkinter import S
-from sentence_transformers import SentenceTransformer
+# from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 from models import *
 import spacy
@@ -17,40 +17,47 @@ class TopicModel(metaclass=SingletonMeta):
     nlp = spacy.load('en_core_web_lg')
 
     # get list of symptoms from the question and answer
-    def getSymptoms(self, question:str, threshold = 0.7) -> list:
-        topicFromUser = self.build_top_model(question)
-        dbcon = DataAccessLayer(dbName='fishdiseases', username='neo4j',password='password').CreateDBConnection        
+    def getSymptoms(self, dbcon:DataAccessLayer, question:str, threshold=0.65, verbose=False) -> {str:float}:
+        #topicFromUser = self.build_top_model(question)
+        # passing dcon in to prevent object bloat and also eventual managed instanced connection (factory or singleton)
+        # dbcon = DataAccessLayer(dbName='fishdiseases', username='neo4j',password='password').CreateDBConnection
         allSymptomNodes = dbcon.GetAllNodeListOfType('Symptom')
-        print("text from user: ", question)
-        print('keywords: ', topicFromUser)
-        print()
-        tempSymptoms = []
-        symptoms = []
-
+        if verbose:
+            print("text from user: ", question)
+            #print('keywords: ', topicFromUser)
+            print()
+        #tempSymptoms = []
+        symptoms = {}
+        sentence1 = self.nlp(question)
+        #sentence1 = self.nlp(topicFromUser)
         for symptomNode in allSymptomNodes:       
-            # using spacy
-            sentence1 = self.nlp(topicFromUser)
+            # using spacy          
             sentence2 = self.nlp(symptomNode.description) 
             similarity = sentence1.similarity(sentence2)
+            if similarity > threshold:
+                symptom = dbcon.GetOneSymptomNode(symptomNode.name)
+                symptoms[symptom.name] = similarity
 
-            tempSymptoms.append({'symptom':symptomNode.description, 'similarity':similarity, 'question':symptomNode.question, 'diseases':symptomNode.diseases})
+            # tempSymptoms.append({'symptom':symptomNode.description, 'symptom_name':symptomNode.name,
+                                 # 'similarity':similarity, 'question':symptomNode.question,
+                                 # 'diseases':symptomNode.diseases})
         
-        tempSymptoms = sorted(tempSymptoms, key=lambda x: x['similarity'], reverse=True)
+        symptoms = dict(sorted(symptoms.items(), key=lambda item: item[1], reverse=True))
 
-        for tempSymptom in tempSymptoms[0:self.symptoms_size]:  
-            if tempSymptom['similarity'] > threshold:
-                symptom = Symptom()
-                symptom.description = tempSymptom['symptom']
-                symptom.question = tempSymptom['question']
-                symptom.confidence = tempSymptom['similarity']
-                symptom.diseases = tempSymptom['diseases']
-                symptoms.append(symptom)
-
-        print('===============')
+        # for tempSymptom in tempSymptoms[0:self.symptoms_size]:
+        #     if tempSymptom['similarity'] > threshold:
+        #         symptom = dbcon.GetOneSymptomNode(tempSymptom['symptom_name'])
+        #         symptoms[symptom] = tempSymptom['similarity']
+        #         symptom.description = tempSymptom['symptom']
+        #         symptom.question = tempSymptom['question']
+        #         symptom.confidence = tempSymptom['similarity']
+        #         symptom.diseases = tempSymptom['diseases']
+        if verbose:
+            print('===============')
 
         return symptoms
 
-    def build_top_model(self, text):
+    def build_top_model(self, text,delimiter=" "):
         text = text_preprocessing(text)
         sparse_vectorizer = CountVectorizer(strip_accents = 'unicode')
         sparse_vectors = sparse_vectorizer.fit_transform(text)
@@ -71,7 +78,7 @@ class TopicModel(metaclass=SingletonMeta):
 
         t = None
         for i, topic in enumerate(lda.components_):
-            t = " ".join([feature_names[i] for i in topic.argsort()[:-n_top_words - 1:-1]])
+            t = delimiter.join([feature_names[i] for i in topic.argsort()[:-n_top_words - 1:-1]])
 
         return t
 
@@ -88,8 +95,8 @@ class TopicModel(metaclass=SingletonMeta):
         union_cardinality = len(set.union(*[set(x), set(y)]))
         return intersection_cardinality/float(union_cardinality)
 
-    def convert_to_tokens(self, desc:str):
-        tokens = self.build_top_model(desc)
+    def convert_to_tokens(self, desc:str, delimiter=" "):
+        tokens = self.build_top_model(desc,delimiter)
 
         return tokens
 
