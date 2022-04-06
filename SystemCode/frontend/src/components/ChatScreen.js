@@ -9,6 +9,7 @@ import Disease from "./Disease";
 import { Box, Grid } from "@mui/material";
 import Paper from "@mui/material/Paper";
 import Divider from "@mui/material/Divider";
+import moment from "moment";
 
 // message : {isSend, isUser, nextOpen, symptoms, diseases, time, body}
 const ChatScreen = () => {
@@ -53,6 +54,7 @@ const ChatScreen = () => {
     });
     const data = await res.json();
     setOpen(data.nextOpen);
+    data.time = moment().format("hh:mm");
     setMessages([...messages, data]);
     setSSymptoms(data.symptoms);
     setSDiseases(data.diseases);
@@ -60,7 +62,6 @@ const ChatScreen = () => {
 
   // get next message
   const getOpenNext = async (message) => {
-    setMessages([...messages, message]);
     const res = await fetch(`http://localhost:5000/cases/${caseId}/open`, {
       method: "POST",
       headers: {
@@ -70,13 +71,15 @@ const ChatScreen = () => {
     });
     const data = await res.json();
     setOpen(data.nextOpen);
-    setMessages([...messages, data]);
+    data.time = moment().format("hh:mm");
+    setMessages([...messages, message, data]);
     setSSymptoms(data.symptoms);
     setSDiseases(data.diseases);
   };
 
-  const sendMessage = async (message) => {
+  const sendMessage = (message) => {
     if (isOpen) {
+      message.time = moment().format("hh:mm");
       getOpenNext(message);
     } else {
       getGuidedNext();
