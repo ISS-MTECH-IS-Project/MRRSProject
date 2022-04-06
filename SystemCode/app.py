@@ -3,8 +3,16 @@ from flask import render_template
 from flask_cors import CORS, cross_origin
 from conversation import *
 from DataAccessLayer import *
+from models import *
 app = Flask(__name__)
 cors = CORS(app)
+
+class CaseService(metaclass=SingletonMeta):
+    caseCache = {}
+    def getCaseMessages(self, caseName):
+        return self.caseCache.get(caseName)
+    def saveCaseMessages(self, caseName, messages):
+        self.caseCache[caseName] = messages
 
 @app.route('/')
 @app.route('/chat/<path:path>')
@@ -21,18 +29,18 @@ def hello_world():
 @cross_origin()
 def getGuidedNext(caseId):
     req = request.json
-    rep = {'diseases':[], 'symptoms':[], 'nextOpen':True}
-    for s in req.symptoms:
-        rep['symptoms'].append({'name':s.name, 'question':caseId, 'image':'/img.jpg'})
+    rep = {'diseases':[], 'symptoms':[], 'nextOpen':False}
+    for i,s in enumerate(req['symptoms']):
+        rep['symptoms'].append({'name':s['name'], 'question':caseId, 'image':'/img.jpg', 'confirmed':False})
         rep['diseases'].append({'name': "name" + str(i), 'description': 'disease is very bad' + str(i)})
-        app.logger.info(s.confirmed)
+        app.logger.info(s['confirmed'])
     return jsonify(rep)
 
 @app.route('/cases/<string:caseId>/open', methods=['POST'])
 @cross_origin()
 def getOpenNext(caseId):
     req = request.json
-    rep = {'diseases':[], 'symptoms':[], 'nextOpen':True}
+    rep = {'diseases':[], 'symptoms':[], 'nextOpen':False}
     for i in range(6):
         rep['symptoms'].append({'name':"name"+str(i), 'question':caseId+str(i), 'image':'/img'+str(i)+'.jpg', 'confirmed':False})
         rep['diseases'].append({'name':"name"+str(i), 'description':'disease is very bad'+str(i)})
@@ -42,7 +50,7 @@ def getOpenNext(caseId):
 @cross_origin()
 def getCase(caseId):
     req = request.json
-    rep = {'messages':[{}],'symptoms':[]}
+    rep = {'messages':[{'body':'How can I help you?'}],'symptoms':[]}
     for i in range(6):
         rep['symptoms'].append({'name':"name"+str(i), 'question':caseId+str(i), 'image':'/img'+str(i)+'.jpg'})
     return jsonify(rep)
