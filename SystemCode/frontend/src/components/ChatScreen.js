@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
@@ -58,6 +58,7 @@ const ChatScreen = () => {
     setMessages([...messages, data]);
     setSSymptoms(data.symptoms);
     setSDiseases(data.diseases);
+    scrollToBottom();
   };
 
   // get next message
@@ -75,6 +76,7 @@ const ChatScreen = () => {
     setMessages([...messages, message, data]);
     setSSymptoms(data.symptoms);
     setSDiseases(data.diseases);
+    scrollToBottom();
   };
 
   const sendMessage = (message) => {
@@ -92,6 +94,11 @@ const ChatScreen = () => {
       !messages[mIndex].symptoms[sIndex].confirmed;
     setSSymptoms(messages[mIndex].symptoms.map((s) => s));
     setMessages(messages.map((m) => m));
+  };
+
+  const messagesEndRef = useRef(null);
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   // https://www.chatbot.com/chatbot-templates/
@@ -115,8 +122,9 @@ const ChatScreen = () => {
             <Header caseId={caseId} />
             <Topbar />
             <Messages messages={messages} onToggle={toggleConfirm} />
-            <Divider />
+            <Divider sx={{ mt: 2 }} />
             <Footer open={isOpen} onSend={sendMessage} />
+            <div ref={messagesEndRef} />
           </Grid>
         </Paper>
       </Box>

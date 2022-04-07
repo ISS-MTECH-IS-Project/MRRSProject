@@ -15,14 +15,13 @@ const Footer = ({ open, onSend }) => {
   };
 
   return (
-    <Grid mt={2} container direction="row" alignItems="center">
+    <Grid mt={3} container direction="row" alignItems="center">
       <Grid item pr={1} xs={10}>
         <TextField
           id="userquery"
           label="User Response"
           multiline
           rows={4}
-          hintText="How is your fish?"
           fullWidth
           disabled={!open}
           onChange={handleChange}
