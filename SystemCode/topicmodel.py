@@ -17,21 +17,21 @@ class TopicModel(metaclass=SingletonMeta):
     nlp = spacy.load('en_core_web_lg')
 
     # get list of symptoms from the question and answer
-    def getSymptoms(self, dbcon:DataAccessLayer, question:str, threshold=0.7, verbose=False) -> {str:float}:
-        topicFromUser = self.build_top_model(question)
+    def getSymptoms(self, dbcon:DataAccessLayer, question:str, threshold=0.65, verbose=False) -> {str:float}:
+        #topicFromUser = self.build_top_model(question)
         # passing dcon in to prevent object bloat and also eventual managed instanced connection (factory or singleton)
         # dbcon = DataAccessLayer(dbName='fishdiseases', username='neo4j',password='password').CreateDBConnection
         allSymptomNodes = dbcon.GetAllNodeListOfType('Symptom')
         if verbose:
             print("text from user: ", question)
-            print('keywords: ', topicFromUser)
+            #print('keywords: ', topicFromUser)
             print()
-        tempSymptoms = []
+        #tempSymptoms = []
         symptoms = {}
-
+        sentence1 = self.nlp(question)
+        #sentence1 = self.nlp(topicFromUser)
         for symptomNode in allSymptomNodes:       
-            # using spacy
-            sentence1 = self.nlp(topicFromUser)
+            # using spacy          
             sentence2 = self.nlp(symptomNode.description) 
             similarity = sentence1.similarity(sentence2)
             if similarity > threshold:
@@ -42,8 +42,7 @@ class TopicModel(metaclass=SingletonMeta):
                                  # 'similarity':similarity, 'question':symptomNode.question,
                                  # 'diseases':symptomNode.diseases})
         
-        # symptoms = sorted(symptoms, key=lambda x: x[key], reverse=True)
-        symptoms = dict(sorted(symptoms.items(), key=lambda item: item[1]))
+        symptoms = dict(sorted(symptoms.items(), key=lambda item: item[1], reverse=True))
 
         # for tempSymptom in tempSymptoms[0:self.symptoms_size]:
         #     if tempSymptom['similarity'] > threshold:
@@ -100,5 +99,4 @@ class TopicModel(metaclass=SingletonMeta):
         tokens = self.build_top_model(desc,delimiter)
 
         return tokens
-
 
