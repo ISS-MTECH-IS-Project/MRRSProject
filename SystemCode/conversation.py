@@ -23,7 +23,7 @@ class FishMessage():
 class Conversation(metaclass=SingletonMeta):
     # Hyper Parameters
     confidenceScoreHP:float = 0.8
-    iterationLimitHP:int = 5
+    iterationLimitHP:int = 4
 
     # Attributes
     tm = TopicModel()
@@ -48,10 +48,10 @@ class Conversation(metaclass=SingletonMeta):
     # Function for Guided (Novice)
     def manageConversation(self, caseID:str=None, symptomResponses:dict={}, userInput:str=None) -> dict:
         # Set all variables to none 
-        case = confirmedDisease = nextAction = None
-        self.dbcon = DataAccessLayer().CreateDBConnection
+        case = nextAction = None
         symptoms = []
         diseases = []
+        confirmedDiseases = []
 
         dbcon = DataAccessLayer().CreateDBConnection
 
@@ -60,10 +60,11 @@ class Conversation(metaclass=SingletonMeta):
             case = dbcon.CreateOrGetCaseNode(casename = caseID)
         else:
             case = dbcon.CreateOrGetCaseNode()
-        if case.iteration:
+        if case.iteration :
             case.iteration += 1
         else:
             case.iteration = 1
+        iteration = case.iteration
         dbcon.SaveCaseNode(case)
 
         if userInput:
@@ -88,9 +89,11 @@ class Conversation(metaclass=SingletonMeta):
                     for disease in diseases:
                         confidence = disease[1]
                         if confidence >= self.confidenceScoreHP:
-                            confirmedDisease = disease
+                            confirmedDiseases.append(disease)
+                    if len(confirmedDiseases)==0 and iteration==self.iterationLimitHP:
+                        confirmedDiseases.append(diseases[0])
 
-        return {"case": case, "symptoms":symptoms, "diseases":diseases, "confirmedDisease":confirmedDisease} 
+        return {"case": case, "symptoms":symptoms, "diseases":diseases, "confirmedDiseases":confirmedDiseases} 
 
     # Function for Unguided (Expert)
     def manageUnguidedConversation(self, caseID:str, userInput:str, symptomResponses:dict) -> dict: 
