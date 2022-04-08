@@ -14,8 +14,8 @@ class DataAccessLayer():
         # Neo4j Settings 
         self.Neo4jDBURL = neo4jURL or "neo4j://localhost:7687"
         self.DefaultDB = dbName or "neo4j"
-        self.DBUserName = username or "ENTER YOUR NEO4J USERNAME"
-        self.DBPassword = password or "ENTER YOUR NEO4J PASSWORD HERE"
+        self.DBUserName = username or "neo4j"
+        self.DBPassword = password or "neo123456"
         self.Graph = None
         self.Session = None
 

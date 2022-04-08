@@ -1,6 +1,6 @@
 #pip install neomodel
 from neomodel import (StructuredNode, ArrayProperty, UniqueIdProperty, StringProperty, FloatProperty, StructuredRel, Relationship,
-                      RelationshipTo, RelationshipFrom)
+                      RelationshipTo, RelationshipFrom, IntegerProperty)
 
 # Class Template for using neomodel
 
@@ -88,5 +88,6 @@ class CaseInc(StructuredNode):
     name = StringProperty(required=True)
     case_chathistory = ArrayProperty()
     case_token = ArrayProperty()
+    iteration = IntegerProperty(default=0)
     suspected_symptoms = RelationshipTo('Symptom', 'suspectedSymptom', model=SuspectedSymptomRel)
     suspected_diseases = RelationshipTo('Disease', 'suspectedDisease', model=SuspectedDiseaseRel)
