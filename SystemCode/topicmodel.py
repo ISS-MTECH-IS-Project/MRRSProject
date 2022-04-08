@@ -13,16 +13,20 @@ from TextPreprocessing import text_preprocessing
 
 class TopicModel(metaclass=SingletonMeta):
     
+    allSymptomNodes = []
     def __init__(self):
         self.symptoms_size = 10        
         self.nlp = spacy.load('en_core_web_lg')
+        dbcon = DataAccessLayer().CreateDBConnection
+        self.allSymptomNodes = dbcon.GetAllNodeListOfType('Symptom')
 
     # get list of symptoms from the question and answer
     def getSymptoms(self, dbcon:DataAccessLayer, question:str, threshold=0.65, verbose=False) -> {str:float}:
         #topicFromUser = self.build_top_model(question)
         # passing dcon in to prevent object bloat and also eventual managed instanced connection (factory or singleton)
         # dbcon = DataAccessLayer(dbName='fishdiseases', username='neo4j',password='password').CreateDBConnection
-        allSymptomNodes = dbcon.GetAllNodeListOfType('Symptom')
+        if len(self.allSymptomNodes)==0:
+            self.allSymptomNodes = dbcon.GetAllNodeListOfType('Symptom')
         if verbose:
             print("text from user: ", question)
             #print('keywords: ', topicFromUser)
@@ -32,14 +36,13 @@ class TopicModel(metaclass=SingletonMeta):
         #sentence1 = self.nlp(question)
         sentence1 = self.nlp(self.text_preprocessing(question, self.nlp))
         #sentence1 = self.nlp(topicFromUser)
-        for symptomNode in allSymptomNodes:       
+        for symptomNode in self.allSymptomNodes:
             # using spacy          
             #sentence2 = self.nlp(self.lower_casing(symptomNode.description))
             sentence2 = self.nlp(self.text_preprocessing(symptomNode.description, self.nlp)) 
             similarity = sentence1.similarity(sentence2)
             if similarity > threshold:
-                symptom = dbcon.GetOneSymptomNode(symptomNode.name)
-                symptoms[symptom.name] = similarity
+                symptoms[symptomNode.name] = similarity
 
             # tempSymptoms.append({'symptom':symptomNode.description, 'symptom_name':symptomNode.name,
                                  # 'similarity':similarity, 'question':symptomNode.question,
