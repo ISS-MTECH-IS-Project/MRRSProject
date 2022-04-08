@@ -28,7 +28,6 @@ class Conversation(metaclass=SingletonMeta):
     # Attributes
     tm = TopicModel()
     kb = KbDecisionMaker()
-    dbcon = DataAccessLayer().CreateDBConnection
 
     # def __init__(self):
         # self.question = question
@@ -47,29 +46,34 @@ class Conversation(metaclass=SingletonMeta):
     #     pass
 
     # Function for Guided (Novice)
-    def manageConversation(self, caseID:str=None, symptomResponses:dict={}, userInput:str=None, iteration:int=0) -> dict:
+    def manageConversation(self, caseID:str=None, symptomResponses:dict={}, userInput:str=None) -> dict:
         # Set all variables to none 
         case = confirmedDisease = nextAction = None
         symptoms = []
         diseases = []
 
-        iteration += 1
+        dbcon = DataAccessLayer().CreateDBConnection
 
         # Create a new or retrieve a Case Id
         if caseID:
-            case = self.dbcon.CreateOrGetCaseNode(casename = caseID)
+            case = dbcon.CreateOrGetCaseNode(casename = caseID)
         else:
-            case = self.dbcon.CreateOrGetCaseNode()
+            case = dbcon.CreateOrGetCaseNode()
+        if case.iteration :
+            case.iteration += 1
+        else:
+            case.iteration = 1
+        dbcon.SaveCaseNode(case)
 
         if userInput:
-            symptomsTM = self.tm.getSymptoms(self.dbcon, userInput, verbose = True)
+            symptomsTM = self.tm.getSymptoms(dbcon, userInput, verbose = True)
             for symptomTM in symptomsTM:
-                userInputSuspectedSymptom = self.dbcon.GetOneSymptomNode(symptomTM)
+                userInputSuspectedSymptom = dbcon.GetOneSymptomNode(symptomTM)
                 symptoms.append(userInputSuspectedSymptom)
         else:
             for symptom in symptomResponses:
-                # userInputSuspectedSymptom = self.tm.getSymptoms(self.dbcon, symptom, verbose = True)
-                userInputSuspectedSymptom = self.dbcon.GetOneSymptomNode(symptom)
+                # userInputSuspectedSymptom = self.tm.getSymptoms(dbcon, symptom, verbose = True)
+                userInputSuspectedSymptom = dbcon.GetOneSymptomNode(symptom)
                 nextAction = self.kb.getNext(case, userInputSuspectedSymptom, symptomResponses[symptom], 0, True)
 
             # Retrieve the diseases and symptoms
@@ -85,28 +89,29 @@ class Conversation(metaclass=SingletonMeta):
                         if confidence >= self.confidenceScoreHP:
                             confirmedDisease = disease
 
-        return {"case": case, "iteration": iteration, "symptoms":symptoms, "diseases":diseases, "confirmedDisease":confirmedDisease} 
+        return {"case": case, "symptoms":symptoms, "diseases":diseases, "confirmedDisease":confirmedDisease} 
 
     # Function for Unguided (Expert)
-    def manageUnguidedConversation(self, caseID:str, userInput:str, symptomResponses:{}) -> dict: 
+    def manageUnguidedConversation(self, caseID:str, userInput:str, symptomResponses:dict) -> dict: 
         # Set all variables to none 
         case = diseases = confirmedDisease = symptoms = nextAction = None
 
+        dbcon = DataAccessLayer().CreateDBConnection
         # Create a new or retrieve a Case Id
         if caseID:
-            case = self.dbcon.CreateOrGetCaseNode(casename = caseID)
+            case = dbcon.CreateOrGetCaseNode(casename = caseID)
         else:
-            case = self.dbcon.CreateOrGetCaseNode()
+            case = dbcon.CreateOrGetCaseNode()
 
         if userInput:
-            symptomsTM = self.tm.getSymptoms(self.dbcon, userInput, verbose = True)
+            symptomsTM = self.tm.getSymptoms(dbcon, userInput, verbose = True)
             for symptom in symptomsTM:
-                userInputSuspectedSymptom = self.dbcon.GetOneSymptomNode(symptom)
+                userInputSuspectedSymptom = dbcon.GetOneSymptomNode(symptom)
                 symptoms.append(userInputSuspectedSymptom)
         else:
             for symptom in symptoms:
-                # userInputSuspectedSymptom = self.tm.getSymptoms(self.dbcon, symptom, verbose = True)
-                userInputSuspectedSymptom = self.dbcon.GetOneSymptomNode(symptom)
+                # userInputSuspectedSymptom = self.tm.getSymptoms(dbcon, symptom, verbose = True)
+                userInputSuspectedSymptom = dbcon.GetOneSymptomNode(symptom)
                 nextAction = self.kb.getNext(case, userInputSuspectedSymptom, symptomResponses[symptom], 0, True)
 
             # Retrieve the diseases and symptoms
