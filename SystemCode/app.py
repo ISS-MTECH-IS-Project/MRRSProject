@@ -29,11 +29,26 @@ def hello_world():
 @cross_origin()
 def getGuidedNext(caseId):
     req = request.json
+    symptomsRequest = req.get['symptoms']
+    symConfirmList = {}
+    for s in symptomsRequest:
+        symConfirmList[s.get['name']]=s.get['confirmed']
+
+
+    resultProcess = manageConversation(caseId,symConfirmList)
+
     rep = {'diseases':[], 'symptoms':[], 'nextOpen':False}
-    for i,s in enumerate(req['symptoms']):
-        rep['symptoms'].append({'name':s['name'], 'question':caseId, 'image':'/img.jpg', 'confirmed':False})
-        rep['diseases'].append({'name': "name" + str(i), 'description': 'disease is very bad' + str(i)})
-        app.logger.info(s['confirmed'])
+    for s in resultProcess[0]:
+        rep['symptoms'].append({'name':s.name, 'question':s.question, 'image':s.imageurl, 'confirmed':False})
+        # app.logger.info(s['confirmed'])
+
+    for d in resultProcess[1]:
+        rep['diseases'].append({'name': d.name, 'description': d.cause})
+        # app.logger.info(s['confirmed'])
+
+    if len(resultProcess[0]) == 0:
+        rep['nextOpen'] = True
+
     return jsonify(rep)
 
 @app.route('/cases/<string:caseId>/open', methods=['POST'])
