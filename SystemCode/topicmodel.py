@@ -12,31 +12,37 @@ from sklearn.decomposition import LatentDirichletAllocation
 from TextPreprocessing import text_preprocessing
 
 class TopicModel(metaclass=SingletonMeta):
-    symptoms_size = 10
-        
-    nlp = spacy.load('en_core_web_lg')
+    
+    allSymptomNodes = []
+    def __init__(self):
+        self.symptoms_size = 10        
+        self.nlp = spacy.load('en_core_web_lg')
+        dbcon = DataAccessLayer().CreateDBConnection
+        self.allSymptomNodes = dbcon.GetAllNodeListOfType('Symptom')
 
     # get list of symptoms from the question and answer
     def getSymptoms(self, dbcon:DataAccessLayer, question:str, threshold=0.65, verbose=False) -> {str:float}:
         #topicFromUser = self.build_top_model(question)
         # passing dcon in to prevent object bloat and also eventual managed instanced connection (factory or singleton)
         # dbcon = DataAccessLayer(dbName='fishdiseases', username='neo4j',password='password').CreateDBConnection
-        allSymptomNodes = dbcon.GetAllNodeListOfType('Symptom')
+        if len(self.allSymptomNodes)==0:
+            self.allSymptomNodes = dbcon.GetAllNodeListOfType('Symptom')
         if verbose:
             print("text from user: ", question)
             #print('keywords: ', topicFromUser)
             print()
         #tempSymptoms = []
         symptoms = {}
-        sentence1 = self.nlp(question)
+        #sentence1 = self.nlp(question)
+        sentence1 = self.nlp(self.text_preprocessing(question, self.nlp))
         #sentence1 = self.nlp(topicFromUser)
-        for symptomNode in allSymptomNodes:       
+        for symptomNode in self.allSymptomNodes:
             # using spacy          
-            sentence2 = self.nlp(symptomNode.description) 
+            #sentence2 = self.nlp(self.lower_casing(symptomNode.description))
+            sentence2 = self.nlp(self.text_preprocessing(symptomNode.description, self.nlp)) 
             similarity = sentence1.similarity(sentence2)
             if similarity > threshold:
-                symptom = dbcon.GetOneSymptomNode(symptomNode.name)
-                symptoms[symptom.name] = similarity
+                symptoms[symptomNode.name] = similarity
 
             # tempSymptoms.append({'symptom':symptomNode.description, 'symptom_name':symptomNode.name,
                                  # 'similarity':similarity, 'question':symptomNode.question,
@@ -100,3 +106,32 @@ class TopicModel(metaclass=SingletonMeta):
 
         return tokens
 
+    def lower_casing(self, sentence):        
+        new_sentence = ''.join([(chr(ord(char) + 32) if ord(char) > 64 and ord(char) < 91 else chr(ord(char))) for char in sentence])
+        return new_sentence
+
+    def add_stopwords(self, nlp):
+        stopwords = None
+        with open('./stopwords.txt') as file:
+            stopwords = [stopword.replace('\n', '') for stopword in file.readlines()]
+            
+        for stopword in stopwords:
+            nlp.Defaults.stop_words.add(stopword)
+
+        return nlp
+
+    def text_preprocessing(self, raw_sentence, nlp_tool):
+        nlp_tool = self.add_stopwords(nlp_tool) 
+        stopwords = nlp_tool.Defaults.stop_words
+        
+        token_sentence = nlp_tool(self.lower_casing(raw_sentence))
+        preprocessed_sentence = None
+        
+        preprocessed_sentence = [token.lemma_ for token in token_sentence if token.text not in stopwords and not token.pos_ == 'X' and not token.is_punct and not token.is_digit and not token.is_quote]
+        #preprocessed_sentence = spell_correction(preprocessed_sentence)
+        
+        #ps = [abrv._.long_form for abrv in token_sentence._.abbreviations]
+        #preprocessed_sentence += ps
+        preprocessed_sentence = " ".join(preprocessed_sentence)
+        print("processed user sentence: ", preprocessed_sentence)
+        return preprocessed_sentence
