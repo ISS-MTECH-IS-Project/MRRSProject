@@ -60,7 +60,7 @@ class Conversation(metaclass=SingletonMeta):
             case = dbcon.CreateOrGetCaseNode(casename = caseID)
         else:
             case = dbcon.CreateOrGetCaseNode()
-        if case.iteration :
+        if case.iteration:
             case.iteration += 1
         else:
             case.iteration = 1
