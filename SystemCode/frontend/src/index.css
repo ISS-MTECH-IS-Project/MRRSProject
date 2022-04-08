@@ -1,0 +1,6 @@
+.OMFheader {
+  margin: 20px 0px 0px 0px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
