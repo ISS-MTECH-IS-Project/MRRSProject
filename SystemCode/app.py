@@ -37,7 +37,7 @@ def getGuidedNext(caseId):
 
     resultProcess = Conversation().manageConversation(caseId,symConfirmList)
 
-    rep = {'diseases':[], 'symptoms':[], 'nextOpen':False, 'confirmDiseases':[]}
+    rep = {'diseases':[], 'symptoms':[], 'nextOpen':False, 'confirmedDiseases':[]}
     for s in resultProcess.get('symptoms'):
         rep['symptoms'].append({'name':s.name, 'question':s.question, 'image':s.imageurl, 'confirmed':False})
         # app.logger.info(s['confirmed'])
@@ -46,7 +46,7 @@ def getGuidedNext(caseId):
         rep['diseases'].append({'name': d[0].name, 'description': d[0].cause})
         # app.logger.info(s['confirmed'])
 
-    for cd in resultProcess.get('confirmDiseases'):
+    for cd in resultProcess.get('confirmedDiseases'):
         cdSymptoms =[]
         cdMeds = []
         for cdsymp in cd.symptoms:
@@ -54,14 +54,14 @@ def getGuidedNext(caseId):
         for cdMed in cd.medications:
             cdMeds.append({'name': cdMed.name, 'vet_or_OTC': cdMed.vet_or_OTC, 'description': cdMed.description})
 
-        rep['confirmDiseases'].append({
+        rep['confirmedDiseases'].append({
             'name': cd.name,
             'cause': cd.cause,
             'treatment': cd.treatment,
             'vet_advised': cd.vet_advised,
             'environment':cd.environment,
             'affectfish':cd.affectfish,
-            'aka':{cd.aka.name},
+            'aka':cd.aka.name,
             'symptoms': cdSymptoms,
             'medication': cdMeds
         })
@@ -78,7 +78,7 @@ def getOpenNext(caseId):
     req = request.json
     resultProcess = Conversation().manageConversation(caseId, {}, req.get('body'))
 
-    rep = {'diseases': [], 'symptoms': [], 'nextOpen': False, 'confirmDiseases':[]}
+    rep = {'diseases': [], 'symptoms': [], 'nextOpen': False, 'confirmedDiseases':[]}
 
     for s in resultProcess.get('symptoms'):
         rep['symptoms'].append({'name':s.name, 'question':s.question, 'image':s.imageurl, 'confirmed':False})
@@ -88,7 +88,7 @@ def getOpenNext(caseId):
         rep['diseases'].append({'name': d[0].name, 'description': d[0].cause})
         # app.logger.info(s['confirmed'])
 
-    for cd in resultProcess.get('confirmDiseases'):
+    for cd in resultProcess.get('confirmedDiseases'):
         cdSymptoms =[]
         cdMeds = []
         for cdsymp in cd.symptoms:
@@ -96,7 +96,7 @@ def getOpenNext(caseId):
         for cdMed in cd.medications:
             cdMeds.append({'name': cdMed.name, 'vet_or_OTC': cdMed.vet_or_OTC, 'description': cdMed.description})
 
-        rep['confirmDiseases'].append({
+        rep['confirmedDiseases'].append({
             'name': cd.name,
             'cause': cd.cause,
             'treatment': cd.treatment,

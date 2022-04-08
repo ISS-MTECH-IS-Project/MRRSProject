@@ -89,9 +89,9 @@ class Conversation(metaclass=SingletonMeta):
                     for disease in diseases:
                         confidence = disease[1]
                         if confidence >= self.confidenceScoreHP:
-                            confirmedDiseases.append(disease)
+                            confirmedDiseases.append(disease[0])
                     if len(confirmedDiseases)==0 and iteration==self.iterationLimitHP:
-                        confirmedDiseases.append(diseases[0])
+                        confirmedDiseases.append(diseases[0][0])
 
         return {"case": case, "symptoms":symptoms, "diseases":diseases, "confirmedDiseases":confirmedDiseases} 
 

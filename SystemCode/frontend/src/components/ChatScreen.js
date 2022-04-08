@@ -57,7 +57,7 @@ const ChatScreen = () => {
     data.time = moment().format("hh:mm");
     setMessages([...messages, data]);
     setSSymptoms(data.symptoms);
-    setSDiseases(data.diseases);
+    setSDiseases(data.confirmedDiseases);
     scrollToBottom();
   };
 
