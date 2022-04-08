@@ -50,6 +50,7 @@ class Conversation(metaclass=SingletonMeta):
     def manageConversation(self, caseID:str=None, symptomResponses:dict={}, userInput:str=None, iteration:int=0) -> dict:
         # Set all variables to none 
         case = confirmedDisease = nextAction = None
+        self.dbcon = DataAccessLayer().CreateDBConnection
         symptoms = []
         diseases = []
 

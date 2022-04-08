@@ -4,6 +4,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import Card from "@mui/material/Card";
 import { CardActionArea, CardActions, CardMedia } from "@mui/material";
+import { BluetoothAudio } from "@mui/icons-material";
 
 // image here should be fully form URL -> Do the heavy work at server side
 const Symptom = ({ symptoms, messageIndex, onToggle }) => {
@@ -18,12 +19,17 @@ const Symptom = ({ symptoms, messageIndex, onToggle }) => {
         <React.Fragment key={"Sym" + i}>
           {/* <div>Symptom Name: {s.name}</div> */}
           <Card>
-            <CardMedia
-              height={200}
-              component="img"
-              image={require("../Images/bloat.jpg")} // require image
-              title={s.name}
-            ></CardMedia>
+            {s.image !== "nan" ? (
+              <CardMedia
+                height={200}
+                component="img"
+                image={"/Images/" + s.image + ".jpg"}
+                // image={"../Images/" + s.image + ".jpg"} // require image
+                title={s.name}
+              ></CardMedia>
+            ) : (
+              <div></div>
+            )}
             <CardActions>
               <FormGroup>
                 <FormControlLabel

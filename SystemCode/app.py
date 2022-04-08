@@ -29,24 +29,24 @@ def hello_world():
 @cross_origin()
 def getGuidedNext(caseId):
     req = request.json
-    symptomsRequest = req.get['symptoms']
+    symptomsRequest = req.get('symptoms')
     symConfirmList = {}
     for s in symptomsRequest:
-        symConfirmList[s.get['name']]=s.get['confirmed']
+        symConfirmList[s.get('name')] = s.get('confirmed')
 
 
-    resultProcess = manageConversation(caseId,symConfirmList)
+    resultProcess = Conversation().manageConversation(caseId,symConfirmList)
 
     rep = {'diseases':[], 'symptoms':[], 'nextOpen':False}
-    for s in resultProcess[0]:
+    for s in resultProcess.get('symptoms'):
         rep['symptoms'].append({'name':s.name, 'question':s.question, 'image':s.imageurl, 'confirmed':False})
         # app.logger.info(s['confirmed'])
 
-    for d in resultProcess[1]:
-        rep['diseases'].append({'name': d.name, 'description': d.cause})
+    for d in resultProcess.get('diseases'):
+        rep['diseases'].append({'name': d[0].name, 'description': d[0].cause})
         # app.logger.info(s['confirmed'])
 
-    if len(resultProcess[0]) == 0:
+    if len(resultProcess.get('symptoms')) == 0:
         rep['nextOpen'] = True
 
     return jsonify(rep)
@@ -55,10 +55,21 @@ def getGuidedNext(caseId):
 @cross_origin()
 def getOpenNext(caseId):
     req = request.json
-    rep = {'diseases':[], 'symptoms':[], 'nextOpen':False}
-    for i in range(6):
-        rep['symptoms'].append({'name':"name"+str(i), 'question':caseId+str(i), 'image':'/img'+str(i)+'.jpg', 'confirmed':False})
-        rep['diseases'].append({'name':"name"+str(i), 'description':'disease is very bad'+str(i)})
+    resultProcess = Conversation().manageConversation(caseId, {}, req.get('body'))
+
+    rep = {'diseases': [], 'symptoms': [], 'nextOpen': False}
+
+    for s in resultProcess.get('symptoms'):
+        rep['symptoms'].append({'name':s.name, 'question':s.question, 'image':s.imageurl, 'confirmed':False})
+        # app.logger.info(s['confirmed'])
+
+    for d in resultProcess.get('diseases'):
+        rep['diseases'].append({'name': d[0].name, 'description': d[0].cause})
+        # app.logger.info(s['confirmed'])
+
+    if len(resultProcess.get('symptoms')) == 0:
+        rep['nextOpen'] = True
+
     return jsonify(rep)
 
 @app.route('/cases/<string:caseId>')
@@ -74,7 +85,7 @@ def getCase(caseId):
 @cross_origin()
 def createCase():
     rep = {'name':'case3'}
-    # dbcon = DataAccessLayer().CreateDBConnection
-    # case = dbcon.CreateOrGetCaseNode()
-    # rep['name'] = case.name
+    dbcon = DataAccessLayer().CreateDBConnection
+    case = dbcon.CreateOrGetCaseNode()
+    rep['name'] = case.name
     return jsonify(rep)
