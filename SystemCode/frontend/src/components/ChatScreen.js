@@ -116,7 +116,7 @@ const ChatScreen = () => {
           </Grid>
         </Paper>
       </Box>
-      <Box display="block" sx={{ width: 0.6 }}>
+      <Box display="inline-grid" sx={{ width: 0.6 }}>
         <Paper elevation={3}>
           <Grid item p={2}>
             <Header caseId={caseId} />
@@ -128,14 +128,14 @@ const ChatScreen = () => {
           </Grid>
         </Paper>
       </Box>
-      <Box display="inline-grid" sx={{ width: 0.18 }}>
+      {/* <Box display="inline-grid" sx={{ width: 0.18 }}>
         <Paper elevation={3}>
           <Grid item>
             <h4>Suspected Diseases</h4>
             <Disease diseases={suspectedDiseases}></Disease>
           </Grid>
         </Paper>
-      </Box>
+      </Box> */}
     </Grid>
   );
 };

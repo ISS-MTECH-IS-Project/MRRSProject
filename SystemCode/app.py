@@ -61,7 +61,7 @@ def getGuidedNext(caseId):
             'vet_advised': cd.vet_advised,
             'environment':cd.environment,
             'affectfish':cd.affectfish,
-            'aka':cd.aka.name,
+            'aka':cd.aka.name or None,
             'symptoms': cdSymptoms,
             'medication': cdMeds
         })

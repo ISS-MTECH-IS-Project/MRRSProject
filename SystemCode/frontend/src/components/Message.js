@@ -2,6 +2,7 @@ import { BiBot, BiUser } from "react-icons/bi";
 import Symptom from "./Symptom";
 import { Box, Grid } from "@mui/material";
 import Paper from "@mui/material/Paper";
+import Disease from "./Disease";
 
 const Message = ({ messageIndex, message, onToggle }) => {
   return (
@@ -32,14 +33,20 @@ const Message = ({ messageIndex, message, onToggle }) => {
             <Paper elevation={1}>
               <Box m={1}>
                 <span>{message.body}</span>
+                {message.confirmedDiseases !== undefined &&
+                  message.confirmedDiseases.length > 0 && (
+                    <Disease diseases={message.confirmedDiseases}></Disease>
+                  )}
                 {/* Empty symptoms if display of symptoms is undesired */}
-                {message.hasOwnProperty("symptoms") && (
-                  <Symptom
-                    symptoms={message.symptoms}
-                    messageIndex={messageIndex}
-                    onToggle={onToggle}
-                  ></Symptom>
-                )}
+                {message.hasOwnProperty("symptoms") &&
+                  message.confirmedDiseases !== undefined &&
+                  message.confirmedDiseases.length === 0 && (
+                    <Symptom
+                      symptoms={message.symptoms}
+                      messageIndex={messageIndex}
+                      onToggle={onToggle}
+                    ></Symptom>
+                  )}
               </Box>
             </Paper>
           </Grid>
