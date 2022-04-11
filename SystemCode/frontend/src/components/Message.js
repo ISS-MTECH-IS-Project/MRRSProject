@@ -23,7 +23,7 @@ const Message = ({ messageIndex, message, onToggle }) => {
           </Grid>
         </Grid>
       ) : (
-        <Grid container direction="column" alignItems="flex">
+        <Grid container direction="column" alignContent="flex-start">
           <Grid item alignItems="flex">
             <BiBot />
             <span> ChatBot</span>
@@ -45,6 +45,7 @@ const Message = ({ messageIndex, message, onToggle }) => {
                       symptoms={message.symptoms}
                       messageIndex={messageIndex}
                       onToggle={onToggle}
+                      isHistory={message.isHistory}
                     ></Symptom>
                   )}
               </Box>
