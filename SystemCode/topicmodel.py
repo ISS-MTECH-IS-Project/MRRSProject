@@ -13,11 +13,6 @@ from TextPreprocessing import text_preprocessing
 
 class TopicModel(metaclass=SingletonMeta):
     
-<<<<<<< Updated upstream
-    def __init__(self):
-        self.symptoms_size = 10        
-        self.nlp = spacy.load('en_core_web_lg')
-=======
     allSymptomNodes = []
     stopwords = []
 
@@ -28,14 +23,14 @@ class TopicModel(metaclass=SingletonMeta):
         self.stopwords = self.nlp.Defaults.stop_words
         dbcon = DataAccessLayer().CreateDBConnection
         self.allSymptomNodes = dbcon.GetAllNodeListOfType('Symptom')
->>>>>>> Stashed changes
 
     # get list of symptoms from the question and answer
     def getSymptoms(self, dbcon:DataAccessLayer, question:str, threshold=0.75, verbose=False) -> {str:float}:
         #topicFromUser = self.build_top_model(question)
         # passing dcon in to prevent object bloat and also eventual managed instanced connection (factory or singleton)
         # dbcon = DataAccessLayer(dbName='fishdiseases', username='neo4j',password='password').CreateDBConnection
-        allSymptomNodes = dbcon.GetAllNodeListOfType('Symptom')
+        if len(self.allSymptomNodes)==0:
+            self.allSymptomNodes = dbcon.GetAllNodeListOfType('Symptom')
         if verbose:
             print("text from user: ", question)
             #print('keywords: ', topicFromUser)
@@ -45,24 +40,15 @@ class TopicModel(metaclass=SingletonMeta):
         #sentence1 = self.nlp(question)
         sentence1 = self.nlp(self.text_preprocessing(question, self.nlp))
         #sentence1 = self.nlp(topicFromUser)
-<<<<<<< Updated upstream
-        for symptomNode in allSymptomNodes:       
-=======
         print("tokens = ", sentence1)
         for symptomNode in self.allSymptomNodes:
->>>>>>> Stashed changes
             # using spacy          
             #sentence2 = self.nlp(self.lower_casing(symptomNode.description))
             sentence2 = self.nlp(self.text_preprocessing(symptomNode.description, self.nlp)) 
             similarity = sentence1.similarity(sentence2)
             
             if similarity > threshold:
-<<<<<<< Updated upstream
-                symptom = dbcon.GetOneSymptomNode(symptomNode.name)
-                symptoms[symptom.name] = similarity
-=======
                 symptoms[symptomNode.name] = similarity                
->>>>>>> Stashed changes
 
             # tempSymptoms.append({'symptom':symptomNode.description, 'symptom_name':symptomNode.name,
                                  # 'similarity':similarity, 'question':symptomNode.question,
@@ -151,8 +137,6 @@ class TopicModel(metaclass=SingletonMeta):
         preprocessed_sentence = [token.lemma_ for token in token_sentence if token.text not in self.stopwords and not token.pos_ == 'X' and not token.is_punct and not token.is_digit and not token.is_quote]
         #preprocessed_sentence = spell_correction(preprocessed_sentence)
         
-        #ps = [abrv._.long_form for abrv in token_sentence._.abbreviations]
-        #preprocessed_sentence += ps
         preprocessed_sentence = " ".join(preprocessed_sentence)
         #print("processed user sentence: ", preprocessed_sentence)
         return preprocessed_sentence
