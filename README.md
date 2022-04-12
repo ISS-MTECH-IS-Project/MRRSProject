@@ -14,7 +14,7 @@
 
 > myenv\Scripts\activate
 
-> pip install flask
+> pip install flask flask_cors
 
 > set FLASK_ENV=development
 
