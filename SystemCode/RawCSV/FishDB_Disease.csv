@@ -251,7 +251,7 @@ You can soak a cotton bud in the solution and then dab the areas that need to be
 20,Polycystic Kidney Disease,,ALL,,BLOAT,SCALEOUT,EYEPROD,LETHARGIC,LOSSAPPETITE,RAPIDGILL,SUDDENDEATH,,,,,,"There are a handful of parasites that are known to cause kidney disease in fishes.
 This is especially true for fishes living in seemingly reasonably environments and has sudden kidney failure. 
 Otherwise, adverse living conidtions can cause bacteria induced kidney diseases due to weaken immunity.",No known treatment for this disease,FALSE,,,,,,,,
-21,Vibrosis,,ALL,,SKINULCER,BLEEDING,LOSSSCALE,SUDDENDEATH,BLOAT,FRAYTAIL,,,,,,,"Vibriosis is caused by an infection of Vibrio bacteria species. 
+21,Vibrosis,,ALL,,SKINULCER,BLEEDING,LOSSSCALE,SUDDENDEATH,BLOAT,INFANUS,FRAYTAIL,,,,,,"Vibriosis is caused by an infection of Vibrio bacteria species. 
 There are many bacteria present at all times within the aquatic environment. 
 More severe Vibrio strains may enter a fish system that ignores strict quarantine practices.
 Immunocompromised fish, such as those stressed by poor water quality, bullying or lack of sufficient nutrition, are more susceptible to bacterial infection. 
@@ -286,7 +286,7 @@ Always quarantine new fish for several days prior to putting them in your pond, 
 Additionally, larval gill maggots can be transported from live food. 
 If you purchase live food, such as bloodworms, tiny shrimps, etcetera, for your fish, be sure to only purchase them from a reputable and trustworthy source, and check them very thoroughly for any parasites.","Current treatments for Ergasilus include trichlorfon, or mixture of copper sulfate and ferric sulfate.
 Fish feed might need to be checked for possible introduction of parasites and quarantine is recommended",FALSE,TRICHLORFON,COPPERSULFATE,FERRICSULFATE,,,,,
-25,Nematoda,Roundworms,ALL,,HOLLOWBELLY,WORMANUS,LOSSWEIGHT,SWIMDIFF,LETHARGIC,INFANUS,,,,,,,"The nematode is a subacute pathogen that becomes virulent only when triggered by environmental conditions, such as warm water and low oxygen levels. 
+25,Nematoda,Roundworms,ALL,,HOLLOWBELLY,WORMANUS,LOSSWEIGHT,SWIMDIFF,LETHARGIC,,,,,,,,"The nematode is a subacute pathogen that becomes virulent only when triggered by environmental conditions, such as warm water and low oxygen levels. 
 The nematode thrives in mostly dull and cloudy water. 
 They are rarely found in clean water in an aquarium with proper filtration systems.
 Some nematodes can be transmitted directly from fish to fish.","Prior to administration of deworming medications (anthelminthic), the problem should be properly diagnosed by a vet. 
