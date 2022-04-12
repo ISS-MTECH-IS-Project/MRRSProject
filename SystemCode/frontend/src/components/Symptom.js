@@ -78,7 +78,7 @@ const Symptom = ({ symptoms, messageIndex, onToggle, isHistory = false }) => {
                 height={150}
                 width={200}
                 component="img"
-                image={"/Images/" + s.image + ".jpg"}
+                image={"/static/Images/" + s.image + ".jpg"}
                 onClick={() => handleOpen(s.image)}
                 title={s.name}
               ></CardMedia>
