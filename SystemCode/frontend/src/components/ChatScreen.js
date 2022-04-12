@@ -45,7 +45,6 @@ const ChatScreen = () => {
   // get next message
   const getGuidedNext = async () => {
     const m = messages[messages.length - 1];
-    m.isHistory = true;
     const res = await fetch(`http://localhost:5000/cases/${caseId}/guided`, {
       method: "POST",
       headers: {
@@ -105,7 +104,7 @@ const ChatScreen = () => {
   // https://www.chatbot.com/chatbot-templates/
   return (
     <Grid container p={1} justifyContent="space-evenly">
-      <Box display="none" sx={{ width: 0.18 }}>
+      <Box display="inline-grid" sx={{ width: 0.18 }}>
         <Paper elevation={3}>
           <Grid item>
             <h4>Suspected Symptoms</h4>

@@ -15,7 +15,7 @@ import { setSelectionRange } from "@testing-library/user-event/dist/utils";
 
 const Disease = ({ diseases }) => {
   const [currentImg, setImg] = React.useState("");
-  const [openModal, setOpenModal] = React.useState(false);
+  const [open, setOpenModal] = React.useState(false);
   const handleOpen = (img) => {
     setImg(img);
     setOpenModal(true);
@@ -50,7 +50,7 @@ const Disease = ({ diseases }) => {
 
   return (
     <div>
-      <Modal open={openModal} onClose={handleClose} width={500}>
+      <Modal open={open} onClose={handleClose} width={500}>
         <Box sx={modalstyle}>
           <Card>
             <CardMedia
@@ -98,7 +98,7 @@ const Disease = ({ diseases }) => {
                   d.symptoms.map((ds, dsi) => (
                     <React.Fragment key={"DisSym" + dsi}>
                       <CardActions>
-                        <Typography variant="body1" sx={{ pr: 2 }}>
+                        <Typography variant="body2" sx={{ pr: 2 }}>
                           {dsi + 1}.{ds.description}
                         </Typography>
                         {ds.image !== "nan" && (
