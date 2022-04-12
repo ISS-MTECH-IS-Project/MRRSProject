@@ -1,7 +1,7 @@
 ID,SymptomID,Symptom,SymptomType,SymptomCategory1,SymptomCategory2,SymptomCategory3,Question,ImageURL,Weight,Penalty,Source
 1,BLOAT,Bloated abdomen or belly,Physical,Body,,,Does your fish's belly look bloated?,bloat,1,-0.2,https://bullet1227.rssing.com/chan-53097784/all_p23.html
 2,BLOODEYE,Bloodstained eye,Physical,Eye,,,Is there blood in your fish's eye(s)?,bloodeye,1,-0.2,https://www.reddit.com/r/Goldfish/comments/52y5dq/blood_in_telescopeeye/
-3,RAPIDBREATH,Breathing rapidly,Behaviourial,Breathing,,,Is your fish breathing more rapidly than usual?,rapidbreath.gif,1,-0.2,https://makeagif.com/gif/carp-breathing-s1cytW
+3,RAPIDBREATH,Breathing rapidly,Behaviourial,Breathing,,,Is your fish breathing more rapidly than usual?,,1,-0.2,https://makeagif.com/gif/carp-breathing-s1cytW
 4,REDFIN,Bright red streaks on fins,Physical,Fin,,,Are there bright red streaks on the fins?,redfin,1,-0.2,https://www.myaquariumclub.com/why-are-red-streaks-on-fantail-goldfish-veil-two-goldfish-as-shown-in-phot...-720777.html
 5,CLAMPFIN,Clamped fins,Physical,Fin,,,Are the fins on your fish clamped together?,clampfin,1,-0.2,https://forum.aquariumcoop.com/topic/1246-clamped-fins-on-betta/
 6,CLOUDSKIN,Cloudy Skin,Physical,Skin,,,Does the skin look cloudy?,cloudskin,1,-0.2,https://snapirimfarm.com/product/%D7%AA%D7%A8%D7%95%D7%A4%D7%94-%D7%9C%D7%98%D7%99%D7%A4%D7%95%D7%9C-%D7%91%D7%9E%D7%97%D7%9C%D7%95%D7%AA-%D7%91%D7%A7%D7%98%D7%A8%D7%99%D7%90%D7%9C%D7%99%D7%95%D7%AA-ektol-bac-plus-250-jbl/
