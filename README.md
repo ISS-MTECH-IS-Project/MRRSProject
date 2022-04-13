@@ -8,15 +8,13 @@
 
 ### Install additional necessary libraries. This application works in python 3.9 only.
 
-> cd SystemCode
+> activate your conda environment for ohmyfish project
 
-> python -m venv myenv
+> cd MRRSProject/SystemCode
 
-> myenv\Scripts\activate
+> pip install flask flask_cors
 
-> pip install flask
-
-> set FLASK_ENV=development
+> export FLASK_ENV=development
 
 > flask run
 
