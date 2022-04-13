@@ -1,7 +1,7 @@
 ID,SymptomID,Symptom,SymptomType,SymptomCategory1,SymptomCategory2,SymptomCategory3,Question,ImageURL,Weight,Penalty,Source
 1,BLOAT,Bloated abdomen or belly,Physical,Body,,,Does your fish's belly look bloated?,bloat,1,-0.2,https://bullet1227.rssing.com/chan-53097784/all_p23.html
 2,BLOODEYE,Bloodstained eye,Physical,Eye,,,Is there blood in your fish's eye(s)?,bloodeye,1,-0.2,https://www.reddit.com/r/Goldfish/comments/52y5dq/blood_in_telescopeeye/
-3,RAPIDBREATH,Breathing rapidly,Behaviourial,Breathing,,,Is your fish breathing more rapidly than usual?,,1,-0.2,https://makeagif.com/gif/carp-breathing-s1cytW
+3,RAPIDBREATH,Breathing rapidly,Behaviourial,Breathing,,,Is your fish breathing more rapidly than usual?,noimage,1,-0.2,https://wdrfree.com/stock-vector/no-image-available
 4,REDFIN,Bright red streaks on fins,Physical,Fin,,,Are there bright red streaks on the fins?,redfin,1,-0.2,https://www.myaquariumclub.com/why-are-red-streaks-on-fantail-goldfish-veil-two-goldfish-as-shown-in-phot...-720777.html
 5,CLAMPFIN,Clamped fins,Physical,Fin,,,Are the fins on your fish clamped together?,clampfin,1,-0.2,https://forum.aquariumcoop.com/topic/1246-clamped-fins-on-betta/
 6,CLOUDSKIN,Cloudy Skin,Physical,Skin,,,Does the skin look cloudy?,cloudskin,1,-0.2,https://snapirimfarm.com/product/%D7%AA%D7%A8%D7%95%D7%A4%D7%94-%D7%9C%D7%98%D7%99%D7%A4%D7%95%D7%9C-%D7%91%D7%9E%D7%97%D7%9C%D7%95%D7%AA-%D7%91%D7%A7%D7%98%D7%A8%D7%99%D7%90%D7%9C%D7%99%D7%95%D7%AA-ektol-bac-plus-250-jbl/
@@ -12,7 +12,7 @@ ID,SymptomID,Symptom,SymptomType,SymptomCategory1,SymptomCategory2,SymptomCatego
 11,ANGLESPOTS,Spots that are grey gold in certain angle and light conditions,Physical,Skin,Body,,Are there spots on your fish that are grey-gold in color?,anglespots,1,-0.2,https://www.aqua-tipps.de/samtkrankheit/2F&psig=AOvVaw0xWvRdLf_KtfaCuQ8ztZ2Q&ust=1649767186969000&source=images&cd=vfe&ved=0CAoQjRxqFwoTCMi42uyDjPcCFQAAAAAdAAAAABAD
 12,DOTBODY,Dots on fish body,Physical,Skin,,,Are there dots on the body?,dotbody,1,-0.2,https://www.tetra-fish.com/learning-center/troubleshooting/fish-illnesses-how-to-spot-them.aspx2Ftroubleshooting%2Ffish-illnesses-how-to-spot-them.aspx&psig=AOvVaw2iGbIH0No_5HVy12TyeaMp&ust=1649767209460000&source=images&cd=vfe&ved=0CAoQjRxqFwoTCJiA1_WDjPcCFQAAAAAdAAAAABAI
 13,DOTFIN,Dots condensed at fin attachments,Physical,Fin,,,Are there dots condensed at the fins?,dotfin,1,-0.2,https://www.facebook.com/aquafarmsantigua/posts/look-out-for-lice-on-your-fish-symptoms-fish-are-aggravated-and-restless-usually/272790566559481/
-14,ERSWIM,Erratic swimming,Behaviourial,Movement,,,Is your fish swimming erratically?,,1,-0.2,
+14,ERSWIM,Erratic swimming,Behaviourial,Movement,,,Is your fish swimming erratically?,noimage,1,-0.2,https://wdrfree.com/stock-vector/no-image-available
 15,EYEPROD,Eyes protruding,Physical,Eye,,,Are the eyes protruding out?,eyeprod,1,-0.2,http://wallpaperswide.com/telescope_goldfish_aquarium-wallpapers.html
 16,FINSCALELOSS,Fin and scale loss,Physical,Fin,,,Is there any loss of scale or fins?,finscaleloss,1,-0.2,https://www.pencilperceptions.com/learn-to-draw-with-these-exercises/
 17,BROWNRUST,Fine yellow or light brown rust or film on skin,Physical,Skin,,,Is there fine yellow or light brown rust on the fish body?,brownrust,1,-0.2,https://gdmorganic.com/mata-ikan-cupang-bengkak/
@@ -35,13 +35,13 @@ ID,SymptomID,Symptom,SymptomType,SymptomCategory1,SymptomCategory2,SymptomCatego
 34,LETHARGIC,Lethargic behavior,Behaviourial,Movement,,,Is your fish swimming letharically?,lethargic,1,-0.2,https://japanesefightingfish.org/common-betta-fish-disease-symptoms/
 35,BROWNGILLS,Light or dark brown gills,Physical,Gill,,,Are the gills light or dark brown in color?,browngills,1,-0.2,https://www.researchgate.net/figure/F-columnare-elicited-gill-lesions-in-rainbow-trout-Oncorhynchus-mykiss-fry-operculum_fig1_236336784
 36,BLUEMUCUS,Light blue mucus layer on skin between head and dorsal fin,Physical,Skin,,,Is there a light blue mucus layer on the region between the head and dorsal fin?,bluemucus,1,-0.2,https://aquaclubdesign.com/%CF%86%CE%B1%CF%81%CE%BC%CE%B1%CE%BA%CE%BF-%CF%88%CE%B1%CF%81%CE%B9%CF%89%CE%BD-%CE%B5%CE%BD%CF%85%CE%B4%CF%81%CE%B5%CE%B9%CE%BF%CF%85-%CE%B2%CE%B1%CE%BA%CF%84%CE%B7%CF%81%CE%B9%CE%B1%CE%BA%CF%89%CE%BD-%CE%BA%CE%B1%CE%B9-%CF%80%CF%81%CF%89%CF%84%CE%BF%CE%B6%CF%89%CF%89%CE%BD-%CE%BB%CE%BF%CE%B9%CE%BC%CF%89%CE%BE%CE%B5%CF%89%CE%BD-%CE%B4%CF%85%CF%83%CE%BA%CE%BF%CE%BB%CE%B7%CF%83-%CE%BC%CE%BF%CF%81%CF%86%CE%B7%CF%83-hs-aqua-ectocell-forte-20-ml-for-800-l.html
-37,LOSSAPPETITE,Loss of appetite,Behaviourial,Eating,,,Does your fish exhibit a loss of appetite?,,1,-0.2,
-38,LOSSVISION,Loss of vision,Behaviourial,Vision,,,Is your fish not reacting to visual stimulus?,,1,-0.2,
+37,LOSSAPPETITE,Loss of appetite,Behaviourial,Eating,,,Does your fish exhibit a loss of appetite?,noimage,1,-0.2,https://wdrfree.com/stock-vector/no-image-available
+38,LOSSVISION,Loss of vision,Behaviourial,Vision,,,Is your fish not reacting to visual stimulus?,noimage,1,-0.2,https://wdrfree.com/stock-vector/no-image-available
 39,MUCUSHEAD,"Mucus on the gills, head, and dorsal regions",Physical,Body,,,"Is there mucus on the gills, head, and dorsal regions?",mucushead,1,-0.2,https://japanesefightingfish.org/columnaris-betta/
 40,PALEGILL,Pale gill,Physical,Gill,,,Does the gills look pale?,palegill,1,-0.2,https://outflourish-unproclaimed-lactifuge.xyz/bd476u1y?key=0f22c1fd609f13cb7947c8cabfe1a90d&submetric=14920667
 41,PALESKIN,Pale skin color,Physical,Skin,,,Does the skin look pale?,paleskin,1,-0.2,https://www.sciencedirect.com/science/article/abs/pii/S0001706X16300055
 42,PATCHBODY,Patchy or darker body,Physical,Skin,,,Are there dark patches on the body?,patchbody,1,-0.2,https://www.serendipitywave.com/why-does-a-goldfish-turn-black/
-43,RAPIDGILL,Rapid gill movement,Behaviourial,Movement,,,Is your fish exhibiting rapid gill movement?,,1,-0.2,
+43,RAPIDGILL,Rapid gill movement,Behaviourial,Movement,,,Is your fish exhibiting rapid gill movement?,noimage,1,-0.2,https://wdrfree.com/stock-vector/no-image-available
 44,INFGILL,Red or inflamed gill,Physical,Gill,,,Is the gill inflamed or red in color?,infgill,1,-0.2,http://joaquincarranza1.blogspot.com/2018/12/non-mammalian-disease.html
 45,INFSCALE,Red or inflamed scales,Physical,Skin,,,Are the scales red or inflamed?,infscale,1,-0.2,https://tropical-fish-keeping.com/tag/sepsis
 46,REDSPOT,Red spots,Physical,Skin,,,Are there red spots on the body?,redspot,1,-0.2,http://www.a2systems.com.br/notes.asp?iid=153355386-red+gill+fish&cid=6
@@ -56,17 +56,17 @@ ID,SymptomID,Symptom,SymptomType,SymptomCategory1,SymptomCategory2,SymptomCatego
 55,SKINULCER,Skin Ulcer,Physical,Skin,,,Are there any visible skin ulcer?,skinulcer,1,-0.2,https://www.thesprucepets.com/treating-pseudomoniasis-in-fish-5094501
 56,SURFACEDWELL,Spend time on surface,Behaviourial,Movement,,,Does your fish spend time on the surface?,surfacedwell,1,-0.2,https://petfishonline.com/betta-fish-top-tank/
 57,CAULIFLOWER,Spots clumps together like cauliflower,Physical,Skin,,,Are there spots that clump together like a cauliflower?,cauliflower,1,-0.2,https://dorothyddawson.blogspot.com/2019/11/goldfish-lymphocystis.html
-58,SUDDENDEATH,Sudden death,Behaviourial,Death,,,Did your fish suddenly die?,,1,-0.2,
+58,SUDDENDEATH,Sudden death,Behaviourial,Death,,,Did your fish suddenly die?,noimage,1,-0.2,https://wdrfree.com/stock-vector/no-image-available
 59,SUNKENEYE,Sunken eyes,Physical,Eye,,,Are the eyes sunken?,sunkeneye,1,-0.2,https://carpfarmingmyerscoughcollege.weebly.com/disease.html
-60,SWIMDIFF,Swimming difficulty,Behaviourial,Movement,,,Is your fish having difficulty swimming?,,1,-0.2,
-61,SWIMTOPUMP,Swimming into powerhead (air pump),Behaviourial,Movement,,,Is your fish swimming into the air pump?,,1,-0.2,
+60,SWIMDIFF,Swimming difficulty,Behaviourial,Movement,,,Is your fish having difficulty swimming?,noimage,1,-0.2,https://wdrfree.com/stock-vector/no-image-available
+61,SWIMTOPUMP,Swimming into powerhead (air pump),Behaviourial,Movement,,,Is your fish swimming into the air pump?,noimage,1,-0.2,https://wdrfree.com/stock-vector/no-image-available
 62,SWIMDOWNWARD,Swimming with heavy head,Behaviourial,Movement,,,Is your fish swimming with a seemingly heavy head?,swimdownward,1,-0.2,https://www.theveterinarynurse.com/review/article/how-can-you-tell-when-a-fish-is-sick
 63,THICKMUCUS,Thick skin mucus,Physical,Skin,,,Are there thick skin mucus on the body?,thickmucus,1,-0.2,https://21discos.com.br/doenca-do-algodao-sintomas-causas-e-tratamento/
 64,THICKFIN,Thicken fins,Physical,Fin,,,Does the fins look thicker than usual?,thickfin,1,-0.2,https://canhquansanvuonxanh.com/ca-koi-bi-nam-mang-dau-hieu-mac-benh-khong-the-bo-qua-khi-nuoi-ca-koi.html
 65,HEADULCER,Ulcer on head,Physical,Body,,,Are there any visible ulcer(s) on the head?,headulcer,1,-0.2,https://wittily-monopteron-preerection.xyz/bd476u1y?key=0f22c1fd609f13cb7947c8cabfe1a90d&submetric=14920667
-66,LINEULCER,Ulcer on lateral line,Physical,Body,,,Are there any visible ulcer(s) on the lateral line (line separating the top and bottom of the fish)?,,1,-0.2,
+66,LINEULCER,Ulcer on lateral line,Physical,Body,,,Are there any visible ulcer(s) on the lateral line (line separating the top and bottom of the fish)?,noimage,1,-0.2,https://wdrfree.com/stock-vector/no-image-available
 67,UPSIDEDOWN,Upside down,Behaviourial,Movement,,,Is your fish swimming upside down?,upsidedown,1,-0.2,https://www.myaquariumclub.com/my-goldfish-is-bloated-and-swimming-upside-down.-1051149.html
-68,NOSIGN,Usually no signs in early stage,BOTH,Nothing,,,Are there no signs?,,1,-0.2,
+68,NOSIGN,Usually no signs in early stage,BOTH,Nothing,,,Are there no signs?,noimage,1,-0.2,https://wdrfree.com/stock-vector/no-image-available
 69,WAXYSPOT,Waxy like spots on fin and body and head,Physical,Fin,Skin,,"Are there any waxy-like spots on the fin,body and head?",waxyspot,1,-0.2,https://www.thekoiclinic.co.uk/white-blobs-on-koi-carp-pox/
 70,WHITEFILM,White film on skin,Physical,Skin,,,Is there a white film on the skin?,whitefilm,1,-0.2,https://discusrescue.com/lymphocystis-in-discus-discus-cauliflower-disease-treatment/
 71,WHITETHREAD,White greenish thread on body,Physical,Skin,,,Is there a white-greenish thread on the body?,whitethread,1,-0.2,http://www.thepetscentral.com/fish/fish-diseases/symptoms-of-aquarium-fish-diseases/
@@ -75,5 +75,5 @@ ID,SymptomID,Symptom,SymptomType,SymptomCategory1,SymptomCategory2,SymptomCatego
 74,WHITEFAECES,White stringy faeces,Physical,Body,,,Is the faeces white and stringy?,whitefaeces,1,-0.2,https://www.ultimatebettas.com/betta-fish-white-stringy-poop/
 75,WHITEBUMP,Whte or pinkish bumps on skin or fins,Physical,Skin,Fin,,Are there any white or pinkish bumps on the skin or fins?,whitebump,1,-0.2,https://www.myaquariumclub.com/hello-my-goldfish-is-really-sick.-he-has-a-large-bump-on-his-side-and-blood...-484756.html
 76,WORMBODY,Worm on body,Physical,Body,,,Are there any worms on the body?,wormbody,1,-0.2,http://www.thepetscentral.com/fish/fish-diseases/symptoms-of-aquarium-fish-diseases/
-77,WORMANUS,Worm seen at anus,Physical,Body,,,Are there any worms at the anus region?,,1,-0.2,
+77,WORMANUS,Worm seen at anus,Physical,Body,,,Are there any worms at the anus region?,noimage,1,-0.2,https://wdrfree.com/stock-vector/no-image-available
 78,YELLOWNODULE,Yellowish or darker nodules on eyes or body,Physical,Eye,Skin,,Does your fish have yellowish or darker nodules on the eyes or body?,yellownodule,1,-0.2,https://www.tankarium.com/aquarium-fish-diseases/
