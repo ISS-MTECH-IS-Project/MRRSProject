@@ -74,7 +74,7 @@ const Disease = ({ diseases }) => {
                   Suspected Disease ({i + 1})
                 </Typography>
                 <Typography sx={{ mb: 2 }} variant="h5" component="div">
-                  {d.name} ({d.aka})
+                  {d.name} ({d.aka}) - confidence ({d.confidence})
                 </Typography>
                 <Typography
                   sx={{ fontSize: 14 }}
