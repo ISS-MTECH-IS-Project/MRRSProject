@@ -15,9 +15,13 @@ class CaseService(metaclass=SingletonMeta):
         self.caseCache[caseName] = messages
 
 @app.route('/')
-@app.route('/chat/<path:path>')
 @cross_origin()
 def hello_world():
+    return render_template('index.html')
+
+@app.route('/chat/<path:p>')
+@cross_origin()
+def hello_case(p):
     return render_template('index.html')
 
 # @app.route('/greeting')
@@ -42,8 +46,11 @@ def getGuidedNext(caseId):
         rep['symptoms'].append({'name':s.name, 'question':s.question, 'image':s.imageurl, 'confirmed':False})
         # app.logger.info(s['confirmed'])
 
-    for d in resultProcess.get('diseases'):
-        rep['diseases'].append({'name': d[0].name, 'description': d[0].cause})
+    for i,d in enumerate(resultProcess.get('diseases')):
+        if i>2:
+            break
+        if d[1]>0:
+            rep['diseases'].append({'name': d[0].name, 'cause': d[0].cause, 'confidence': "{:.0%}".format(d[1])})
         # app.logger.info(s['confirmed'])
 
     for cd in resultProcess.get('confirmedDiseases'):
@@ -116,7 +123,6 @@ def getOpenNext(caseId):
 @app.route('/cases/<string:caseId>')
 @cross_origin()
 def getCase(caseId):
-    req = request.json
     rep = {'messages':[{'body':'How can I help you?'}],'symptoms':[]}
     for i in range(6):
         rep['symptoms'].append({'name':"name"+str(i), 'question':caseId+str(i), 'image':'/img'+str(i)+'.jpg'})

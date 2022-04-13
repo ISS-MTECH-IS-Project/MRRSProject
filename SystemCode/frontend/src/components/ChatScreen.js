@@ -34,9 +34,9 @@ const ChatScreen = () => {
   // Fetch case
   const fetchCase = async (id) => {
     const res = await fetch(`http://localhost:5000/cases/${id}`, {
-      mode: "cors",
-      "Content-Type": "application/json",
-      Accept: "application/json",
+      headers: {
+        "Content-type": "application/json",
+      },
     });
     const data = await res.json();
     return data;
@@ -58,8 +58,22 @@ const ChatScreen = () => {
     data.time = moment().format("hh:mm");
     setMessages([...messages, data]);
     setSSymptoms(data.symptoms);
-    setSDiseases(data.confirmedDiseases);
+    setSDiseases(data.diseases);
     scrollToBottom();
+  };
+
+  const resetDisease = async (s) => {
+    const m = {};
+    m.symptoms = [s];
+    const res = await fetch(`http://localhost:5000/cases/${caseId}/guided`, {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(m),
+    });
+    const data = await res.json();
+    setSDiseases(data.diseases);
   };
 
   // get next message
@@ -95,6 +109,7 @@ const ChatScreen = () => {
       !messages[mIndex].symptoms[sIndex].confirmed;
     setSSymptoms(messages[mIndex].symptoms.map((s) => s));
     setMessages(messages.map((m) => m));
+    resetDisease(messages[mIndex].symptoms[sIndex]);
   };
 
   const messagesEndRef = useRef(null);
@@ -129,14 +144,14 @@ const ChatScreen = () => {
           </Grid>
         </Paper>
       </Box>
-      {/* <Box display="inline-grid" sx={{ width: 0.18 }}>
+      <Box display="inline-grid" sx={{ width: 0.18 }}>
         <Paper elevation={3}>
           <Grid item>
             <h4>Suspected Diseases</h4>
             <Disease diseases={suspectedDiseases}></Disease>
           </Grid>
         </Paper>
-      </Box> */}
+      </Box>
     </Grid>
   );
 };

@@ -33,21 +33,19 @@ const Message = ({ messageIndex, message, onToggle }) => {
             <Paper elevation={1}>
               <Box m={1}>
                 <span>{message.body}</span>
-                {message.confirmedDiseases !== undefined &&
+                {/* {message.confirmedDiseases !== undefined &&
                   message.confirmedDiseases.length > 0 && (
                     <Disease diseases={message.confirmedDiseases}></Disease>
-                  )}
+                  )} */}
                 {/* Empty symptoms if display of symptoms is undesired */}
-                {message.hasOwnProperty("symptoms") &&
-                  message.confirmedDiseases !== undefined &&
-                  message.confirmedDiseases.length === 0 && (
-                    <Symptom
-                      symptoms={message.symptoms}
-                      messageIndex={messageIndex}
-                      onToggle={onToggle}
-                      isHistory={message.isHistory}
-                    ></Symptom>
-                  )}
+                {message.hasOwnProperty("symptoms") && (
+                  <Symptom
+                    symptoms={message.symptoms}
+                    messageIndex={messageIndex}
+                    onToggle={onToggle}
+                    isHistory={message.isHistory}
+                  ></Symptom>
+                )}
               </Box>
             </Paper>
           </Grid>

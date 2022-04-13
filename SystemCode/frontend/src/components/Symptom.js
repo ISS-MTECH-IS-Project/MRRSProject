@@ -61,7 +61,7 @@ const Symptom = ({ symptoms, messageIndex, onToggle, isHistory = false }) => {
           <Card>
             <CardMedia
               component="img"
-              image={"/Images/" + currentImg + ".jpg"}
+              image={"/static/Images/" + currentImg + ".jpg"}
             ></CardMedia>
           </Card>
         </Box>
@@ -90,7 +90,6 @@ const Symptom = ({ symptoms, messageIndex, onToggle, isHistory = false }) => {
                 <FormControlLabel
                   control={<Checkbox checked={s.confirmed} />}
                   label={s.question}
-                  disabled={isHistory}
                   onChange={(e) => handleClick(i, e)}
                 ></FormControlLabel>
               </FormGroup>
