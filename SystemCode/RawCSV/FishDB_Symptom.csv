@@ -75,5 +75,5 @@ ID,SymptomID,Symptom,SymptomType,SymptomCategory1,SymptomCategory2,SymptomCatego
 74,WHITEFAECES,White stringy faeces,Physical,Body,,,Is the faeces white and stringy?,whitefaeces,1,-0.2,https://www.ultimatebettas.com/betta-fish-white-stringy-poop/
 75,WHITEBUMP,Whte or pinkish bumps on skin or fins,Physical,Skin,Fin,,Are there any white or pinkish bumps on the skin or fins?,whitebump,1,-0.2,https://www.myaquariumclub.com/hello-my-goldfish-is-really-sick.-he-has-a-large-bump-on-his-side-and-blood...-484756.html
 76,WORMBODY,Worm on body,Physical,Body,,,Are there any worms on the body?,wormbody,1,-0.2,http://www.thepetscentral.com/fish/fish-diseases/symptoms-of-aquarium-fish-diseases/
-77,WORMANUS,Worm seen at anus,Physical,Body,,,Are there any worms at the anus region?,noimage,1,-0.2,https://wdrfree.com/stock-vector/no-image-available
+77,WORMANUS,Worm seen at anus,Physical,Body,,,Are there any worms at the anus region?,wormanus,1,-0.2,https://wdrfree.com/stock-vector/no-image-available
 78,YELLOWNODULE,Yellowish or darker nodules on eyes or body,Physical,Eye,Skin,,Does your fish have yellowish or darker nodules on the eyes or body?,yellownodule,1,-0.2,https://www.tankarium.com/aquarium-fish-diseases/
