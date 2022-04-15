@@ -3,6 +3,7 @@ from models import *
 from topicmodel import *
 from kbdecision import *
 
+
 class FishMessage():
 
     def __init__(self, question, options, isConclusion):
@@ -20,20 +21,21 @@ class FishMessage():
     def getIsConclusion(self):
         return self.isConclusion
 
+
 class Conversation(metaclass=SingletonMeta):
     # Hyper Parameters
-    confidenceScoreHP:float = 0.8
-    iterationLimitHP:int = 4
+    confidenceScoreHP: float = 0.8
+    iterationLimitHP: int = 4
 
     # Attributes
     tm = TopicModel()
     kb = KbDecisionMaker()
 
     # def __init__(self):
-        # self.question = question
-        # option is a dict {label:str, value:str,image:bool}
-        # self.options = options
-        # self.isConclusion = isConclusion
+    # self.question = question
+    # option is a dict {label:str, value:str,image:bool}
+    # self.options = options
+    # self.isConclusion = isConclusion
 
     # greeting:str = "how are you doing today?"
     # count:int = 0
@@ -46,8 +48,8 @@ class Conversation(metaclass=SingletonMeta):
     #     pass
 
     # Function for Guided (Novice)
-    def manageConversation(self, caseID:str=None, symptomResponses:dict={}, userInput:str=None) -> dict:
-        # Set all variables to none 
+    def manageConversation(self, caseID: str = None, symptomResponses: dict = {}, userInput: str = None) -> dict:
+        # Set all variables to none
         case = nextAction = None
         symptoms = []
         diseases = []
@@ -57,10 +59,10 @@ class Conversation(metaclass=SingletonMeta):
 
         # Create a new or retrieve a Case Id
         if caseID:
-            case = dbcon.CreateOrGetCaseNode(casename = caseID)
+            case = dbcon.CreateOrGetCaseNode(casename=caseID)
         else:
             case = dbcon.CreateOrGetCaseNode()
-        if case.iteration :
+        if case.iteration:
             case.iteration += 1
         else:
             case.iteration = 1
@@ -68,7 +70,7 @@ class Conversation(metaclass=SingletonMeta):
         dbcon.SaveCaseNode(case)
 
         if userInput:
-            symptomsTM = self.tm.getSymptoms(dbcon, userInput, verbose = True)
+            symptomsTM = self.tm.getSymptoms(dbcon, userInput, verbose=True)
             for symptomTM in symptomsTM:
                 userInputSuspectedSymptom = dbcon.GetOneSymptomNode(symptomTM)
                 symptoms.append(userInputSuspectedSymptom)
@@ -76,7 +78,8 @@ class Conversation(metaclass=SingletonMeta):
             for symptom in symptomResponses:
                 # userInputSuspectedSymptom = self.tm.getSymptoms(dbcon, symptom, verbose = True)
                 userInputSuspectedSymptom = dbcon.GetOneSymptomNode(symptom)
-                nextAction = self.kb.getNext(case, userInputSuspectedSymptom, symptomResponses[symptom], 0, True)
+                nextAction = self.kb.getNext(
+                    case, userInputSuspectedSymptom, symptomResponses[symptom], 0, True)
 
             # Retrieve the diseases and symptoms
             if nextAction != None:
@@ -88,27 +91,28 @@ class Conversation(metaclass=SingletonMeta):
                 if len(diseases) > 0:
                     for disease in diseases:
                         confidence = disease[1]
+                        print(disease[0].name, "  ", confidence)
                         if confidence >= self.confidenceScoreHP:
                             confirmedDiseases.append(disease[0])
-                    if len(confirmedDiseases)==0 and iteration>=self.iterationLimitHP:
+                    if len(confirmedDiseases) == 0 and iteration >= self.iterationLimitHP:
                         confirmedDiseases.append(diseases[0][0])
 
-        return {"case": case, "symptoms":symptoms, "diseases":diseases, "confirmedDiseases":confirmedDiseases} 
+        return {"case": case, "symptoms": symptoms, "diseases": diseases, "confirmedDiseases": confirmedDiseases}
 
     # Function for Unguided (Expert)
-    def manageUnguidedConversation(self, caseID:str, userInput:str, symptomResponses:dict) -> dict: 
-        # Set all variables to none 
+    def manageUnguidedConversation(self, caseID: str, userInput: str, symptomResponses: dict) -> dict:
+        # Set all variables to none
         case = diseases = confirmedDisease = symptoms = nextAction = None
 
         dbcon = DataAccessLayer().CreateDBConnection
         # Create a new or retrieve a Case Id
         if caseID:
-            case = dbcon.CreateOrGetCaseNode(casename = caseID)
+            case = dbcon.CreateOrGetCaseNode(casename=caseID)
         else:
             case = dbcon.CreateOrGetCaseNode()
 
         if userInput:
-            symptomsTM = self.tm.getSymptoms(dbcon, userInput, verbose = True)
+            symptomsTM = self.tm.getSymptoms(dbcon, userInput, verbose=True)
             for symptom in symptomsTM:
                 userInputSuspectedSymptom = dbcon.GetOneSymptomNode(symptom)
                 symptoms.append(userInputSuspectedSymptom)
@@ -116,7 +120,8 @@ class Conversation(metaclass=SingletonMeta):
             for symptom in symptoms:
                 # userInputSuspectedSymptom = self.tm.getSymptoms(dbcon, symptom, verbose = True)
                 userInputSuspectedSymptom = dbcon.GetOneSymptomNode(symptom)
-                nextAction = self.kb.getNext(case, userInputSuspectedSymptom, symptomResponses[symptom], 0, True)
+                nextAction = self.kb.getNext(
+                    case, userInputSuspectedSymptom, symptomResponses[symptom], 0, True)
 
             # Retrieve the diseases and symptoms
             diseases = nextAction.get("diseases")
@@ -131,13 +136,13 @@ class Conversation(metaclass=SingletonMeta):
                     if confidence >= self.confidenceScoreHP:
                         confirmedDisease = disease
 
-        return {"case": case, "symptoms":symptoms, "diseases":diseases, "confirmedDisease":confirmedDisease} 
+        return {"case": case, "symptoms": symptoms, "diseases": diseases, "confirmedDisease": confirmedDisease}
         # confirmedDisease = None
         # for d in diseases:
         #     confidence = diseases[d]
         #     if confidence > confidenceScore:
         #         confirmedDisease = d
-        
+
         # questionToAsk = nextSymptom.question
 
         # return {"case": case, "question":questionToAsk, "confirmed":confirmedDisease}
@@ -151,6 +156,3 @@ class Conversation(metaclass=SingletonMeta):
         #     if d.confidency>0.9:
         #         return ConfirmDiseaseMessage(d)
         # return getMessage(res.symtom)
-
-
-        

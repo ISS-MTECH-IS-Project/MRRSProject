@@ -100,15 +100,20 @@ const ChatScreen = () => {
 
   // get next message
   const getOpenNext = async (message) => {
-    const res = await fetch(`http://localhost:5000/cases/${caseId}/open`, {
+    const m = messages[messages.length - 1];
+    const tempBody = m.body;
+    m.body = message.body;
+    const res = await fetch(`http://localhost:5000/cases/${caseId}/guided`, {
       method: "POST",
       headers: {
         "Content-type": "application/json",
       },
-      body: JSON.stringify(message),
+      body: JSON.stringify(m),
     });
+
     const data = await res.json();
     setOpen(data.nextOpen);
+    m.body = tempBody;
     data.time = moment().format("hh:mm");
     setMessages([...messages, message, data]);
     setSSymptoms(data.symptoms);
