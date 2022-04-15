@@ -1,8 +1,7 @@
 import { BiBot, BiUser } from "react-icons/bi";
 import Symptom from "./Symptom";
-import { Box, Grid } from "@mui/material";
+import { Box, Card, CardContent, Grid } from "@mui/material";
 import Paper from "@mui/material/Paper";
-import Disease from "./Disease";
 
 const Message = ({ messageIndex, message, onToggle }) => {
   return (
@@ -28,24 +27,32 @@ const Message = ({ messageIndex, message, onToggle }) => {
             <BiBot />
             <span> ChatBot</span>
             <span> @ {message.time}</span>
+            {message.hasOwnProperty("symptoms") &&
+              message.symptoms.length === 0 && (
+                <Card>
+                  <CardContent>
+                    Dear user, I apologise for not understanding your response.
+                    <br />
+                    Please try to describe your pet fish's symptoms more.
+                  </CardContent>
+                </Card>
+              )}
           </Grid>
           <Grid item display="inline-flex">
             <Paper elevation={1}>
               <Box m={1}>
                 <span>{message.body}</span>
-                {/* {message.confirmedDiseases !== undefined &&
-                  message.confirmedDiseases.length > 0 && (
-                    <Disease diseases={message.confirmedDiseases}></Disease>
-                  )} */}
+
                 {/* Empty symptoms if display of symptoms is undesired */}
-                {message.hasOwnProperty("symptoms") && (
-                  <Symptom
-                    symptoms={message.symptoms}
-                    messageIndex={messageIndex}
-                    onToggle={onToggle}
-                    isHistory={message.isHistory}
-                  ></Symptom>
-                )}
+                {message.hasOwnProperty("symptoms") &&
+                  message.symptoms.length > 0 && (
+                    <Symptom
+                      symptoms={message.symptoms}
+                      messageIndex={messageIndex}
+                      onToggle={onToggle}
+                      isHistory={message.isHistory}
+                    ></Symptom>
+                  )}
               </Box>
             </Paper>
           </Grid>
