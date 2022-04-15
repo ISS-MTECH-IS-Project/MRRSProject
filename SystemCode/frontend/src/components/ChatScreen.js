@@ -10,6 +10,7 @@ import { Box, Grid } from "@mui/material";
 import Paper from "@mui/material/Paper";
 import Divider from "@mui/material/Divider";
 import moment from "moment";
+import { makeStyles } from "@mui/styles";
 
 // message : {isSend, isUser, nextOpen, symptoms, diseases, time, body}
 const ChatScreen = () => {
@@ -21,6 +22,27 @@ const ChatScreen = () => {
   // try
   const [suspectedSymptoms, setSSymptoms] = useState([]);
   const [suspectedDiseases, setSDiseases] = useState([]);
+
+  const useStyles = makeStyles({
+    root: {
+      position: "fixed",
+      top: "5px",
+      width: "35vw",
+      right: "2vw",
+      overflowY: "scroll",
+      maxHeight: "100vh",
+    },
+
+    sstitle: {
+      backgroundColor: "#3D426B",
+      color: "white",
+      marginBottom: "0",
+      paddingLeft: "10px",
+      height: "5vh",
+      display: "flex",
+      alignItems: "center",
+    },
+  });
 
   useEffect(() => {
     const getMessages = async () => {
@@ -117,9 +139,11 @@ const ChatScreen = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
+  const classes = useStyles();
+
   // https://www.chatbot.com/chatbot-templates/
   return (
-    <Grid container p={1} justifyContent="space-evenly">
+    <Grid container p={1} justifyContent="left">
       <Box display="none" sx={{ width: 0.18 }}>
         <Paper elevation={3}>
           <Grid item>
@@ -144,14 +168,14 @@ const ChatScreen = () => {
           </Grid>
         </Paper>
       </Box>
-      <Box display="inline-grid" sx={{ width: 0.18 }}>
-        <Paper elevation={3}>
-          <Grid item>
-            <h4>Suspected Diseases</h4>
+      {suspectedDiseases !== undefined && suspectedDiseases.length > 0 && (
+        <Box className={classes.root} display="inline-grid">
+          <Paper className={classes.root} elevation={3}>
+            <h4 className={classes.sstitle}>Suspected Diseases</h4>
             <Disease diseases={suspectedDiseases}></Disease>
-          </Grid>
-        </Paper>
-      </Box>
+          </Paper>
+        </Box>
+      )}
     </Grid>
   );
 };

@@ -4,7 +4,6 @@ import {
   Box,
   Button,
   Card,
-  CardActionArea,
   CardActions,
   CardMedia,
   CardContent,
@@ -48,6 +47,12 @@ const Disease = ({ diseases }) => {
     p: 4,
   };
 
+  const confirmStyle = {
+    bgcolor: "#CEE5ED",
+  };
+
+  const diseaseStyle = {};
+
   return (
     <div>
       <Modal open={openModal} onClose={handleClose} width={500}>
@@ -64,16 +69,21 @@ const Disease = ({ diseases }) => {
         diseases.length > 0 &&
         diseases.map((d, i) => (
           <React.Fragment key={"Dis" + i}>
-            <Card sx={{ minWidth: 500 }}>
+            <Card
+              sx={parseFloat(d.confidence) > 80 ? confirmStyle : diseaseStyle}
+            >
               <CardContent>
-                <Typography
-                  sx={{ fontSize: 14 }}
-                  color="text.secondary"
-                  gutterBottom
-                >
+                <Typography sx={{ fontSize: 14 }} gutterBottom>
                   Suspected Disease ({i + 1})
                 </Typography>
-                <Typography sx={{ mb: 2 }} variant="h5" component="div">
+                <Typography
+                  sx={{ mb: 2 }}
+                  color="#3D426B"
+                  fontWeight="bold"
+                  variant="h5"
+                  paddingLeft="10px"
+                  component="div"
+                >
                   {d.name} ({d.aka}) - confidence ({d.confidence})
                 </Typography>
                 <Typography
@@ -83,7 +93,7 @@ const Disease = ({ diseases }) => {
                 >
                   Causes
                 </Typography>
-                <Typography variant="body2" sx={{ mb: 2 }}>
+                <Typography paddingLeft="10px" variant="body2" sx={{ mb: 2 }}>
                   {d.cause}
                 </Typography>
                 <Typography
@@ -98,7 +108,11 @@ const Disease = ({ diseases }) => {
                   d.symptoms.map((ds, dsi) => (
                     <React.Fragment key={"DisSym" + dsi}>
                       <CardActions>
-                        <Typography variant="body1" sx={{ pr: 2 }}>
+                        <Typography
+                          paddingLeft="10px"
+                          variant="body1"
+                          sx={{ pr: 2 }}
+                        >
                           {dsi + 1}.{ds.description}
                         </Typography>
                         {ds.image !== "nan" && (
@@ -120,7 +134,9 @@ const Disease = ({ diseases }) => {
                 >
                   Treatment
                 </Typography>
-                <Typography variant="body2">{d.treatment}</Typography>
+                <Typography paddingLeft="10px" variant="body2">
+                  {d.treatment}
+                </Typography>
                 <Typography
                   sx={{ fontSize: 14, mt: 2 }}
                   color="text.secondary"
@@ -133,7 +149,11 @@ const Disease = ({ diseases }) => {
                   d.medication.map((dm, dmi) => (
                     <React.Fragment key={"DisMed" + dmi}>
                       <CardActions>
-                        <Typography variant="body2" sx={{ pr: 2 }}>
+                        <Typography
+                          paddingLeft="10px"
+                          variant="body2"
+                          sx={{ pr: 2 }}
+                        >
                           {dmi + 1}.{dm.description}
                         </Typography>
                         {dm.hasOwnProperty("url") && (

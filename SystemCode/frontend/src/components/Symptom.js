@@ -3,15 +3,11 @@ import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import Card from "@mui/material/Card";
-import {
-  CardActionArea,
-  CardActions,
-  CardMedia,
-  Modal,
-  Box,
-} from "@mui/material";
+import { CardContent, CardActions, CardMedia, Modal, Box } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { Grid } from "@mui/material";
+
+import Tooltip from "@mui/material/Tooltip";
 
 // image here should be fully form URL -> Do the heavy work at server side
 const Symptom = ({ symptoms, messageIndex, onToggle, isHistory = false }) => {
@@ -25,10 +21,14 @@ const Symptom = ({ symptoms, messageIndex, onToggle, isHistory = false }) => {
       backgroundColor: "#3D426B",
       color: "white",
       boxShadow: "none",
+      width: 300,
+      height: 350,
     },
     cardNC: {
       backgroundColor: "white",
       color: "black",
+      width: 300,
+      height: 350,
     },
   });
 
@@ -61,11 +61,17 @@ const Symptom = ({ symptoms, messageIndex, onToggle, isHistory = false }) => {
           <Card>
             <CardMedia
               component="img"
-              image={"/static/Images/" + currentImg + ".jpg"}
+              image={"/static/Images/" + currentImg}
             ></CardMedia>
           </Card>
         </Box>
       </Modal>
+      <Card sx={{ ml: 2, mr: "15vw", fontWeight: "bold" }}>
+        <CardContent>
+          Please check the boxes if the symptom description applies to your pet
+          fish
+        </CardContent>
+      </Card>
       {symptoms.map((s, i) => (
         <Grid item alignItems="flex" key={"Sym" + i}>
           {/* <div>Symptom Name: {s.name}</div> */}
@@ -73,27 +79,35 @@ const Symptom = ({ symptoms, messageIndex, onToggle, isHistory = false }) => {
             sx={{ m: 2 }}
             className={s.confirmed ? classes.cardC : classes.cardNC}
           >
+            {s.AIconfirmed && (
+              <CardContent height={150} width={100}>
+                Auto-checked via AI confidence. Please uncheck if inot
+                applicable.
+              </CardContent>
+            )}
             {s.image !== "nan" ? (
               <CardMedia
                 height={150}
-                width={200}
+                width={150}
                 component="img"
-                image={"/static/Images/" + s.image + ".jpg"}
+                image={"/static/Images/" + s.image}
                 onClick={() => handleOpen(s.image)}
                 title={s.name}
               ></CardMedia>
             ) : (
               <div></div>
             )}
-            <CardActions>
-              <FormGroup>
-                <FormControlLabel
-                  control={<Checkbox checked={s.confirmed} />}
-                  label={s.question}
-                  onChange={(e) => handleClick(i, e)}
-                ></FormControlLabel>
-              </FormGroup>
-            </CardActions>
+            <Tooltip title="Check if symptom is applicable, otherwise leave it unchecked">
+              <CardActions height={100} width={150}>
+                <FormGroup>
+                  <FormControlLabel
+                    control={<Checkbox checked={s.confirmed} />}
+                    label={s.question}
+                    onChange={(e) => handleClick(i, e)}
+                  ></FormControlLabel>
+                </FormGroup>
+              </CardActions>
+            </Tooltip>
           </Card>
 
           {/* <button onClick={(e) => handleClick(i, e)}>

@@ -88,7 +88,8 @@ def getOpenNext(caseId):
     rep = {'diseases': [], 'symptoms': [], 'nextOpen': False, 'confirmedDiseases':[]}
 
     for s in resultProcess.get('symptoms'):
-        rep['symptoms'].append({'name':s.name, 'question':s.question, 'image':s.imageurl, 'confirmed':False})
+        rep['symptoms'].append({'name':s.name, 'question':s.question, 'image':s.imageurl,
+                                'confirmed':False, 'AIconfirmed':True})
         # app.logger.info(s['confirmed'])
 
     for d in resultProcess.get('diseases'):
