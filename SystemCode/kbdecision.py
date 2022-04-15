@@ -2,19 +2,24 @@ from xmlrpc.client import boolean
 from models import SingletonMeta
 from DataAccessLayer import DataAccessLayer
 from NeomodelGraphObject import *
+
+
 class KbDecisionMaker(metaclass=SingletonMeta):
 
-    def getNext(self, case:CaseInc, symptom:Symptom, isConfirmed:boolean, suspectLevel:float, isGuided:boolean) :
+    def getNext(self, case: CaseInc, symptom: Symptom, isConfirmed: boolean, suspectLevel: float, isGuided: boolean):
         """
         return a dict
         {"symptom": next Symtom if any
         "diseases": [{"disease": disease, "confidence":0.8}]
         list of dictionary of diseases and confidence level sorted by confidence level
         """
-        dbcon = DataAccessLayer(username='neo4j',password='ai-user').CreateDBConnection
-        currentDiseases = dbcon.GetAllDiseaseFromSymptomOrCaseByNameOrID(case.name)
-        suspectDiseases = dbcon.GetAllDiseaseFromSymptomOrCaseByNameOrID(symptom.name)
-        currentDMap = { currentDiseases[i][0].id : currentDiseases[i][0] for i in range(len(currentDiseases))} if currentDiseases[0][0] else {}
+        dbcon = DataAccessLayer().CreateDBConnection
+        currentDiseases = dbcon.GetAllDiseaseFromSymptomOrCaseByNameOrID(
+            case.name)
+        suspectDiseases = dbcon.GetAllDiseaseFromSymptomOrCaseByNameOrID(
+            symptom.name)
+        currentDMap = {currentDiseases[i][0].id: currentDiseases[i][0] for i in range(
+            len(currentDiseases))} if currentDiseases[0][0] else {}
         for dl in suspectDiseases:
             d = dl[0]
             weight = d.symptoms.relationship(symptom).weight
@@ -37,7 +42,7 @@ class KbDecisionMaker(metaclass=SingletonMeta):
         diseases = []
         for d in case.suspected_diseases:
             confi = case.suspected_diseases.relationship(d).confidence
-            diseases.append([d,confi])
+            diseases.append([d, confi])
         diseases.sort(key=lambda i: i[1], reverse=True)
 
         symptoms = []
@@ -45,11 +50,11 @@ class KbDecisionMaker(metaclass=SingletonMeta):
         q = 3
         t = 6
         for d in diseases:
-            if t==0:
+            if t == 0:
                 break
             c = q
             for s in d[0].symptoms:
-                if c == 0 or t==0:
+                if c == 0 or t == 0:
                     q -= 1
                     break
                 if not case.suspected_symptoms.relationship(s) and s.name not in symptomNames:
@@ -57,11 +62,5 @@ class KbDecisionMaker(metaclass=SingletonMeta):
                     symptomNames.add(s.name)
                     t -= 1
                     c -= 1
-        
-        return {"case":case, "diseases":diseases, "symptoms":symptoms}
 
-        
-
-
-
-
+        return {"case": case, "diseases": diseases, "symptoms": symptoms}

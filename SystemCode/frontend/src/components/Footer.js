@@ -11,7 +11,9 @@ const Footer = ({ open, onSend }) => {
   const [mBody, setBody] = useState();
   const onClickF = () => {
     console.log("button clicked");
-    onSend({ body: mBody, isUser: true });
+    const message = mBody;
+    onSend({ body: message, isUser: true });
+    setBody("");
   };
 
   const onClickRestart = () => {
