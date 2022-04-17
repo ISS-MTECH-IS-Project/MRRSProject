@@ -4,22 +4,28 @@ from topicmodel import *
 from kbdecision import *
 
 
-class FishMessage():
+class CaseService(metaclass=SingletonMeta):
+    caseCache = {}
 
-    def __init__(self, question, options, isConclusion):
-        self.question = question
-        # option is a dict {label:str, value:str,image:bool}
-        self.options = options
-        self.isConclusion = isConclusion
+    def createCase(self):
+        dbcon = DataAccessLayer().CreateDBConnection
+        case = dbcon.CreateOrGetCaseNode()
+        return case
 
-    def getQuestion(self):
-        return self.question
+    def getCaseMessages(self, caseName):
+        return self.caseCache.get(caseName)
 
-    def getOptions(self):
-        return self.options
+    def saveCaseMessages(self, caseName, messages):
+        self.caseCache[caseName] = messages
 
-    def getIsConclusion(self):
-        return self.isConclusion
+    def updateCaseRating(self, caseName, diseaseName, rating):
+        dbcon = DataAccessLayer().CreateDBConnection
+        case = dbcon.CreateOrGetCaseNode(caseName)
+        currentDiseases = dbcon.GetAllDiseaseFromSymptomOrCaseByNameOrID(
+            caseName)
+        for d in currentDiseases:
+            if d[0].name == diseaseName:
+                dbcon.RateDiseaseToCase(case, d[0], rating)
 
 
 class Conversation(metaclass=SingletonMeta):
@@ -30,22 +36,6 @@ class Conversation(metaclass=SingletonMeta):
     # Attributes
     tm = TopicModel()
     kb = KbDecisionMaker()
-
-    # def __init__(self):
-    # self.question = question
-    # option is a dict {label:str, value:str,image:bool}
-    # self.options = options
-    # self.isConclusion = isConclusion
-
-    # greeting:str = "how are you doing today?"
-    # count:int = 0
-    # def getGreeting(self) -> str:
-    #     self.count += 1
-    #     return self.greeting + str(self.count)
-
-    # def getMessage(self, question:str, answer:str) -> FishMessage:
-    #     symptoms = self.tm.getSymptoms(question, answer)
-    #     pass
 
     # Function for Guided (Novice)
     def manageConversation(self, caseID: str = None, symptomResponses: dict = {}, userInput: str = None) -> dict:

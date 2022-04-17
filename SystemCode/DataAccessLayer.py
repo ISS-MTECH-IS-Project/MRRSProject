@@ -1,17 +1,18 @@
-#pip install py2neo
+# pip install py2neo
 
 from neo4j import GraphDatabase
 from neo4j.exceptions import ServiceUnavailable
 from neomodel import db, StructuredNode, config, match, relationship
-from NeomodelGraphObject import (Symptom, Disease, AKA, Medication, CaseInc, SuspectedSymptomRel)
+from NeomodelGraphObject import (
+    Symptom, Disease, AKA, Medication, CaseInc, SuspectedSymptomRel)
 import uuid
 
 
 # noinspection PyMethodMayBeStatic
 class DataAccessLayer():
 
-    def __init__(self, neo4jURL =None,dbName=None,username=None, password=None):
-        # Neo4j Settings 
+    def __init__(self, neo4jURL=None, dbName=None, username=None, password=None):
+        # Neo4j Settings
         self.Neo4jDBURL = neo4jURL or "neo4j://localhost:7687"
         self.DefaultDB = dbName or "neo4j"
         self.DBUserName = username or "neo4j"
@@ -19,7 +20,8 @@ class DataAccessLayer():
         self.Graph = None
         self.Session = None
 
-        config.DATABASE_URL = "bolt://"+self.DBUserName+":"+self.DBPassword+"@localhost:7687/"+self.DefaultDB
+        config.DATABASE_URL = "bolt://"+self.DBUserName+":" + \
+            self.DBPassword+"@localhost:7687/"+self.DefaultDB
         # self.Py2NeoGraph = Graph(self.Neo4jDBURL, auth=(self.DBUserName, self.DBPassword))
         # self.Py2NeoRepo = Repository("bolt://neo4j@localhost:7687", password=self.DBPassword)
 
@@ -28,11 +30,11 @@ class DataAccessLayer():
     # Always connect to the correct DB first before us
     @property
     def CreateDBConnection(self):
-        # Initialize the graph DB 
+        # Initialize the graph DB
         self.Graph = GraphDatabase.driver(
-             self.Neo4jDBURL,
-             auth=(self.DBUserName, self.DBPassword)
-         )
+            self.Neo4jDBURL,
+            auth=(self.DBUserName, self.DBPassword)
+        )
         self.Session = self.Graph.session(database=self.DefaultDB)
 
         return self
@@ -41,10 +43,10 @@ class DataAccessLayer():
     def ClearCurrentDB(self):
         """Delete all the nodes and relationships"""
         query = (
-                "MATCH (all_nodes)"
-                "OPTIONAL MATCH (all_nodes)-[all_rels]->()"
-                "DELETE all_nodes, all_rels"
-            )
+            "MATCH (all_nodes)"
+            "OPTIONAL MATCH (all_nodes)-[all_rels]->()"
+            "DELETE all_nodes, all_rels"
+        )
         with self.Session as session:
             result = session.run(query)
 
@@ -58,10 +60,11 @@ class DataAccessLayer():
 
     #   region Single Node Operations
 
-    def __GetOneNodeOfANYTypeUsingName(self,nodename:str):
-        query= "MATCH (n) where n.name =$name return n"
-        param_dictionary = {'name':nodename}
-        results, meta = db.cypher_query(query, param_dictionary,resolve_objects=True)
+    def __GetOneNodeOfANYTypeUsingName(self, nodename: str):
+        query = "MATCH (n) where n.name =$name return n"
+        param_dictionary = {'name': nodename}
+        results, meta = db.cypher_query(
+            query, param_dictionary, resolve_objects=True)
         if results:
             node = results[0][0]
             nodeLabel, = node.labels
@@ -79,17 +82,18 @@ class DataAccessLayer():
                 return node
         return None
 
-    def __GetOneNodeOfSpecificTypeUsingName(self, nodename:str, nodeLabel:str):
+    def __GetOneNodeOfSpecificTypeUsingName(self, nodename: str, nodeLabel: str):
         query = "MATCH (n:nodelabel) where n.name=$name return n"
-        query = query.replace("nodelabel",nodeLabel)
+        query = query.replace("nodelabel", nodeLabel)
         param_dictionary = {'name': nodename}
-        results, meta = db.cypher_query(query, param_dictionary, resolve_objects=True)
+        results, meta = db.cypher_query(
+            query, param_dictionary, resolve_objects=True)
         if results:
             node = results[0][0]
             return node
         return None
 
-    def GetOneDiseaseNode(self,name:str = None, ID:int = None) -> Disease:
+    def GetOneDiseaseNode(self, name: str = None, ID: int = None) -> Disease:
         """
         Get one disease node using name
         If ID is not null, ID will be used
@@ -102,7 +106,7 @@ class DataAccessLayer():
                 if d.id == ID:
                     return d
 
-    def GetOneSymptomNode(self,name:str = None, ID:int = None) -> Symptom:
+    def GetOneSymptomNode(self, name: str = None, ID: int = None) -> Symptom:
         """
         Get one symptom node using name
         If ID is not null, ID will be used
@@ -116,7 +120,7 @@ class DataAccessLayer():
                     return s
             return None
 
-    def CreateOrGetSymptomNode(self, symptomName:str = None, onlyGet:bool=False) -> Symptom:
+    def CreateOrGetSymptomNode(self, symptomName: str = None, onlyGet: bool = False) -> Symptom:
         checkforsymptom = Symptom.nodes.first_or_none(name=symptomName)
         if checkforsymptom is None and not onlyGet:
             symptom_instance = Symptom(name=symptomName)
@@ -125,20 +129,21 @@ class DataAccessLayer():
         else:
             return checkforsymptom
 
-    def DeleteSymptomNode(self,symptom_name:str = None, symptom_instance:Symptom = None):
+    def DeleteSymptomNode(self, symptom_name: str = None, symptom_instance: Symptom = None):
         """
         Delete a Symptom node
         If Symptom is pass it, it will be used and symptom_name will be ignored
         """
         if symptom_instance is None:
             if symptom_name:
-                symptom_to_delete = Symptom.nodes.get_or_none(name=symptom_name)
+                symptom_to_delete = Symptom.nodes.get_or_none(
+                    name=symptom_name)
                 if symptom_to_delete is not None:
                     symptom_to_delete.delete()
         else:
             symptom_instance.delete()
 
-    def GetAllSymptomFromDiseaseOrCaseByNameOrID(self, nodename:str = None, ID:int = None) -> [Symptom]:
+    def GetAllSymptomFromDiseaseOrCaseByNameOrID(self, nodename: str = None, ID: int = None) -> [Symptom]:
         TryDiseaseNode = self.GetOneDiseaseNode(nodename, ID)
         TryCaseNode = self.CreateOrGetCaseNode(nodename, ID, True)
 
@@ -152,7 +157,8 @@ class DataAccessLayer():
             RETURN symptoms
             """
             param_dictionary = {'name': TryDiseaseNode.name}
-            results, meta = db.cypher_query(query, param_dictionary, resolve_objects=True)
+            results, meta = db.cypher_query(
+                query, param_dictionary, resolve_objects=True)
             return results
         if TryCaseNode:
             # return TryCaseNode.suspected_symptoms.all() - see above
@@ -162,11 +168,12 @@ class DataAccessLayer():
             RETURN symptoms
             """
             param_dictionary = {'name': TryCaseNode.name}
-            results, meta = db.cypher_query(query, param_dictionary, resolve_objects=True)
+            results, meta = db.cypher_query(
+                query, param_dictionary, resolve_objects=True)
             return results
         return None
 
-    def GetAllDiseaseFromSymptomOrCaseByNameOrID(self, nodename:str = None, ID:int = None) -> [Symptom]:
+    def GetAllDiseaseFromSymptomOrCaseByNameOrID(self, nodename: str = None, ID: int = None) -> [Symptom]:
         TrySymptomNode = self.GetOneSymptomNode(nodename, ID)
         TryCaseNode = self.CreateOrGetCaseNode(nodename, ID, True)
 
@@ -178,7 +185,8 @@ class DataAccessLayer():
             RETURN diseases
             """
             param_dictionary = {'name': TrySymptomNode.name}
-            results, meta = db.cypher_query(query, param_dictionary, resolve_objects=True)
+            results, meta = db.cypher_query(
+                query, param_dictionary, resolve_objects=True)
             return results
         if TryCaseNode:
             # return TryCaseNode.suspected_diseases.all() - see above
@@ -188,11 +196,12 @@ class DataAccessLayer():
             RETURN diseases
             """
             param_dictionary = {'name': TryCaseNode.name}
-            results, meta = db.cypher_query(query, param_dictionary, resolve_objects=True)
+            results, meta = db.cypher_query(
+                query, param_dictionary, resolve_objects=True)
             return results
         return None
 
-    def GetOneAKANode(self,name:str = None, ID:int = None) -> AKA:
+    def GetOneAKANode(self, name: str = None, ID: int = None) -> AKA:
         """
         Get one AKA node using name
         If ID is not null, ID will be used
@@ -206,7 +215,7 @@ class DataAccessLayer():
                     return a
             return None
 
-    def GetOneMedicationNode(self, name:str = None, ID:int = None) -> Medication:
+    def GetOneMedicationNode(self, name: str = None, ID: int = None) -> Medication:
         """
         Get one medication node using name
         If ID is not null, ID will be used
@@ -220,7 +229,7 @@ class DataAccessLayer():
                     return m
             return None
 
-    def __CreateOrGetCaseNode(self, casename:str = None, onlyGet:bool = False):
+    def __CreateOrGetCaseNode(self, casename: str = None, onlyGet: bool = False):
         checkforcase = CaseInc.nodes.first_or_none(name=casename)
         if checkforcase is None and not onlyGet:
             case_instance = CaseInc(name=casename)
@@ -234,7 +243,7 @@ class DataAccessLayer():
         case_instance.save()
         return case_instance
 
-    def CreateOrGetCaseNode(self, casename:str = None, ID:int = None, onlyGet:bool = False) -> CaseInc:
+    def CreateOrGetCaseNode(self, casename: str = None, ID: int = None, onlyGet: bool = False) -> CaseInc:
         """
         ID will take precedent if present.
         Will attempt to use ID(precedent) or name to search for node
@@ -262,7 +271,7 @@ class DataAccessLayer():
                 else:
                     return None
 
-    def SaveCaseNode(self,case_instance:CaseInc) -> CaseInc:
+    def SaveCaseNode(self, case_instance: CaseInc) -> CaseInc:
         """
         Save Case node to DB
         In future, this should be the over-arch
@@ -270,7 +279,7 @@ class DataAccessLayer():
         case_instance.save()
         return case_instance
 
-    def DeleteCaseNode(self,casename:str = None, case_instance:CaseInc = None):
+    def DeleteCaseNode(self, casename: str = None, case_instance: CaseInc = None):
         """
         Delete a Case node
         If Case is pass it, it will be used and name will be ignored
@@ -283,41 +292,49 @@ class DataAccessLayer():
         else:
             case_instance.delete()
 
-    def UpdateDiseaseToCase(self,case_instance:CaseInc, suspectedDisease:Disease, confidence:float = 0) -> CaseInc:
+    def UpdateDiseaseToCase(self, case_instance: CaseInc, suspectedDisease: Disease, confidence: float = 0) -> CaseInc:
         rel = case_instance.suspected_diseases.relationship(suspectedDisease)
         if rel:
             rel.confidence = confidence
             rel.save()
         else:
-            rel = case_instance.suspected_diseases.connect(suspectedDisease, {'confidence':confidence})
+            rel = case_instance.suspected_diseases.connect(
+                suspectedDisease, {'confidence': confidence})
             case_instance.save()
         return case_instance
 
-    def UpdateSymptomToCase(self,case_instance:CaseInc, suspectedSymptom:Symptom, suspectedLevel:float=1.0) -> CaseInc:
+    def RateDiseaseToCase(self, case_instance: CaseInc, suspectedDisease: Disease, rating: float = 0):
+        rel = case_instance.suspected_diseases.relationship(suspectedDisease)
+        if rel:
+            rel.rating = rating
+            rel.save()
+
+    def UpdateSymptomToCase(self, case_instance: CaseInc, suspectedSymptom: Symptom, suspectedLevel: float = 1.0) -> CaseInc:
         rel = case_instance.suspected_symptoms.relationship(suspectedSymptom)
         if rel:
             rel.suspectedLevel = suspectedLevel
             rel.save()
         else:
-            case_instance.suspected_symptoms.connect(suspectedSymptom, {'suspectedLevel':suspectedLevel})
+            case_instance.suspected_symptoms.connect(
+                suspectedSymptom, {'suspectedLevel': suspectedLevel})
             case_instance.save()
         return case_instance
 
-    def PushAllSymptomOfAnotherDiseaseToCase(self,case_instance:CaseInc, saidDisease:Disease) -> CaseInc:
+    def PushAllSymptomOfAnotherDiseaseToCase(self, case_instance: CaseInc, saidDisease: Disease) -> CaseInc:
         if saidDisease:
             for symptom in saidDisease.symptoms:
                 case_instance.suspected_symptoms.connect(symptom)
         case_instance.save()
         return case_instance
 
-    def RemoveAllMatchingDiseaseFromCase(self,case_instance:CaseInc, removeDisease:[Disease]) -> CaseInc:
+    def RemoveAllMatchingDiseaseFromCase(self, case_instance: CaseInc, removeDisease: [Disease]) -> CaseInc:
         if removeDisease:
             for disease in removeDisease:
                 case_instance.suspected_diseases.disconnect(disease)
         case_instance.save()
         return case_instance
 
-    def RemoveAllMatchingSymptomFromCase(self,case_instance:CaseInc, removeSymptom:[Symptom]) -> CaseInc:
+    def RemoveAllMatchingSymptomFromCase(self, case_instance: CaseInc, removeSymptom: [Symptom]) -> CaseInc:
         if removeSymptom:
             for symptom in removeSymptom:
                 case_instance.suspected_symptoms.disconnect(symptom)
@@ -328,7 +345,7 @@ class DataAccessLayer():
 
     #   region Multiple Node Operations
 
-    def GetAllNodeListOfType(self,nodeLabel:str):
+    def GetAllNodeListOfType(self, nodeLabel: str):
         """
         Get ALL rows from current Table \n
         Valid NodeLabels \n
@@ -349,7 +366,7 @@ class DataAccessLayer():
         else:
             return None
 
-    def DeleteAllNodeListOfType(self, nodeLabel:str):
+    def DeleteAllNodeListOfType(self, nodeLabel: str):
         """
         Get ALL rows from current Table \n
         Valid NodeLabels \n
@@ -360,13 +377,14 @@ class DataAccessLayer():
         if nodeLabel == 'disease':
             templateQuery = templateQuery.replace("MYTEMPLATEWORD", "Disease")
         elif nodeLabel == 'symptom':
-            templateQuery = templateQuery.replace("MYTEMPLATEWORD","Symptom")
+            templateQuery = templateQuery.replace("MYTEMPLATEWORD", "Symptom")
         elif nodeLabel == 'akaA':
-            templateQuery = templateQuery.replace("MYTEMPLATEWORD","AKA")
+            templateQuery = templateQuery.replace("MYTEMPLATEWORD", "AKA")
         elif nodeLabel == 'medication':
-            templateQuery = templateQuery.replace("MYTEMPLATEWORD","Medication")
+            templateQuery = templateQuery.replace(
+                "MYTEMPLATEWORD", "Medication")
         elif nodeLabel == 'case':
-            templateQuery = templateQuery.replace("MYTEMPLATEWORD","Case")
+            templateQuery = templateQuery.replace("MYTEMPLATEWORD", "Case")
         else:
             return None
 

@@ -5,7 +5,7 @@ import Footer from "./Footer";
 import Topbar from "./Topbar";
 import Messages from "./Messages";
 import Symptom from "./Symptom";
-import Disease from "./Disease";
+import Diseases from "./Diseases";
 import { Box, Grid } from "@mui/material";
 import Paper from "@mui/material/Paper";
 import Divider from "@mui/material/Divider";
@@ -15,7 +15,7 @@ import { makeStyles } from "@mui/styles";
 // message : {isSend, isUser, nextOpen, symptoms, diseases, time, body}
 const ChatScreen = () => {
   const [messages, setMessages] = useState([]);
-  const [isOpen, setOpen] = useState(true);
+  const [isOpen, setOpen] = useState(false);
   let params = useParams();
   const caseId = params.caseId;
 
@@ -51,7 +51,22 @@ const ChatScreen = () => {
     };
 
     getMessages();
-  }, []);
+  }, [caseId]);
+
+  useEffect(() => {
+    const updateMessages = async (id) => {
+      await fetch(`http://localhost:5000/cases/${id}`, {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(messages),
+      });
+    };
+    if (messages.length > 0) {
+      updateMessages(caseId);
+    }
+  }, [messages, caseId]);
 
   // Fetch case
   const fetchCase = async (id) => {
@@ -65,10 +80,12 @@ const ChatScreen = () => {
   };
 
   // get next message
-  const getGuidedNext = async () => {
+  const getNext = async (message) => {
     const m = messages[messages.length - 1];
-    m.isHistory = true;
-    const res = await fetch(`http://localhost:5000/cases/${caseId}/guided`, {
+    const tempBody = m.body;
+    m.body = message.body;
+    const uri = isOpen ? "open" : "guided";
+    const res = await fetch(`http://localhost:5000/cases/${caseId}/${uri}`, {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -76,9 +93,9 @@ const ChatScreen = () => {
       body: JSON.stringify(m),
     });
     const data = await res.json();
-    setOpen(data.nextOpen);
+    m.body = tempBody;
     data.time = moment().format("hh:mm");
-    setMessages([...messages, data]);
+    setMessages([...messages, message, data]);
     setSSymptoms(data.symptoms);
     setSDiseases(data.diseases);
     scrollToBottom();
@@ -98,36 +115,10 @@ const ChatScreen = () => {
     setSDiseases(data.diseases);
   };
 
-  // get next message
-  const getOpenNext = async (message) => {
-    const m = messages[messages.length - 1];
-    const tempBody = m.body;
-    m.body = message.body;
-    const res = await fetch(`http://localhost:5000/cases/${caseId}/guided`, {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(m),
-    });
-
-    const data = await res.json();
-    setOpen(data.nextOpen);
-    m.body = tempBody;
-    data.time = moment().format("hh:mm");
-    setMessages([...messages, message, data]);
-    setSSymptoms(data.symptoms);
-    setSDiseases(data.diseases);
-    scrollToBottom();
-  };
-
   const sendMessage = (message) => {
-    if (isOpen) {
-      message.time = moment().format("hh:mm");
-      getOpenNext(message);
-    } else {
-      getGuidedNext();
-    }
+    message.time = moment().format("hh:mm");
+    setMessages([...messages, message]);
+    getNext(message);
   };
 
   // Toggle Reminder
@@ -137,6 +128,10 @@ const ChatScreen = () => {
     setSSymptoms(messages[mIndex].symptoms.map((s) => s));
     setMessages(messages.map((m) => m));
     resetDisease(messages[mIndex].symptoms[sIndex]);
+  };
+
+  const toggleOpen = () => {
+    setOpen(!isOpen);
   };
 
   const messagesEndRef = useRef(null);
@@ -168,7 +163,11 @@ const ChatScreen = () => {
             <Topbar />
             <Messages messages={messages} onToggle={toggleConfirm} />
             <Divider sx={{ mt: 2 }} />
-            <Footer open={isOpen} onSend={sendMessage} />
+            <Footer
+              open={isOpen}
+              onSend={sendMessage}
+              toggleOpen={toggleOpen}
+            />
             <div ref={messagesEndRef} />
           </Grid>
         </Paper>
@@ -177,7 +176,7 @@ const ChatScreen = () => {
         <Box className={classes.root} display="inline-grid">
           <Paper className={classes.root} elevation={3}>
             <h4 className={classes.sstitle}>Suspected Diseases</h4>
-            <Disease diseases={suspectedDiseases}></Disease>
+            <Diseases diseases={suspectedDiseases} caseId={caseId}></Diseases>
           </Paper>
         </Box>
       )}

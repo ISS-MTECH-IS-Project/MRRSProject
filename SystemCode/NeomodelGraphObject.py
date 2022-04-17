@@ -1,4 +1,4 @@
-#pip install neomodel
+# pip install neomodel
 from neomodel import (StructuredNode, ArrayProperty, UniqueIdProperty, StringProperty, FloatProperty, StructuredRel, Relationship,
                       RelationshipTo, RelationshipFrom, IntegerProperty)
 
@@ -32,6 +32,9 @@ class SuspectedSymptomRel(StructuredRel):
 class SuspectedDiseaseRel(StructuredRel):
     name = StringProperty()
     confidence = FloatProperty(
+        default=0.0
+    )
+    rating = FloatProperty(
         default=0.0
     )
 
@@ -89,5 +92,7 @@ class CaseInc(StructuredNode):
     case_chathistory = ArrayProperty()
     case_token = ArrayProperty()
     iteration = IntegerProperty(default=0)
-    suspected_symptoms = RelationshipTo('Symptom', 'suspectedSymptom', model=SuspectedSymptomRel)
-    suspected_diseases = RelationshipTo('Disease', 'suspectedDisease', model=SuspectedDiseaseRel)
+    suspected_symptoms = RelationshipTo(
+        'Symptom', 'suspectedSymptom', model=SuspectedSymptomRel)
+    suspected_diseases = RelationshipTo(
+        'Disease', 'suspectedDisease', model=SuspectedDiseaseRel)
