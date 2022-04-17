@@ -42,7 +42,8 @@ class KbDecisionMaker(metaclass=SingletonMeta):
         diseases = []
         for d in case.suspected_diseases:
             confi = case.suspected_diseases.relationship(d).confidence
-            diseases.append([d, confi])
+            rating = case.suspected_diseases.relationship(d).rating
+            diseases.append([d, confi, rating])
         diseases.sort(key=lambda i: i[1], reverse=True)
 
         symptoms = []

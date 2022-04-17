@@ -4,20 +4,28 @@ import TextField from "@mui/material/TextField";
 import { useState } from "react";
 import Tooltip from "@mui/material/Tooltip";
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
-
+import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
+import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import SendIcon from "@mui/icons-material/Send";
 
-const Footer = ({ open, onSend }) => {
+const Footer = ({ open, onSend, toggleOpen }) => {
   const [mBody, setBody] = useState();
+  const [chatDisable, setChatDisable] = useState(true);
+  const [firstTime, setFirstTime] = useState(true);
   const onClickF = () => {
     console.log("button clicked");
     const message = mBody;
     onSend({ body: message, isUser: true });
     setBody("");
+    setFirstTime(false);
+  };
+
+  const toggleChat = () => {
+    setChatDisable(!chatDisable);
   };
 
   const onClickRestart = () => {
-    console.log("Restart button clicked");
+    window.open("/");
   };
 
   const handleChange = (e) => {
@@ -33,15 +41,52 @@ const Footer = ({ open, onSend }) => {
           multiline
           rows={4}
           fullWidth
-          disabled={!open}
+          disabled={!firstTime && chatDisable}
           onChange={handleChange}
+          value={mBody}
           placeholder="My pet fish is suffering from..."
         />
       </Grid>
       <Grid item xs={2} alignItems="flex-end">
         <Grid container direction="column" alignContent="flex-end">
           <ButtonGroup orientation="vertical">
-            <Tooltip title="Restart the diagnosis">
+            <Tooltip title="Send my response">
+              <Button
+                variant="contained"
+                sx={{ mb: 4, mt: 6 }}
+                onClick={onClickF}
+                endIcon={<SendIcon />}
+              >
+                Send
+              </Button>
+            </Tooltip>
+            <Tooltip title="Enable the chat box. You cannot disable when the page loads.">
+              <Button
+                variant="contained"
+                sx={{ mb: 4 }}
+                onClick={toggleChat}
+                endIcon={
+                  !firstTime && chatDisable ? (
+                    <CheckBoxOutlineBlankIcon />
+                  ) : (
+                    <CheckBoxIcon />
+                  )
+                }
+              >
+                Enable Chat
+              </Button>
+            </Tooltip>
+            <Tooltip title="Allow the bot to return suspected symptoms.">
+              <Button
+                variant="contained"
+                sx={{ mb: 4 }}
+                onClick={toggleOpen}
+                endIcon={open ? <CheckBoxOutlineBlankIcon /> : <CheckBoxIcon />}
+              >
+                Enable Guide
+              </Button>
+            </Tooltip>
+            <Tooltip title="Start a new diagnosis">
               <Button
                 variant="contained"
                 color="error"
@@ -50,15 +95,6 @@ const Footer = ({ open, onSend }) => {
                 endIcon={<RestartAltIcon />}
               >
                 Restart
-              </Button>
-            </Tooltip>
-            <Tooltip title="Send my response">
-              <Button
-                variant="contained"
-                onClick={onClickF}
-                endIcon={<SendIcon />}
-              >
-                Send
               </Button>
             </Tooltip>
           </ButtonGroup>

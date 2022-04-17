@@ -22,13 +22,13 @@ const Symptom = ({ symptoms, messageIndex, onToggle, isHistory = false }) => {
       color: "white",
       boxShadow: "none",
       width: 300,
-      height: 350,
+      height: 300,
     },
     cardNC: {
       backgroundColor: "white",
       color: "black",
       width: 300,
-      height: 350,
+      height: 300,
     },
   });
 
@@ -81,7 +81,7 @@ const Symptom = ({ symptoms, messageIndex, onToggle, isHistory = false }) => {
           >
             {s.AIconfirmed && (
               <CardContent height={150} width={100}>
-                Auto-checked via AI confidence. Please uncheck if inot
+                Auto-checked via AI confidence. Please uncheck if not
                 applicable.
               </CardContent>
             )}
