@@ -34,7 +34,45 @@ const Footer = ({ open, onSend, toggleOpen }) => {
 
   return (
     <Grid mt={3} container direction="row" alignItems="center">
-      <Grid item pr={1} xs={10}>
+      <Grid item mb={2} xs={12}>
+        <Tooltip title="Enable the chat box. You cannot disable when the page loads.">
+          <Button
+            variant="contained"
+            onClick={toggleChat}
+            endIcon={
+              !firstTime && chatDisable ? (
+                <CheckBoxOutlineBlankIcon />
+              ) : (
+                <CheckBoxIcon />
+              )
+            }
+          >
+            Enable Chat
+          </Button>
+        </Tooltip>
+        <Tooltip title="Allow the bot to return suspected symptoms.">
+          <Button
+            variant="contained"
+            sx={{ ml: 2 }}
+            onClick={toggleOpen}
+            endIcon={open ? <CheckBoxOutlineBlankIcon /> : <CheckBoxIcon />}
+          >
+            Enable Guide
+          </Button>
+        </Tooltip>
+        <Tooltip title="Start a new diagnosis">
+          <Button
+            variant="contained"
+            color="error"
+            sx={{ ml: 2 }}
+            onClick={onClickRestart}
+            endIcon={<RestartAltIcon />}
+          >
+            Start New
+          </Button>
+        </Tooltip>
+      </Grid>
+      <Grid item xs={10}>
         <TextField
           id="userquery"
           label="Describe your pet fish's symptoms"
@@ -53,48 +91,10 @@ const Footer = ({ open, onSend, toggleOpen }) => {
             <Tooltip title="Send my response">
               <Button
                 variant="contained"
-                sx={{ mb: 4, mt: 6 }}
                 onClick={onClickF}
                 endIcon={<SendIcon />}
               >
                 Send
-              </Button>
-            </Tooltip>
-            <Tooltip title="Enable the chat box. You cannot disable when the page loads.">
-              <Button
-                variant="contained"
-                sx={{ mb: 4 }}
-                onClick={toggleChat}
-                endIcon={
-                  !firstTime && chatDisable ? (
-                    <CheckBoxOutlineBlankIcon />
-                  ) : (
-                    <CheckBoxIcon />
-                  )
-                }
-              >
-                Enable Chat
-              </Button>
-            </Tooltip>
-            <Tooltip title="Allow the bot to return suspected symptoms.">
-              <Button
-                variant="contained"
-                sx={{ mb: 4 }}
-                onClick={toggleOpen}
-                endIcon={open ? <CheckBoxOutlineBlankIcon /> : <CheckBoxIcon />}
-              >
-                Enable Guide
-              </Button>
-            </Tooltip>
-            <Tooltip title="Start a new diagnosis">
-              <Button
-                variant="contained"
-                color="error"
-                sx={{ mb: 4 }}
-                onClick={onClickRestart}
-                endIcon={<RestartAltIcon />}
-              >
-                Restart
               </Button>
             </Tooltip>
           </ButtonGroup>
