@@ -1,0 +1,124 @@
+<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>210</x><y>360</y><w>160</w><h>150</h></coordinates><panel_attributes>Conversation
+--
+tm: TopicModel
+kb: KbDecisionMaker
+--
+manageConversation(): dict
+--
+Responsibilities
+-- Manage the guided and 
+unguided conversation flow</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>20</x><y>240</y><w>150</w><h>220</h></coordinates><panel_attributes>App
+--
+--
+hello_world
+hello_case
+createCase
+getCase
+updateCase
+updateCaseRating
+getGuidedNext
+getOpenNext
+processResponse
+--
+Responsibilities
+-- interact with frontend</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>160</x><y>250</y><w>70</w><h>150</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>50;130;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>220</x><y>140</y><w>160</w><h>150</h></coordinates><panel_attributes>CaseService
+--
+--
+createCase
+getCaseMessages
+saveCaseMessages
+updateCaseRating
+--
+Responsibilities
+-- manage the case cache
+and case operations</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>160</x><y>140</y><w>80</w><h>130</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>60;10;10;110</additional_attributes></element><element><id>UMLClass</id><coordinates><x>440</x><y>260</y><w>160</w><h>150</h></coordinates><panel_attributes>TopicModel
+--
+--
+getSymptoms: [string]
+--
+Responsibilities
+-- process the user input to
+find the matching symptoms</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>430</x><y>470</y><w>190</w><h>150</h></coordinates><panel_attributes>KbDecisionMaker
+--
+--
+getNext: dict
+--
+Responsibilities
+-- confirm symptoms to the case
+and return the suspected diseases
+and next set of symptoms to ask</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>360</x><y>260</y><w>100</w><h>130</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;110;80;10</additional_attributes></element><element><id>Relation</id><coordinates><x>360</x><y>370</y><w>90</w><h>130</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;70;110</additional_attributes></element><element><id>UMLClass</id><coordinates><x>670</x><y>140</y><w>280</w><h>330</h></coordinates><panel_attributes>DataAccessLayer
+--
+CreateDBConnection
+ClearCurrentDB
+--
+GetOneDiseaseNode
+GetOneSymptomNode
+CreateOrGetSymptomNode
+DeleteSymptomNode
+GetAllSymptomFromDiseaseOrCaseByNameOrID
+GetAllDiseaseFromSymptomOrCaseByNameOrID
+CreateOrGetCaseNode
+SaveCaseNode
+DeleteCaseNode
+UpdateDiseaseToCase
+RateDiseaseToCase
+UpdateSymptomToCase
+DeleteAllNodeListOfType
+--
+Responsibilities
+-- Neo4J database operations</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>370</x><y>140</y><w>320</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>300;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>590</x><y>160</y><w>100</w><h>130</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>80;10;10;110</additional_attributes></element><element><id>Relation</id><coordinates><x>610</x><y>190</y><w>80</w><h>320</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>60;10;10;300</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1020</x><y>110</y><w>140</w><h>180</h></coordinates><panel_attributes>_Disease_
+--
+    name
+    environment 
+    affectfish 
+    cause 
+    treatment 
+    vet_advised 
+    aka
+    symptoms 
+    medications 
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1190</x><y>370</y><w>130</w><h>190</h></coordinates><panel_attributes>_Symptom_
+--
+    name
+    description
+    type
+    tm_token
+    category1
+    category2
+    category3
+    imageurl
+    question
+    diseases</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>930</x><y>600</y><w>160</w><h>100</h></coordinates><panel_attributes>_Case_
+--
+    name 
+    suspected_symptoms 
+    suspected_diseases</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1250</x><y>80</y><w>100</w><h>50</h></coordinates><panel_attributes>_AKA_
+--
+    name
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1240</x><y>150</y><w>160</w><h>170</h></coordinates><panel_attributes>_Medication_
+--
+    name
+    vet_or_OTC
+    description
+    treatment_desc
+    complicate_fish
+    danger_human 
+    danger_plant 
+    danger_invertebrates 
+    diseases 
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1088</x><y>280</y><w>140</w><h>110</h></coordinates><panel_attributes>lt=-
+r1=n
+r2=n
+</panel_attributes><additional_attributes>120;90;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1018</x><y>280</y><w>40</w><h>340</h></coordinates><panel_attributes>lt=-
+r1=n
+r2=n
+</panel_attributes><additional_attributes>10;320;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1078</x><y>540</y><w>190</w><h>90</h></coordinates><panel_attributes>lt=-
+r1=n
+r2=n
+</panel_attributes><additional_attributes>10;70;170;20</additional_attributes></element><element><id>Relation</id><coordinates><x>1148</x><y>200</y><w>110</w><h>90</h></coordinates><panel_attributes>lt=-
+r1=n
+r2=n
+</panel_attributes><additional_attributes>90;70;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1148</x><y>80</y><w>120</w><h>70</h></coordinates><panel_attributes>lt=-
+r1=1
+r2=0
+</panel_attributes><additional_attributes>100;20;10;50</additional_attributes></element><element><id>Relation</id><coordinates><x>940</x><y>110</y><w>100</w><h>60</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>80;10;10;40</additional_attributes></element><element><id>Relation</id><coordinates><x>940</x><y>410</y><w>270</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>250;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>910</x><y>460</y><w>70</w><h>160</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>50;140;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>610</x><y>580</y><w>340</w><h>60</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>320;40;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>610</x><y>530</y><w>600</w><h>40</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>580;20;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>610</x><y>280</y><w>480</w><h>250</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>460;10;460;230;10;230</additional_attributes></element></diagram>
