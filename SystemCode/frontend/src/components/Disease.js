@@ -99,7 +99,7 @@ const Disease = ({ d, i, caseId }) => {
         </Box>
       </Modal>
       <React.Fragment>
-        <Card sx={parseFloat(d.confidence) >= 80 ? confirmStyle : diseaseStyle}>
+        <Card sx={parseFloat(d.confidence) >= 70 ? confirmStyle : diseaseStyle}>
           <CardContent>
             <Typography sx={{ fontSize: 14 }} gutterBottom>
               Suspected Disease ({i + 1})
@@ -194,7 +194,7 @@ const Disease = ({ d, i, caseId }) => {
                 N/A
               </Typography>
             )}
-            {parseFloat(d.confidence) >= 80 && (
+            {parseFloat(d.confidence) >= 70 && (
               <ButtonGroup orientation="horizontal" sx={alignCenter}>
                 Is this helpful?{"    "}
                 <Tooltip title="This disease helps me.">

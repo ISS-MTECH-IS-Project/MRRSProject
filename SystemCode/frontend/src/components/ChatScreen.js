@@ -81,7 +81,17 @@ const ChatScreen = () => {
 
   // get next message
   const getNext = async (message) => {
-    const m = messages[messages.length - 1];
+    var mIndex = messages.length - 1;
+    for (var i = messages.length - 1; i > 0; i--) {
+      if (
+        messages[i].symptoms !== undefined &&
+        messages[i].symptoms.length > 0
+      ) {
+        mIndex = i;
+        break;
+      }
+    }
+    const m = messages[mIndex];
     const tempBody = m.body;
     m.body = message.body;
     const uri = isOpen ? "open" : "guided";

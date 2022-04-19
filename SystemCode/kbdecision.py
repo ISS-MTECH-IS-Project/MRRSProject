@@ -3,6 +3,10 @@ from models import SingletonMeta
 from DataAccessLayer import DataAccessLayer
 from NeomodelGraphObject import *
 
+# Hyperparameter for Knowledge base decision maker
+numberDiseaseToSuspect = 3
+numberSymptomToReturn = 6
+
 
 class KbDecisionMaker(metaclass=SingletonMeta):
 
@@ -48,8 +52,8 @@ class KbDecisionMaker(metaclass=SingletonMeta):
 
         symptoms = []
         symptomNames = set()
-        q = 3
-        t = 6
+        q = numberDiseaseToSuspect
+        t = numberSymptomToReturn
         for d in diseases:
             if t == 0:
                 break

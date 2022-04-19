@@ -1,7 +1,10 @@
-from xmlrpc.client import boolean
 from models import *
 from topicmodel import *
 from kbdecision import *
+from DataAccessLayer import DataAccessLayer
+
+# Hyper Parameters to confirm a disease
+confidenceScoreHP = 0.7
 
 
 class CaseService(metaclass=SingletonMeta):
@@ -30,7 +33,6 @@ class CaseService(metaclass=SingletonMeta):
 
 class Conversation(metaclass=SingletonMeta):
     # Hyper Parameters
-    confidenceScoreHP: float = 0.8
     iterationLimitHP: int = 4
 
     # Attributes
@@ -82,7 +84,7 @@ class Conversation(metaclass=SingletonMeta):
                     for disease in diseases:
                         confidence = disease[1]
                         print(disease[0].name, "  ", confidence)
-                        if confidence >= self.confidenceScoreHP:
+                        if confidence >= confidenceScoreHP:
                             confirmedDiseases.append(disease[0])
                     if len(confirmedDiseases) == 0 and iteration >= self.iterationLimitHP:
                         confirmedDiseases.append(diseases[0][0])
@@ -123,7 +125,7 @@ class Conversation(metaclass=SingletonMeta):
             if len(diseases) > 0:
                 for disease in diseases:
                     confidence = disease[1]
-                    if confidence >= self.confidenceScoreHP:
+                    if confidence >= confidenceScoreHP:
                         confirmedDisease = disease
 
         return {"case": case, "symptoms": symptoms, "diseases": diseases, "confirmedDisease": confirmedDisease}

@@ -7,6 +7,9 @@ from datetime import datetime
 app = Flask(__name__)
 cors = CORS(app)
 
+# hyperparameter for number diseases return to the UI
+numberOfDisease = 3
+
 
 @app.route('/')
 @cross_origin()
@@ -47,7 +50,7 @@ def processResponse(caseId, req, guided=True):
         # app.logger.info(s['confirmed'])
 
     for i, d in enumerate(resultProcess.get('diseases')):
-        if i > 2:
+        if i > numberOfDisease-1:
             break
         if d[1] > 0:
             cdSymptoms = []
