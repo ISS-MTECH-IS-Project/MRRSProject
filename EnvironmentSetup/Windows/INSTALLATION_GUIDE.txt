@@ -1,0 +1,20 @@
+DOWNLOAD & INSTALL NEO4J
+###################################################################################
+
+1) Download Neo4j desktop from https://neo4j.com/download-center/#desktop
+
+IMPORTANT
+After filling up the registration and while awaiting download, copy and paste the
+Neo4j Desktop Activation Key
+into a notepad to be used for the final instatllation step
+
+2) Rename the download as NEO4J_Setup.exe
+3) Note the folder which you have download NEO4J_Setup.exe. eg. c:\downloads
+4) Open up a command prompt with ADMIN rights (elevated)
+5) Copy and paste the entire code block below in the prompt (remember to change the c:\downloads to the correct folder if you have downloaded NEO4J to another folder)
+
+cd c:\downloads
+NEO4J_Setup.exe /allusers /S
+
+
+Once you boot up NEO4J, you will be asked for the activation key (which you should have it copied previously in step 1), click the register later button.
