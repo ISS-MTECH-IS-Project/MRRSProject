@@ -69,8 +69,13 @@ conda activate py39
 
 ## Setup the application
 
-- Download the code repository from github https://github.com/TeamEightIS04/MRRSProject
+- Download the code repository from github and save the code under ~/MRRSProject https://github.com/TeamEightIS04/MRRSProject
 - Go to the SystemCode folder
+
+```bash
+cd ~/MRRSProject/SystemCode
+```
+
 - Install the dependencies (make sure the py39 environment is activated)
 
 ```bash
