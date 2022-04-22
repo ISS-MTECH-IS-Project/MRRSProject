@@ -33,10 +33,10 @@ sudo service neo4j start
 ```
 
 - Update password
-  Open Neo4j browser http://localhost:7474/browser
-  Login with default username neo4j and default password neo4j
-  Update neo123456 new password
-  (this is the default password used by the application)
+  > Open Neo4j browser http://localhost:7474/browser
+  > Login with default username neo4j and default password neo4j
+  > Update neo123456 new password
+  > (this is the default password used by the application)
 
 ## Install Anaconda (Optional)
 
@@ -84,8 +84,7 @@ pip install sklearn spacy neo4j neomodel nltk pandas Flask flask_cors
 python dataSetup.py
 ```
 
-- Verify the data in Neo4j
-  Open Neo4j browser http://localhost:7474/browser
+- Verify the data in Neo4j http://localhost:7474/browser
 - Start the application
 
 ```bash
