@@ -34,9 +34,8 @@ sudo service neo4j start
 
 - Update password
   > Open Neo4j browser http://localhost:7474/browser
-  > Login with default username _neo4j_ and default password _neo4j_
-  > Update _neo123456_ as new password
-  > (this is the default password used by the application)
+  > Login with default username **neo4j** and default password **neo4j**
+  > Update **neo123456** as new password _this is the default password used by the application_
 
 ## Install Anaconda (Optional)
 
