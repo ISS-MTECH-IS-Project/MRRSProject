@@ -1,0 +1,53 @@
+####################################################################################
+DOWNLOAD & INSTALL NEO4J
+####################################################################################
+
+1) Download Neo4j desktop from https://neo4j.com/download-center/#desktop
+
+IMPORTANT
+After filling up the registration and while awaiting download, copy and paste the
+Neo4j Desktop Activation Key
+into a notepad to be used for the final instatllation step
+
+2) Rename the download as NEO4J_Setup.exe
+3) Note the folder which you have download NEO4J_Setup.exe. eg. c:\downloads
+4) Open up a command prompt with ADMIN rights (elevated)
+5) Copy and paste the entire code block below in the prompt (remember to change the c:\downloads to the correct folder if you have downloaded NEO4J to another folder)
+
+cd c:\downloads
+NEO4J_Setup.exe /allusers /S
+
+
+Once you boot up NEO4J, you will be asked for the activation key (which you should have it copied previously in step 1), click the register later button to complete the installation.
+
+####################################################################################
+Python & Anaconda
+####################################################################################
+
+1) This project mainly written in Python (backend) and uses Python libraries and a compiled React frontend.
+Python installation is essential. Python 3.8 & above is recommended.
+https://www.python.org/downloads/windows/
+
+2) As we have provided an environment.yml file for sharing our package configuration,
+Anaconda installation is also recommended.
+https://docs.anaconda.com/anaconda/install/windows/
+
+After the above 2 application are installed,
+run the following in command prompt in the path where the environment.yml file is residing
+
+conda env create --file environment.yml
+
+####################################################################################
+Download (or Git pull) OhMyFish
+####################################################################################
+
+Download OhMyFish from https://github.com/TeamEightIS04/MRRSProject
+or alternatively Git pull
+
+Open up a command prompt and run the following commands
+
+cd to <ohmyfish_directory_which_you_install_to>\MRRSProject\SystemCode
+$env:FLASK_APP = "app.py"
+python -m flask run
+
+OhMyFish will be available by default at http://localhost:5000
