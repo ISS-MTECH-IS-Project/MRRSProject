@@ -55,7 +55,7 @@ bash Anaconda3-2021.11-Linux-x86_64.sh
 
 Follow the guide to complete the installation.
 
-- Create a new python 3.9.12 environment
+- Create a new python 3.9.12 environment _(note: you need to open a new terminal to enable the conda command after installation)_
 
 ```bash
 conda create --name py39 python=3.9.12
