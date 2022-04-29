@@ -5,7 +5,7 @@
 
 
 ## SECTION 1: PROJECT TITLE
-### OHMYFISH - Your Friendly Pet Fish Veterinarian
+### OhMyFish - Your Friendly Pet Fish Veterinarian
 
 
 ------------
