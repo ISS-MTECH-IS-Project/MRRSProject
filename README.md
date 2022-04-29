@@ -57,6 +57,8 @@ And while there is good value in this MVP version, there are obvious limitations
 ## SECTION 4: ARCHITECTURE DESIGN AND DEMO VIDEO
 
 
+[![image](https://user-images.githubusercontent.com/97829579/165922088-8423e289-941a-4f3a-bab7-275aa9724a58.png)](https://www.youtube.com/watch?v=vItzw3gUHp4)
+
 
 ------------
 
