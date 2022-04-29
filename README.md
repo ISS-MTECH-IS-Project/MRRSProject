@@ -1,6 +1,7 @@
 ## IRS-PM-2022-01-29-IS04-GRP8-OhMyFish
 
-https://www.youtube.com/watch?v=YBcyRB6ct-8
+![image](https://user-images.githubusercontent.com/97829579/165912959-50c031a5-d60b-4759-8b28-e75c549baac1.png)
+
 ------------
 
 
