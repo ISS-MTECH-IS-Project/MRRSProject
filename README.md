@@ -1,4 +1,7 @@
-## OHMYFISH - Your Friendly Pet Fish Veterinarian
+## IRS-PM-2022-01-29-IS04-GRP8-OhMyFish
+
+## SECTION 1: PROJECT TITLE
+### OHMYFISH - Your Friendly Pet Fish Veterinarian
 
 ## SECTION 2: EXECUTIVE SUMMARY
 #### Preface
@@ -29,7 +32,7 @@ And while there is good value in this MVP version, there are obvious limitations
 1. X. Lu, S. Leslie, L. Kay and J. C. L. Chow, “Chatbot for Health Care and Oncology Applications Using Artificial Intelligence and Machine Learning: Systematic Review,” National Library of Medicine, 29 November 2021. [Online]. Available: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8669585/
 2. D. A. Negro and D. V. Kus, “Bring Order to Chaos: A Graph-Based Journey from Textual Data to Wisdom,” neo4j, 19 September 2018. [Online]. Available: https://neo4j.com/blog/bring-order-to-chaos-graph-based-journey-textual-data-to-wisdom/
 
-## CREDITS / PROJECT CONTRIBUTION
+## SECTION 3: CREDITS / PROJECT CONTRIBUTION
 |  Full Name |  Student ID | Work Item Contribution  | Email  |
 | ------------ | ------------ | ------------ | ------------ |
 | Lim Eng Hwee Jason  | A0180557Y  | 1. Team Leader<br/>2. Designing the data preparation module<br/>3. Ideation<br/>4. Architecture and System Design<br/>4. Neomodel layer abstraction and data access layer<br/>5. Filling up data fields related to disease treatments and causes<br/>6. Cleaning up CSV and labelling of diseases and symptoms<br/>7. Front-end UI enhancements and revamp of desired cosmetic (user) behaviours<br/>8. Testing of front and backend integration<br/>9. Test cases write up and test evaluation<br/>| e0284043@u.nus.edu |
@@ -38,10 +41,10 @@ And while there is good value in this MVP version, there are obvious limitations
 | Teoh Jeng Wei  | A0093899B  | 1. Ideation<br/>2. System architecture and application logic flow designs<br/>3. Data Acquisition and Knowledge Discovery<br/>4. Web scrapping to extract and structure information<br/>5. Data ingestion into neo4j Graph DB<br/>6. Marketing and System Architecture videos<br/>7. Storyboarding, animation, scripting, AI audio creation and video-audio synchronization. | e0938628@u.nus.edu |
 | Wang Song  | A0026411X  | 1. Ideation<br/>2. Architecture and System Design<br/>3. Designs and coding the Knowledge Base Decisioning Model<br/>4. Design and code the backend APIs and frontend logic to integrate with the backend APIs.<br/>5. Integration of all components<br/>6. Installation guide, class diagram and knowledge base model. | wangsong@u.nus.edu |
 
-## VIDEO SHOWCASE
+## SECTION 4: ARCHITECTURE DESIGN AND DEMO VIDEO
 
 
-## INSTALLATION & USER GUIDE
+## SECTION 5: INSTALLATION & USER GUIDE
 
 #### Installation for Windows OS
 [Click here to go to the Windows Installation Section](https://github.com/TeamEightIS04/MRRSProject/tree/main/EnvironmentSetup/Windows "Click here to go to the Windows Installation Section")
@@ -49,5 +52,5 @@ And while there is good value in this MVP version, there are obvious limitations
 #### Installation for Linux OS
 [Click here to go to the Linux Installation Section](https://github.com/TeamEightIS04/MRRSProject/tree/main/EnvironmentSetup/Linux "Click here to go to the Linux Installation Section")
 
-#### User Guide
+## SECTION 6: User Guide
 [Click here to see the User guide](https://github.com/TeamEightIS04/MRRSProject/blob/main/Documentation/User%20Guide.docx "Click here to see the User guide")
