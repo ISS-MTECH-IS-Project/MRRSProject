@@ -63,17 +63,17 @@ And while there is good value in this MVP version, there are obvious limitations
 ## SECTION 5: INSTALLATION & USER GUIDE
 
 #### Installation for Windows OS
-[Click here to go to the Windows Installation Section](https://github.com/TeamEightIS04/MRRSProject/tree/main/EnvironmentSetup/Windows "Click here to go to the Windows Installation Section")
+[Please click here to refer to the Windows Installation Section](https://github.com/TeamEightIS04/MRRSProject/tree/main/EnvironmentSetup/Windows "Please click here to refer to the Windows Installation Section")
 
 #### Installation for Linux OS
-[Click here to go to the Linux Installation Section](https://github.com/TeamEightIS04/MRRSProject/tree/main/EnvironmentSetup/Linux "Click here to go to the Linux Installation Section")
+[Please click here to refer to the Linux Installation Section](https://github.com/TeamEightIS04/MRRSProject/tree/main/EnvironmentSetup/Linux "Please click here to refer to the Linux Installation Section]")
 
 
 ------------
 
 
 ## SECTION 6: User Guide
-[Click here to see the User guide](https://github.com/TeamEightIS04/MRRSProject/blob/main/Documentation/User%20Guide.docx "Click here to see the User guide")
+[Please click here to refer to the User Guide](https://github.com/TeamEightIS04/MRRSProject/blob/main/Documentation/User%20Guide.docx "CPlease click here to refer to the User Guide")
 
 
 ------------
