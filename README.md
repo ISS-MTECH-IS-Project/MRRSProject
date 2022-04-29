@@ -1,6 +1,6 @@
 ## OHMYFISH - Your Friendly Pet Fish Veterinarian
 
-## EXECUTIVE SUMMARY
+## SECTION 2: EXECUTIVE SUMMARY
 #### Preface
 The Group Project is one of the key learning outcomes of the Intelligent Reasoning System (IRS) Graduate Certification and in this report, details the extensive but extremely rewarding learning journey we (Group 8) have undertaken to alleviate the impacts brought about by Covid-19 on the pet fish veterinary services in relation to pet fishkeeping hobbyists. This report details the problem statement and our investigative research journey for a solution through the analysis performed, approaches evaluated through trail-and-error, knowledge and insights formed, and observations made.
 
