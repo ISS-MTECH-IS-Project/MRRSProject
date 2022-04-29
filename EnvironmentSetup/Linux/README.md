@@ -1,4 +1,4 @@
-# Installation Guide on Linux
+# Installation Guide on Linux (Ubuntu)
 
 ## Install Neo4j
 
