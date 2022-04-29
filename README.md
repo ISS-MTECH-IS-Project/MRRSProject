@@ -104,7 +104,7 @@ And while there is good value in this MVP version, there are obvious limitations
 3.4.3.	Neo4j to Internal Python Objects<br/>	
 3.4.4.	Saving User Case Diagnosis to Neo4j for Expansion of Knowledge Graph<br/>	
 3.5.	Flow Diagram<br/>	
-3.6.	Sequence Diagrams<br/<br/>>	
+3.6.	Sequence Diagrams<br/<br/>
 3.6.1.	Guided Approach<br/>	
 3.6.2.	Unguided Approach – Expert<br/>	
 3.7.	Core Reasoning Intelligence<br/>
