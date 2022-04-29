@@ -33,10 +33,6 @@ A hybrid exploratory method of Investigative Research and Trial-And-Error forms 
 Through the union of design and techniques adopted to implement this Minimum Viable Product (MVP) version built upon a limited dataset, OhMyFish has been evaluated to have meet its intended purpose of being an intelligent reasoning veterinary chatbot to enable hobbyists to perform diagnostic inquires on their pet fishes with reasonable accuracy. Further, OhMyFish solves the three problems of limited availability, limited published knowledge, limited of self-service with being always available, published knowledge base and unlimited self-service to all hobbyists.
 And while there is good value in this MVP version, there are obvious limitations that inhibits a tremendous amount of untapped potential amidst a lucrative business opportunity in Singapore that can be unlocked with future development on OhMyFish to unlock further capabilities. These future development opportunities include Speech Recognition (Speech-to-Text and Text-to-Speech) for a genuine conversational capability, Computer Vision to enable the usage of images and videos of pet fishes, Sentiment Analysis to evaluate the usefulness of the diagnostic inquiry to the hobbyist, 3rd Party Integrations to applications like Telegram and Whatsapp, Plugins to External Knowledge Bases such as Quora and KPI Measurements to measure performances. There remains in OhMyFish and this domain, much room for further research and future development to improve, and limitless untapped potential.
 
-
-------------
-
-
 1. X. Lu, S. Leslie, L. Kay and J. C. L. Chow, “Chatbot for Health Care and Oncology Applications Using Artificial Intelligence and Machine Learning: Systematic Review,” National Library of Medicine, 29 November 2021. [Online]. Available: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8669585/
 2. D. A. Negro and D. V. Kus, “Bring Order to Chaos: A Graph-Based Journey from Textual Data to Wisdom,” neo4j, 19 September 2018. [Online]. Available: https://neo4j.com/blog/bring-order-to-chaos-graph-based-journey-textual-data-to-wisdom/
 
@@ -78,3 +74,66 @@ And while there is good value in this MVP version, there are obvious limitations
 
 ## SECTION 6: User Guide
 [Click here to see the User guide](https://github.com/TeamEightIS04/MRRSProject/blob/main/Documentation/User%20Guide.docx "Click here to see the User guide")
+
+
+------------
+
+
+## SECTION 7: PROJECT REPORT (OUTLINE)
+
+#### Please refer to the detailed report found in ProjectReport in Github
+
+1	Executive Summary
+2	Introduction
+2.1.	Problem Statement
+2.2.	Business Opportunity
+2.2.1.	Availability
+2.2.2.	Accessibility
+2.2.3.	Self-Service
+2.3.	Proposed Solution
+3.	Design
+3.1.	Conceptual
+3.2.	Architecture	
+3.2.1.	Presentation Tier
+3.2.2.	Application Tier	
+3.2.3.	Data Tier	
+3.3.	Class Diagram	
+3.4.	Data	
+3.4.1.	Data Preparation	
+3.4.2.	Data Ingestion to Neo4j	
+3.4.3.	Neo4j to Internal Python Objects	
+3.4.4.	Saving User Case Diagnosis to Neo4j for Expansion of Knowledge Graph	
+3.5.	Flow Diagram	
+3.6.	Sequence Diagrams	
+3.6.1.	Guided Approach	
+3.6.2.	Unguided Approach – Expert	
+3.7.	Core Reasoning Intelligence	
+3.7.1.	Topic Modelling Module (TMM)	
+3.7.1.1.	Structure of Graph Database for Fish Diseases	
+3.7.1.2.	Finding the Best Technique	
+3.7.1.3.	Verdict	
+3.7.2.	Knowledge Base Decisioning Module (KBDM)	
+3.7.2.1.	Developing a Custom Heuristic Model
+3.7.2.2.	Verdict	
+3.7.3.	Summary of Hyperparameters	
+4.	Technology Stack	
+5.	Test Results and Evaluation	
+5.1.	Test Results	
+5.2.	Evaluation	
+6.	Known Limitations and Opportunities for Future Development	
+7.	Conclusion	
+8.	Appendix
+8.1.	References	
+8.2.	Image References	
+8.3.	Project Proposal	
+8.4.	Mapping of System Functionalities and Modular Courses
+8.5.	Installation Guide
+8.5.1.	Linux	
+8.6.1	Windows	
+8.7	User Guide	
+8.8	Team Member Reports	
+8.8.1	Jason Lim Eng Hwee	92
+8.8.2	Tan Sio Poh	93
+8.8.3	Teo Wei Ming	94
+8.8.4	Teoh Jeng Wei	95
+8.8.5	Wang Song	96
