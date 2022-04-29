@@ -74,7 +74,7 @@ And while there is good value in this MVP version, there are obvious limitations
 
 
 ## SECTION 6: User Guide
-[Please click here to refer to the User Guide](https://github.com/TeamEightIS04/MRRSProject/blob/main/Documentation/User%20Guide.docx "CPlease click here to refer to the User Guide")
+[Please click here to refer to the User Guide](https://github.com/TeamEightIS04/MRRSProject/blob/main/EnvironmentSetup/User%20Guide.docx "CPlease click here to refer to the User Guide")
 
 
 ------------
