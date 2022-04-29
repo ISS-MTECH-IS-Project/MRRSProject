@@ -83,57 +83,57 @@ And while there is good value in this MVP version, there are obvious limitations
 
 #### Please refer to the detailed report found in ProjectReport in Github
 
-1	Executive Summary
-2	Introduction
-2.1.	Problem Statement
-2.2.	Business Opportunity
-2.2.1.	Availability
-2.2.2.	Accessibility
-2.2.3.	Self-Service
-2.3.	Proposed Solution
-3.	Design
-3.1.	Conceptual
-3.2.	Architecture	
-3.2.1.	Presentation Tier
-3.2.2.	Application Tier	
-3.2.3.	Data Tier	
-3.3.	Class Diagram	
-3.4.	Data	
-3.4.1.	Data Preparation	
-3.4.2.	Data Ingestion to Neo4j	
-3.4.3.	Neo4j to Internal Python Objects	
-3.4.4.	Saving User Case Diagnosis to Neo4j for Expansion of Knowledge Graph	
-3.5.	Flow Diagram	
-3.6.	Sequence Diagrams	
-3.6.1.	Guided Approach	
-3.6.2.	Unguided Approach – Expert	
-3.7.	Core Reasoning Intelligence	
-3.7.1.	Topic Modelling Module (TMM)	
-3.7.1.1.	Structure of Graph Database for Fish Diseases	
-3.7.1.2.	Finding the Best Technique	
-3.7.1.3.	Verdict	
-3.7.2.	Knowledge Base Decisioning Module (KBDM)	
-3.7.2.1.	Developing a Custom Heuristic Model
-3.7.2.2.	Verdict	
-3.7.3.	Summary of Hyperparameters	
-4.	Technology Stack	
-5.	Test Results and Evaluation	
-5.1.	Test Results	
-5.2.	Evaluation	
-6.	Known Limitations and Opportunities for Future Development	
-7.	Conclusion	
-8.	Appendix
-8.1.	References	
-8.2.	Image References	
-8.3.	Project Proposal	
-8.4.	Mapping of System Functionalities and Modular Courses
-8.5.	Installation Guide
-8.5.1.	Linux	
-8.6.1	Windows	
-8.7	User Guide	
-8.8	Team Member Reports	
-8.8.1	Jason Lim Eng Hwee	92
-8.8.2	Tan Sio Poh	93
-8.8.3	Teo Wei Ming	94
-8.8.4	Teoh Jeng Wei	95
-8.8.5	Wang Song	96
+1	Executive Summary<br/>
+2	Introduction<br/>
+2.1.	Problem Statement<br/>
+2.2.	Business Opportunity<br/>
+2.2.1.	Availability<br/>
+2.2.2.	Accessibility<br/>
+2.2.3.	Self-Service<br/>
+2.3.	Proposed Solution<br/>
+3.	Design<br/>
+3.1.	Conceptual<br/>
+3.2.	Architecture<br/>
+3.2.1.	Presentation Tier<br/>
+3.2.2.	Application Tier<br/<br/>>
+3.2.3.	Data Tier<br/>	
+3.3.	Class Diagram<br/>	
+3.4.	Data<br/>	
+3.4.1.	Data Preparation<br/>	
+3.4.2.	Data Ingestion to Neo4j<br/>	
+3.4.3.	Neo4j to Internal Python Objects<br/>	
+3.4.4.	Saving User Case Diagnosis to Neo4j for Expansion of Knowledge Graph<br/>	
+3.5.	Flow Diagram<br/>	
+3.6.	Sequence Diagrams<br/<br/>>	
+3.6.1.	Guided Approach<br/>	
+3.6.2.	Unguided Approach – Expert<br/>	
+3.7.	Core Reasoning Intelligence<br/>
+3.7.1.	Topic Modelling Module (TMM)<br/>	
+3.7.1.1.	Structure of Graph Database for Fish Diseases<br/>	
+3.7.1.2.	Finding the Best Technique<br/>	
+3.7.1.3.	Verdict<br/>	
+3.7.2.	Knowledge Base Decisioning Module (KBDM)<br/>	
+3.7.2.1.	Developing a Custom Heuristic Model<br/>
+3.7.2.2.	Verdict<br/>
+3.7.3.	Summary of Hyperparameters<br/>	
+4.	Technology Stack<br/>	
+5.	Test Results and Evaluation<br/>	
+5.1.	Test Results<br/>	
+5.2.	Evaluation<br/>	
+6.	Known Limitations and Opportunities for Future Development<br/>	
+7.	Conclusion<br/>	
+8.	Appendix<br/>
+8.1.	References<br/>	
+8.2.	Image References<br/>	
+8.3.	Project Proposal<br/>	
+8.4.	Mapping of System Functionalities and Modular Courses<br/>
+8.5.	Installation Guide<br/>
+8.5.1.	Linux<br/>	
+8.6.1	Windows<br/>	
+8.7	User Guide<br/>	
+8.8	Team Member Reports<br/>	
+8.8.1	Jason Lim Eng Hwee<br/>
+8.8.2	Tan Sio Poh<br/>
+8.8.3	Teo Wei Ming<br/>
+8.8.4	Teoh Jeng Wei<br/>
+8.8.5	Wang Song<br/>
