@@ -685,6 +685,7 @@ state
 states
 still
 stop
+string
 strongly
 sub
 substantially
